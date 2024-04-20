@@ -5,16 +5,14 @@ import com.example.ketanStores.dto.ChudidarDto;
 import com.example.ketanStores.enums.ChudidarEnum;
 import com.example.ketanStores.service.ChudidarService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.sql.rowset.serial.SerialBlob;
 import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
+import java.util.List;
 
 @RestController
 public class ChudidarCont {
@@ -37,6 +35,14 @@ public class ChudidarCont {
             return ResponseEntity.badRequest().build();
         }
         return ResponseEntity.ok().body(chudidarDto);
+    }
+    @GetMapping("/churidar/getAll")
+    public ResponseEntity<?> getAll(){
+        List<ChudidarDto> categoryDtos=custService.getCats();
+        if(categoryDtos.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(categoryDtos);
     }
 
 }
