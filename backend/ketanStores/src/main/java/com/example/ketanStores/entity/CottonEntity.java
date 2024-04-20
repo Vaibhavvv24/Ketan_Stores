@@ -1,21 +1,22 @@
 package com.example.ketanStores.entity;
 
-import java.sql.Blob;
-
+import com.example.ketanStores.enums.CottonEnum;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
 @Builder
-public class Cotton {
+public class CottonEntity {
     @Id
     private Long id;
 
     @OneToOne(fetch = FetchType.LAZY)
     @MapsId
-    private Kurta kurta;
+    private KurtaEntity kurtaEntity;
 
+    private CottonEnum type;
+
+    public CottonEntity(CottonEnum type) {
+        this.type = type;
+    }
 }

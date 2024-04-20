@@ -1,21 +1,22 @@
 package com.example.ketanStores.entity;
 
-import java.lang.annotation.Inherited;
-import java.sql.Blob;
-
+import com.example.ketanStores.enums.SilkEnum;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
 @Builder
-public class Silk {
+public class SilkEntity {
     @Id
     private Long id;
 
     @OneToOne(fetch = FetchType.LAZY)
     @MapsId
-    private Kurta kurta;
+    private KurtaEntity kurtaEntity;
+
+    private SilkEnum type;
+
+    public SilkEntity(SilkEnum type) {
+        this.type = type;
+    }
 }

@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Chudidar {
+public class ChudidarEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
