@@ -1,6 +1,8 @@
 package com.example.ketanStores.entity;
 
 import java.sql.Blob;
+
+import com.example.ketanStores.enums.ChudidarEnum;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,7 +21,7 @@ public class ChudidarEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String Type_name;
+    private ChudidarEnum Type_name;
     private int size;
     private boolean available;
     private int quantity;
