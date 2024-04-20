@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import lombok.Builder;
 
 @Entity
-@Builder
 public class SilkEntity {
     @Id
     private Long id;

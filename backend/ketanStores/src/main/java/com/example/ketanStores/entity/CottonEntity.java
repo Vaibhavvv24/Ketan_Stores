@@ -7,7 +7,6 @@ import lombok.Builder;
 import lombok.Data;
 
 @Entity
-@Builder
 public class CottonEntity {
     @Id
     private Long id;
