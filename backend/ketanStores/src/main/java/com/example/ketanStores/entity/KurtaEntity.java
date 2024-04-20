@@ -9,28 +9,26 @@ public class KurtaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    String Type_name;
+    String Name;
     int price;
     int size;
     int quantity;
     boolean available;
     Blob image;
 
-    public KurtaEntity(String type_name, int price, int size, int quantity, boolean available, Blob image) {
-        Type_name = type_name;
+    public KurtaEntity(String Name,int price, int size, int quantity, boolean available, Blob image) {
+        this.Name = Name;
         this.price = price;
         this.size = size;
         this.quantity = quantity;
         this.available = available;
         this.image = image;
     }
-
+    public String getName() {
+        return Name;
+    }
     public Long getId() {
         return id;
-    }
-
-    public String getType_name() {
-        return Type_name;
     }
 
     public int getPrice() {
@@ -45,7 +43,7 @@ public class KurtaEntity {
         return quantity;
     }
 
-    public boolean isAvailable() {
+    public boolean getAvailable() {
         return available;
     }
 
@@ -55,10 +53,6 @@ public class KurtaEntity {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public void setType_name(String type_name) {
-        Type_name = type_name;
     }
 
     public void setPrice(int price) {
@@ -79,5 +73,8 @@ public class KurtaEntity {
 
     public void setImage(Blob image) {
         this.image = image;
+    }
+    public void setName(String Name) {
+        this.Name = Name;
     }
 }

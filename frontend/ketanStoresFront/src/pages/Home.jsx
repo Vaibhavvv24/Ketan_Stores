@@ -2,16 +2,15 @@ import React from 'react'
 import { useGlobalContext } from '../context'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import KetanStores from './Page-Filters/KetanStores'
+import HomeSection from '../components/HomeSection'
 
 const Home = () => {
     return (
-    <>
+    <div className=''>
         <Navbar />
-        <KetanStores />
+        <HomeSection/>
         <Footer/>
-            
-    </>
+    </div>
     );
 }
 

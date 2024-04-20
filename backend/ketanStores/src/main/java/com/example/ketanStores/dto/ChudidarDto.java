@@ -13,6 +13,7 @@ import java.sql.Blob;
 @AllArgsConstructor
 @Builder
 public class ChudidarDto {
+    private Long id;
     ChudidarEnum Type_name;
 
     String name;
