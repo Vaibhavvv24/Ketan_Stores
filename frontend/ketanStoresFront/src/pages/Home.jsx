@@ -1,15 +1,15 @@
 import React from 'react'
 import { useGlobalContext } from '../context'
 import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
 
 const Home = () => {
-    const { mode } = useGlobalContext()
-    console.log(mode)
     return (
     <>
         <Navbar />
-        <div>Home</div>
-      </>
+        <Footer/>
+            
+    </>
     );
 }
 
