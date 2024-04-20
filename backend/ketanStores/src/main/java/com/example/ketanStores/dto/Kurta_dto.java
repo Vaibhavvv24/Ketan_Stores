@@ -5,7 +5,8 @@ import java.sql.Blob;
 import com.example.ketanStores.enums.SilkEnum;
 
 public class Kurta_dto {
-    String Name;
+    Long id;
+    String Type_name;
     int price;
     int size;
     int quantity;
