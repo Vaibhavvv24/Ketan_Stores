@@ -1,6 +1,7 @@
 import React from 'react'
 import LoginFinal from './pages/Login'
 import { StyledEngineProvider, CssVarsProvider } from "@mui/joy/styles";
+import Home from './pages/Home';
   
 const App = () => {
   return (
@@ -8,6 +9,7 @@ const App = () => {
       <StyledEngineProvider injectFirst>
         <CssVarsProvider>
           <LoginFinal />
+          <Home />
         </CssVarsProvider>
       </StyledEngineProvider>
     </>
