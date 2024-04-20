@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 public class OthersEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
     others_enum Type_name;
     int price;
     int size;

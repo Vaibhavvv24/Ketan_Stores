@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 public class ChudidarEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
     private String Type_name;
     private int size;
     private boolean available;
