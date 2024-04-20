@@ -29,6 +29,7 @@ public class ChudidarServiceimp implements ChudidarService{
         chudidarEntity.setName(name);
         ChudidarDto chudidarDto=new ChudidarDto();
         ChudidarEntity savedChuridar=chudidarRepo.save(chudidarEntity);
-        chudidarDto.se
+        chudidarDto.setId(savedChuridar.getId());
+        return chudidarDto;
     }
 }
