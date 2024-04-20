@@ -3,6 +3,7 @@ package com.example.ketanStores.dto;
 import java.sql.Blob;
 
 public class Kurta_dto {
+    Long id;
     String Type_name;
     int price;
     int size;
