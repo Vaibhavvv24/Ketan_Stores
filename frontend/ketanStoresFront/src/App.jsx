@@ -1,9 +1,17 @@
 import React from 'react'
-
+import LoginFinal from './pages/Login'
+import { StyledEngineProvider, CssVarsProvider } from "@mui/joy/styles";
+  
 const App = () => {
   return (
-    <div>App</div>
-  )
+    <>
+      <StyledEngineProvider injectFirst>
+        <CssVarsProvider>
+          <LoginFinal />
+        </CssVarsProvider>
+      </StyledEngineProvider>
+    </>
+  );
 }
 
 export default App
