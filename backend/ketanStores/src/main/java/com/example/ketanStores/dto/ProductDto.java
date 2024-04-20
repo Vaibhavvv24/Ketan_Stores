@@ -1,2 +1,4 @@
-package com.example.ketanStores.dto;public class ProductDto {
+package com.example.ketanStores.dto;
+
+public class ProductDto {
 }

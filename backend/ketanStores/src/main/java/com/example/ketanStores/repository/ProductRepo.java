@@ -1,2 +1,4 @@
-package com.example.ketanStores.repository;public class ProductRepo {
+package com.example.ketanStores.repository;
+
+public class ProductRepo {
 }
