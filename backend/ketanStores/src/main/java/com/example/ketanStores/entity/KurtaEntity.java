@@ -2,17 +2,10 @@ package com.example.ketanStores.entity;
 
 import java.sql.Blob;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
 
 @Entity
-public class Kurta {
+public class KurtaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -23,7 +16,7 @@ public class Kurta {
     boolean available;
     Blob image;
 
-    public Kurta(String type_name, int price, int size, int quantity, boolean available, Blob image) {
+    public KurtaEntity(String type_name, int price, int size, int quantity, boolean available, Blob image) {
         Type_name = type_name;
         this.price = price;
         this.size = size;

@@ -2,11 +2,9 @@ package com.example.ketanStores.dto;
 
 import java.sql.Blob;
 
-import jakarta.persistence.Entity;
 
-
-public class Chudidar extends Kurta_dto{
-    public Chudidar(String Type_name, int price, int size, int quantity, boolean available, Blob image) {
+public class ChudidarDto extends Kurta_dto{
+    public ChudidarDto(String Type_name, int price, int size, int quantity, boolean available, Blob image) {
         super(Type_name, price, size, quantity, available, image);
     }
     public int getprice(){
