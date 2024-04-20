@@ -8,8 +8,8 @@ public class Kurta_dto {
     int size;
     int quantity;
     boolean available;
-    Blob image;
-    public Kurta_dto(String Type_name, int price, int size, int quantity, boolean available, Blob image) {
+    String image;
+    public Kurta_dto(String Type_name, int price, int size, int quantity, boolean available, String image) {
         this.Type_name = Type_name;
         this.price = price;
         this.size = size;

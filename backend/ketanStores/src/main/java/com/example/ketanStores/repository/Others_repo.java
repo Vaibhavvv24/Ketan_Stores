@@ -6,5 +6,5 @@ import com.example.ketanStores.entity.OthersEntity;
 
 @Repository
 public interface Others_repo extends JpaRepository<OthersEntity,Long>{
-
+    
 }
