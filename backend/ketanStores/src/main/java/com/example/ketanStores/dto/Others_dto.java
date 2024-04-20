@@ -19,5 +19,5 @@ public class Others_dto {
     int size;
     int quantity;
     boolean available;
-    Blob image;
+    String image;
 }

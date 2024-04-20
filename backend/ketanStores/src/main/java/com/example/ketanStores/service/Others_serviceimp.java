@@ -23,7 +23,7 @@ public class Others_serviceimp implements Other_service{
             othersDto.setSize(othersEntity.get().getSize());
             othersDto.setPrice(othersEntity.get().getPrice());
             othersDto.setQuantity(othersEntity.get().getQuantity());
-            othersDto.setImage(othersEntity.get().getImage());
+//            othersDto.setImage(othersEntity.get().getImage());
             othersDto.setType_name(othersEntity.get().getType_name());
             othersDto.setAvailable(othersEntity.get().isAvailable());
             return othersDto;

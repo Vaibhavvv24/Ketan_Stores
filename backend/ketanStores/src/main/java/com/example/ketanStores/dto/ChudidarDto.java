@@ -18,5 +18,5 @@ public class ChudidarDto {
     int size;
     int quantity;
     boolean available;
-    Blob image;
+    String image;
 }
