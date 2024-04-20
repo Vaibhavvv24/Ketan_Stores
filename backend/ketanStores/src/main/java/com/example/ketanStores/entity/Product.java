@@ -1,2 +1,4 @@
-package com.example.ketanStores.entity;public class Product {
+package com.example.ketanStores.entity;
+
+public class Product {
 }
