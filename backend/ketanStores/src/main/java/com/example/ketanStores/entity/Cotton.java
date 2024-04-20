@@ -11,7 +11,7 @@ import jakarta.persistence.Id;
 public class Cotton extends Kurta {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
     public Cotton(String Type_name, int price, int size, int quantity, boolean available, Blob image) {
         super(Type_name, price, size, quantity, available, image);
     }
