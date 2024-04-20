@@ -29,7 +29,7 @@ export default function ColorInversionFooter() {
       invertedColors
       sx={{
         ...(color !== "neutral" && {
-          bgcolor: `${color}.800`,
+          bgcolor: `${color}.600`,
         }),
         flexGrow: 1,
         p: 2,
@@ -37,24 +37,6 @@ export default function ColorInversionFooter() {
       }}
     >
       <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-        <IconButton
-          variant='soft'
-          size='sm'
-          onClick={() => {
-            const colors = [
-              "primary",
-              "neutral",
-              "danger",
-              "success",
-              "warning",
-            ];
-
-            const nextColorIndex = colors.indexOf(color) + 1;
-            setColor(colors[nextColorIndex] ?? colors[0]);
-          }}
-        >
-          <ColorLensRoundedIcon fontSize='small' />
-        </IconButton>
         <Divider orientation='vertical' />
         <IconButton variant='plain'>
           <FacebookRoundedIcon />
@@ -86,39 +68,41 @@ export default function ColorInversionFooter() {
           gap: 2,
         }}
       >
-        <Card
-          variant='soft'
-          size='sm'
-          sx={{
-            flexDirection: { xs: "row", md: "column" },
-            minWidth: { xs: "100%", md: "auto" },
-            gap: 1,
-          }}
-        >
-          <AspectRatio
-            ratio='21/9'
-            minHeight={80}
-            sx={{ flexBasis: { xs: 200, md: "initial" } }}
-          >
-            <img
-              alt=''
-              src='/static/blog/mui-product-comparison/ecosystem.png'
-            />
-          </AspectRatio>
-          <CardContent>
-            <Typography level='body-sm'>Intro to the MUI ecosystem</Typography>
-            <Typography level='body-xs'>Blog post</Typography>
-          </CardContent>
-        </Card>
         <List
           size='sm'
           orientation='horizontal'
           wrap
-          sx={{ flexGrow: 0, "--ListItem-radius": "8px" }}
+          sx={{
+            flexGrow: 0,
+            "--ListItem-radius": "8px",
+            display: "flex",
+            flexDirection: { xs: "column", md: "row" },
+            justifyContent : "space-between"
+          }}
         >
-          <ListItem nested sx={{ width: { xs: "50%", md: 140 } }}>
-            <ListSubheader sx={{ fontWeight: "xl" }}>Sitemap</ListSubheader>
-            <List>
+          <ListItem
+            nested
+            sx={{
+              width: { xs: "50%", md: 140 },
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "space-between"
+            }}
+          >
+            <ListSubheader
+              sx={{
+                fontWeight: "xl",
+              }}
+            >
+              Sitemap
+            </ListSubheader>
+            <List
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+              }}
+            >
               <ListItem>
                 <ListItemButton>Services</ListItemButton>
               </ListItem>
@@ -127,20 +111,6 @@ export default function ColorInversionFooter() {
               </ListItem>
               <ListItem>
                 <ListItemButton>About</ListItemButton>
-              </ListItem>
-            </List>
-          </ListItem>
-          <ListItem nested sx={{ width: { xs: "50%", md: 180 } }}>
-            <ListSubheader sx={{ fontWeight: "xl" }}>Products</ListSubheader>
-            <List>
-              <ListItem>
-                <ListItemButton>Joy UI</ListItemButton>
-              </ListItem>
-              <ListItem>
-                <ListItemButton>Base UI</ListItemButton>
-              </ListItem>
-              <ListItem>
-                <ListItemButton>Material UI</ListItemButton>
               </ListItem>
             </List>
           </ListItem>
