@@ -1,8 +1,12 @@
+import CardPalette from "./Card"
 import React from 'react'
 
 const HomeSection = () => {
   return (
-    <div>HomeSection</div>
+    <div className="absolute mt-[80px] flex justify-evenly w-full">
+        <CardPalette />
+        <CardPalette />
+    </div>
   )
 }
 

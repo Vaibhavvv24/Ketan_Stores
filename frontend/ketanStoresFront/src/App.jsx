@@ -19,8 +19,8 @@ const App = () => {
       <StyledEngineProvider injectFirst>
         <CssVarsProvider>
           <Routes>
-            <Route path='/login' element={<LoginFinal />} />
-            <Route exact path='/ketan-stores' element={<KetanStores />} />
+            <Route path='/' element={ <LoginFinal /> } />
+            <Route exact path='/ketan-stores' element={<Home />} />
             <Route exact path='/ketan-stores/men' element={<Men />} />
             <Route exact path="/ketan-stores/men/kurta" element={<Kurta/>} />
             <Route exact path="/ketan-stores/men/chudidar" element={<Chudidar/>} />

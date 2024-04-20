@@ -314,7 +314,7 @@ export default function ExampleNavigationMenu() {
   const { targets, getTargetProps, setActiveIndex, focusNext, focusPrevious } =
     useRovingIndex();
   return (
-    <Box sx={{ minHeight: 190 }}>
+    <Box sx={{ minHeight: 80, position : "absolute" , marginTop : "0px" }}>
       <List
         role='menubar'
         orientation='horizontal'
