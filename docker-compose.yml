@@ -1,0 +1,43 @@
+version: '3.8'
+services:
+  mysql:
+    container_name: mysql_container
+    image: mysql:8.3.0
+    restart: always
+    ports:
+      - 3306:3306
+    networks:
+      - ketanstores-network
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: ketanstores
+      MYSQL_USER: user
+    volumes:
+      - db-data:/var/lib/mysql
+
+  restaurant-backend:
+    container_name: backend_container
+    image: valmikdocker/ketan_stores:backend
+    restart: always
+    ports:
+      - 5000:5000
+    networks:
+      - ketanstores-network
+
+  restaurant-frontend:
+    container_name: frontend_container
+    image: valmikdocker/ketan_stores:frontend
+    restart: always
+    ports:
+      - 80:80
+    networks:
+      - ketanstores-network
+    env_file:
+      - ./frontend/.env
+
+
+volumes:
+  db-data:
+
+networks:
+  ketanstores-network:

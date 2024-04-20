@@ -19,6 +19,6 @@ WORKDIR /my-app
 
 EXPOSE 5000
 
-COPY --from=build-stage /my-app/target/foodOrder-0.0.1-SNAPSHOT.jar .
+COPY --from=build-stage /my-app/target/ketanStores-0.0.1-SNAPSHOT.jar .
 
 ENTRYPOINT ["java", "-jar", "./ketanStores-0.0.1-SNAPSHOT.jar"]
