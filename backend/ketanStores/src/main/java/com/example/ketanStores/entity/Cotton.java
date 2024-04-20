@@ -2,32 +2,20 @@ package com.example.ketanStores.entity;
 
 import java.sql.Blob;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
-public class Cotton extends Kurta {
+@Builder
+public class Cotton {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-    public Cotton(String Type_name, int price, int size, int quantity, boolean available, Blob image) {
-        super(Type_name, price, size, quantity, available, image);
-    }
-    public int getprice(){
-        return super.price;
-    }
-    public int getsize(){
-        return size;
-    }
-    public int getquantity(){
-        return quantity;
-    }
-    public boolean getavailable(){
-        return available;
-    }
-    public Blob getimage(){
-        return image;
-    }
+    private Long id;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @MapsId
+    private Kurta kurta;
+
 }
