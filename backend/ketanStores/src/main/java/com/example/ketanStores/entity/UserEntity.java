@@ -61,4 +61,13 @@ public class UserEntity implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+
+    public String getEmailId() {
+        return emailId;
+    }
+
+    public void setEmailId(String emailId) {
+        this.emailId = emailId;
+    }
 }
