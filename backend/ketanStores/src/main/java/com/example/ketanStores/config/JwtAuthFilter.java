@@ -1,5 +1,6 @@
 package com.example.ketanStores.config;
 
+import com.example.ketanStores.service.UserService;
 import com.example.ketanStores.utils.JwtUtils;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -19,9 +20,12 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
     private final JwtUtils jwtUtils;
 
+    private final UserService userService;
 
-    public JwtAuthFilter(JwtUtils jwtUtils) {
+
+    public JwtAuthFilter(JwtUtils jwtUtils, UserService userService) {
         this.jwtUtils = jwtUtils;
+        this.userService = userService;
     }
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -35,21 +39,18 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         jwt = authHeader.substring(7);      //GETIING THE JWT TOKEN AS IT STARTS FROM BEARER
         userEmail = jwtUtils.extractEmail(jwt);
         if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-           // UserDetails userDetails = userService.userDetailsService().loadUserByUsername(userEmail);
-//            if (jwtUtils.isTokenValid(jwt, userDetails)) {
-//                UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-//                authenticationToken.setDetails(
-//                        new WebAuthenticationDetailsSource().buildDetails(request)
-//                );
-//                SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-//            }
-//        }
+            UserDetails userDetails = userService.userDetailsService().loadUserByUsername(userEmail);
+            if (jwtUtils.isTokenValid(jwt, userDetails)) {
+                UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                authenticationToken.setDetails(
+                        new WebAuthenticationDetailsSource().buildDetails(request)
+                );
+                SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+            }
+        }
         filterChain.doFilter(request, response);
     }
 
 
 }
 
-
-public class JwtAuthFilter {
-}
