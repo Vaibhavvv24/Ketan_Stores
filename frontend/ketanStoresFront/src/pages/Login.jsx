@@ -42,13 +42,15 @@ export default function LoginFinal() {
       <CssBaseline />
       <Sheet
         sx={{
-          width: 300,
+          width: 600,
+          height: 500,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-evenly",
           mx: "auto", // margin left & right
           my: 4, // margin top & bottom
           py: 3, // padding top & bottom
           px: 2, // padding left & right
-          display: "flex",
-          flexDirection: "column",
           gap: 2,
           borderRadius: "sm",
           boxShadow: "md",
@@ -80,13 +82,6 @@ export default function LoginFinal() {
           />
         </FormControl>
         <Button sx={{ mt: 1 /* margin top */ }}>Log in</Button>
-        <Typography
-          endDecorator={<Link href='/sign-up'>Sign up</Link>}
-          fontSize='sm'
-          sx={{ alignSelf: "center" }}
-        >
-          Don&apos;t have an account?
-        </Typography>
       </Sheet>
     </main>
   );

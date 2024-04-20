@@ -15,6 +15,7 @@ import java.sql.Blob;
 public class Others_dto {
     private Long id;
     others_enum Type_name;
+    String Name;
     int price;
     int size;
     int quantity;
