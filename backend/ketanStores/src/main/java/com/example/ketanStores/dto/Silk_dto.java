@@ -23,6 +23,7 @@ public class Silk_dto extends Kurta_dto{
         return available;
     }
     public String getimage(){
+    public String getimage(){
         return image;
     }
 }
