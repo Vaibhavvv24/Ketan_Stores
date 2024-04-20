@@ -12,6 +12,7 @@ import Chudidar from "./pages/Page-Filters/chudidar";
 import Silk from "./pages/Page-Filters/silk";
 import Cotton from "./pages/Page-Filters/cotton";
 
+
 const App = () => {
   return (
     <>
@@ -19,7 +20,6 @@ const App = () => {
         <CssVarsProvider>
           <Routes>
             <Route path='/login' element={<LoginFinal />} />
-            <Route path='/' element={<Home />} />
             <Route exact path='/ketan-stores' element={<KetanStores />} />
             <Route exact path='/ketan-stores/men' element={<Men />} />
             <Route exact path="/ketan-stores/men/kurta" element={<Kurta/>} />
