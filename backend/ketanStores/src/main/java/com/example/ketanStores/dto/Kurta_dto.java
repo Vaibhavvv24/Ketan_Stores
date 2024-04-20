@@ -2,15 +2,16 @@ package com.example.ketanStores.dto;
 
 import java.sql.Blob;
 
+import com.example.ketanStores.enums.SilkEnum;
+
 public class Kurta_dto {
-    String Type_name;
+    String Name;
     int price;
     int size;
     int quantity;
     boolean available;
-    Blob image;
-    public Kurta_dto(String Type_name, int price, int size, int quantity, boolean available, Blob image) {
-        this.Type_name = Type_name;
+    String image;
+    public Kurta_dto(String Name,int price, int size, int quantity, boolean available, String image) {
         this.price = price;
         this.size = size;
         this.quantity = quantity;
