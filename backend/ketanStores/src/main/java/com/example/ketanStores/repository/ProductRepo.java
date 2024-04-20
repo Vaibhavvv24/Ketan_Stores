@@ -1,4 +1,6 @@
 package com.example.ketanStores.repository;
 
-public class ProductRepo {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public class ProductRepo extends {
 }
