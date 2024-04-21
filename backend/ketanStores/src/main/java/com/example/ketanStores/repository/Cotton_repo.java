@@ -8,5 +8,4 @@ import java.util.List;
 
 public interface Cotton_repo extends JpaRepository<CottonEntity,Long>{
     List<CottonEntity> findAllByType(CottonEnum cottonEnum);
-    List<CottonEntity> findAllByName(String name);
 }
