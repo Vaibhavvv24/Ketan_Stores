@@ -13,7 +13,9 @@ import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class ChudidarCont {
@@ -71,6 +73,22 @@ public class ChudidarCont {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok().body(chudidarDto);
+    }
+    @GetMapping("/chudidar/{type}/filter/{size}")
+    public ResponseEntity<?> getByTypeSize(@PathVariable String type,@PathVariable int size) {
+        List<ChudidarDto> chudidarDtos = chudidarService.getChudidarByTypeandSize(type,size);
+        if (chudidarDtos.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(chudidarDtos);
+    }
+    @DeleteMapping("/chudidar/delete/{id}")
+    public ResponseEntity<?> deleteById(@PathVariable Long id){
+        chudidarService.deleteById(id);
+        Map<String,String> deletemap=new HashMap<>();
+        deletemap.put("message","deleted successfully"+id);
+        return ResponseEntity.ok().body(deletemap);
+
     }
 
 }
