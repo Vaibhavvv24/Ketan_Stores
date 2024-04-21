@@ -1,20 +1,20 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Navbar from '../../components/Navbar'
-import Footer from '../../components/Footer'
 import HomeSection from '../../components/Card'
+import { useGlobalContext } from '../../context'
 
 
 export default function kurta() {
+  const { filterKurta } = useGlobalContext();
+
+  const silk = filterKurta.filter((item) => item.name === 'Silk');
+  const cotton = filterKurta.filter((item) => item.name === 'Cotton');
+
   return (
     <>
-        <Navbar/>
-        {/* <div>
-            <div><Link to='/ketan-stores/men/kurta/silk'>Silk</Link></div>
-            <div><Link to='/ketan-stores/men/kurta/cotton'>Cotton</Link></div>
-        </div> */}
-        <HomeSection/>
-        <Footer/>
+      <div>
+        
+      </div>
     </>
   )
 }

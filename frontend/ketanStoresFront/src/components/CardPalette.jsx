@@ -7,24 +7,27 @@ import IconButton from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
 import BookmarkAdd from '@mui/icons-material/BookmarkAddOutlined';
 import { AppContext } from '../context';
+import { useNavigate } from 'react-router-dom';
 
-export default function CardPalette() {
-  const {filterObject} = React.useContext(AppContext);
+export default function CardPalette({ filterItems }) {
+  
+  const name = filterItems[0].name;
 
-  console.log(filterObject)
   return (
+  <div>
     <Card sx={{ width: 320 }}>
       <div>
-        <Typography level="title-lg">Yosemite National Park</Typography>
+          <Typography level='title-lg'>{ name }</Typography>
       </div>
-      <AspectRatio minHeight="120px" maxHeight="200px">
+      <AspectRatio minHeight='120px' maxHeight='200px'>
         <img
-          src="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&fit=crop&w=286"
-          srcSet="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&fit=crop&w=286&dpr=2 2x"
-          loading="lazy"
-          alt=""
+          src='https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&fit=crop&w=286'
+          srcSet='https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&fit=crop&w=286&dpr=2 2x'
+          loading='lazy'
+          alt=''
         />
       </AspectRatio>
     </Card>
+  </div>
   );
 }

@@ -4,10 +4,12 @@ import AspectRatio from '@mui/joy/AspectRatio';
 import Card from '@mui/joy/Card';
 import Typography from '@mui/joy/Typography';
 import { AppContext } from "../context";
+import { useGlobalContext } from "../context";
+
 import { Link } from "react-router-dom";
 
 const HomeSection = () => {
-  const {filterArray, setClick} = React.useContext(AppContext);
+  const {filterArray, setClick} = useGlobalContext();
   const url = window.location.href;
   
   return (

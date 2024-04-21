@@ -1,27 +1,42 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Navbar from '../../components/Navbar'
-import Footer from '../../components/Footer'
 import HomeSection from '../../components/Card'
+import { useGlobalContext } from '../../context'
+import { Card } from '@mui/material';
+import CardPalette from '../../components/CardPalette';
 
 export default function Men() {
+  const { filterMens } = useGlobalContext();
+
+  const kurta = filterMens.filter((item) => item.name === 'Kurta');
+  const chudidar = filterMens.filter((item) => item.name === 'Chudidar');
+  const jacketSuit = filterMens.filter((item) => item.name === 'Jacket Suit');
+  const indoWestern = filterMens.filter((item) => item.name === 'Indo Western');
+  const shortKurta = filterMens.filter((item) => item.name === 'Short Kurta');
+  const plusSize = filterMens.filter((item) => item.name === 'Plus Size');
+
   return (
     <>
-      <Navbar/>
-      {/* <div>
-          <div>
-              <div><Link to='/ketan-stores/men/kurta'>Kurta</Link></div>
-              <div><Link to='/ketan-stores/men/chudidar'>Chudidar</Link></div>
-              <div><Link to='/ketan-stores/men/jacket-suit'>Jacket Suit</Link></div>
-          </div>
-          <div>
-              <div><Link to='/ketan-stores/men/indo-western'>Indo Western</Link></div>
-              <div><Link to='/ketan-stores/men/short-kurta'>Short Kurta</Link></div>
-              <div><Link to='/ketan-stores/men/plus-size'>Plus Size</Link></div>
-          </div>
-      </div> */}
-      <HomeSection/>
-      <Footer/>
+      <div className='grid-rows-4 w-full'>
+        <Link to='/ketan-stores/men/kurta/'>
+          <CardPalette filterItems={kurta} />
+        </Link>
+        <Link to='/ketan-stores/men/chudidar/'>
+          <CardPalette filterItems={chudidar} />
+        </Link>
+        <Link to='/ketan-stores/men/jacket-suit'>
+          <CardPalette filterItems={jacketSuit} />
+        </Link>
+        <Link to='/ketan-stores/men/indo-western'>
+          <CardPalette filterItems={indoWestern} />
+        </Link>
+        <Link to='/ketan-stores/men/short-kurta'>
+          <CardPalette filterItems={shortKurta} />
+        </Link>
+        <Link to='/ketan-stores/men/plus-size'>
+          <CardPalette filterItems={plusSize} />
+        </Link>
+      </div>
     </>
-  )
+  );
 }
