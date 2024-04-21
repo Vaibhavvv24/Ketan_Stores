@@ -118,12 +118,12 @@ const AppProvider = ({ children }) => {
             {
                 url: "/ketan-stores/men",
                 name: "Mens",
-                width : 400
+                width : 450
             },
             {
                 url: "/ketan-stores/kids",
                 name: "Kids",
-                width : 400
+                width : 450
             },
             {
                 url: "/ketan-stores/men/kurta/",
@@ -158,12 +158,12 @@ const AppProvider = ({ children }) => {
             {
                 url: "/ketan-stores/men/kurta/silk",
                 name: "Silk",
-                width : 400
+                width : 450
             },
             {
                 url: "/ketan-stores/men/kurta/cotton",
                 name: "Cotton",
-                width : 400
+                width : 450
             }
         ],
     });
