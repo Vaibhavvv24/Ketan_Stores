@@ -19,4 +19,5 @@ public class Others_dto {
     int quantity;
     boolean available;
     String image;
+    String colour;
 }

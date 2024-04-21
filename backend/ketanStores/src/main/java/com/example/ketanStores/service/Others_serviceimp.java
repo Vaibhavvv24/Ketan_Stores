@@ -52,7 +52,7 @@ public class Others_serviceimp implements Other_service{
     }
 
     @Override
-    public Others_dto postOthers(String name, int price, int quantity, OthersEnum othersEnum, Blob blob, int size) {
+    public Others_dto postOthers(String name, int price, int quantity, OthersEnum othersEnum, Blob blob, int size, String colour) {
         OthersEntity othersEntity = new OthersEntity();
         othersEntity.setSize(size);
         othersEntity.setPrice(price);
@@ -61,6 +61,7 @@ public class Others_serviceimp implements Other_service{
         othersEntity.setImage(blob);
         othersEntity.setType_name(othersEnum);
         othersEntity.setName(name);
+        othersEntity.setColour(colour);
         Others_dto othersDto = new Others_dto();
         OthersEntity savedOthers = othersRepo.save(othersEntity);
         othersDto.setId(savedOthers.getId());
@@ -68,7 +69,7 @@ public class Others_serviceimp implements Other_service{
     }
 
     @Override
-    public Others_dto putOthers(String name, int price, int quantity, OthersEnum othersEnum, Blob blob, int size) {
+    public Others_dto putOthers(String name, int price, int quantity, OthersEnum othersEnum, Blob blob, int size, String colour) {
         return null;
     }
 
