@@ -12,7 +12,7 @@ export default function kurta() {
   const cotton = filterKurta.filter((item) => item.name === 'Cotton');
 
   return (
-    <div className='absolute top-[50px] h-[500px] w-full flex flex-row justify-evenly items-center'>
+    <div className='top-[80px] w-full flex flex-row justify-evenly items-center my-32'>
         <Link to='/ketan-stores/men/kurta/silk'>
           <CardPalette filterItems={silk} />
         </Link>
