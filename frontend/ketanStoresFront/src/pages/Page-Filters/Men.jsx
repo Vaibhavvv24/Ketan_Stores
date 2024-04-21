@@ -16,7 +16,7 @@ export default function Men() {
   const plusSize = filterMens.filter((item) => item.name === 'Plus Size');
 
   return (
-    <div className='absolute top-[50px] h-[500px] w-full flex flex-col justify-evenly items-center'>
+    <div className='top-[50px] h-[500px] w-full flex flex-col justify-evenly items-center'>
       <div className='flex flex-row justify-evenly gap-10 items-center'>
         <Link to='/ketan-stores/men/kurta/'>
           <CardPalette filterItems={kurta} />
