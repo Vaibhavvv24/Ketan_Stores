@@ -21,4 +21,6 @@ public interface ChudidarService{
     List<ChudidarDto> getChudidarByTypeandSize(String type, int size);
 
     void deleteById(Long id);
+
+    List<ChudidarDto> getChudidarByName(String name);
 }

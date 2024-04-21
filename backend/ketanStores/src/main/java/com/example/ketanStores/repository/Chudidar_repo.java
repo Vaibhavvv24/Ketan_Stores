@@ -17,4 +17,6 @@ public interface Chudidar_repo extends JpaRepository<ChudidarEntity,Long>{
     List<ChudidarEntity> findAllByType(ChudidarEnum chudidarEnum);
 
     List<ChudidarEntity> findAllByTypeAndSize(String type, int size);
+
+    List<ChudidarEntity> findAllByName(String name);
 }
