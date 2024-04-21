@@ -110,7 +110,8 @@ public class ChudidarServiceimp implements ChudidarService{
 
     @Override
     public List<ChudidarDto> getChudidarByTypeandSize(String type, int size) {
-        return chudidarRepo.findAllByTypeAndSize(type,size).stream().map(ChudidarEntity::getChurdiarDto).collect(Collectors.toList());
+        ChudidarEnum chudidarEnum=ChudidarEnum.valueOf(type);
+        return chudidarRepo.findAllByTypeAndSize(chudidarEnum,size).stream().map(ChudidarEntity::getChurdiarDto).collect(Collectors.toList());
     }
 
     @Override
