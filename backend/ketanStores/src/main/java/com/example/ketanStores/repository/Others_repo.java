@@ -13,7 +13,7 @@ import java.util.List;
 public interface Others_repo extends JpaRepository<OthersEntity,Long>{
     List<OthersEntity> findAllByType(OthersEnum othersEnum);
 
-    List<OthersEntity> findAllByTypeAndSize(String type, int size);
+    List<OthersEntity> findAllByTypeAndSize(OthersEnum othersEnum, int size);
 
     List<OthersEntity> findAllByName(String name);
 }

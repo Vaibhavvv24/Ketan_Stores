@@ -89,7 +89,7 @@ public class OthersCont {
 
     }
 
-    @DeleteMapping("/chudidar/delete/{id}")
+    @DeleteMapping("/others/delete/{id}")
     public ResponseEntity<?> deleteById(@PathVariable Long id){
         otherService.deleteById(id);
         Map<String,String> deletemap=new HashMap<>();

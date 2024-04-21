@@ -103,7 +103,8 @@ public class Others_serviceimp implements Other_service{
 
     @Override
     public List<Others_dto> getOtherByTypeandSize(String type, int size) {
-        return othersRepo.findAllByTypeAndSize(type,size).stream().map(OthersEntity::getOtherDto).collect(Collectors.toList());
+        OthersEnum othersEnum = OthersEnum.valueOf(type);
+        return othersRepo.findAllByTypeAndSize(othersEnum,size).stream().map(OthersEntity::getOtherDto).collect(Collectors.toList());
     }
 
     @Override
