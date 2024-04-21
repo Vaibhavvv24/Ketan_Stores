@@ -8,7 +8,7 @@ import java.sql.Blob;
 
 public interface Other_service {
     Others_dto getOthersById(Long id);
-    Others_dto postOthers(String name, int price, int quantity, OthersEnum othersEnum, Blob blob, int size);
-    Others_dto putOthers(String name, int price, int quantity, OthersEnum othersEnum, Blob blob,int size);
+    Others_dto postOthers(String name, int price, int quantity, OthersEnum othersEnum, Blob blob, int size, String colour);
+    Others_dto putOthers(String name, int price, int quantity, OthersEnum othersEnum, Blob blob,int size, String colour);
     void deleteOthersById(Long id);
 }
