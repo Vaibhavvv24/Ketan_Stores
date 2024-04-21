@@ -1,12 +1,10 @@
 package com.example.ketanStores.dto;
 
-import com.example.ketanStores.enums.others_enum;
+import com.example.ketanStores.enums.OthersEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.sql.Blob;
 
 @Data
 @AllArgsConstructor
@@ -14,7 +12,7 @@ import java.sql.Blob;
 @Builder
 public class Others_dto {
     private Long id;
-    others_enum Type_name;
+    OthersEnum Type_name;
     String Name;
     int price;
     int size;
