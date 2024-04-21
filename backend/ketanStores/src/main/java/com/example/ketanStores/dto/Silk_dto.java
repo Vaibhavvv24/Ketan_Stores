@@ -2,12 +2,16 @@ package com.example.ketanStores.dto;
 
 import java.sql.Blob;
 
+import com.example.ketanStores.enums.SilkEnum;
+
 public class Silk_dto extends Kurta_dto{
-    public Silk_dto(String Type_name, int price, int size, int quantity, boolean available, String image) {
-        super(Type_name, price, size, quantity, available, image);
+    SilkEnum Type;
+    public Silk_dto(SilkEnum Type,String Name, int price, int size, int quantity, boolean available, String image) {
+        super(Name,price, size, quantity, available, image);
+        this.Type = Type;
     }
     public int getprice(){
-        return super.price;
+        return price;
     }
     public int getsize(){
         return size;
@@ -19,6 +23,7 @@ public class Silk_dto extends Kurta_dto{
         return available;
     }
     public String getimage(){
+
         return image;
     }
 }

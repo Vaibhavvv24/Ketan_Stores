@@ -2,10 +2,10 @@ package com.example.ketanStores.service;
 
 import com.example.ketanStores.dto.Others_dto;
 import com.example.ketanStores.entity.OthersEntity;
+import com.example.ketanStores.enums.OthersEnum;
 import com.example.ketanStores.repository.Others_repo;
 import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.io.InputStream;
@@ -44,7 +44,7 @@ public class Others_serviceimp implements Other_service{
             othersDto.setPrice(othersEntity.get().getPrice());
             othersDto.setQuantity(othersEntity.get().getQuantity());
             othersDto.setImage(Others_serviceimp.blobToBase64(othersEntity.get().getImage()));
-            othersDto.setType_name(othersEntity.get().getType_name());
+            othersDto.setTypeName(othersEntity.get().getTypeName());
             othersDto.setAvailable(othersEntity.get().isAvailable());
             return othersDto;
         }
@@ -52,28 +52,25 @@ public class Others_serviceimp implements Other_service{
     }
 
     @Override
-    public void postOthers(Others_dto othersDto) {
+    public Others_dto postOthers(String name, int price, int quantity, OthersEnum othersEnum, Blob blob, int size, String colour) {
         OthersEntity othersEntity = new OthersEntity();
-        othersEntity.setAvailable(othersDto.isAvailable());
-        othersEntity.setQuantity(othersDto.getQuantity());
-        othersEntity.setSize(othersDto.getSize());
-//        othersEntity.setImage(othersDto.getImage());
-        othersEntity.setType_name(othersDto.getType_name());
-        othersEntity.setPrice(othersDto.getPrice());
-        othersRepo.save(othersEntity);
+        othersEntity.setSize(size);
+        othersEntity.setPrice(price);
+        othersEntity.setAvailable(Boolean.TRUE);
+        othersEntity.setQuantity(quantity);
+        othersEntity.setImage(blob);
+        othersEntity.setTypeName(othersEnum);
+        othersEntity.setName(name);
+        othersEntity.setColour(colour);
+        Others_dto othersDto = new Others_dto();
+        OthersEntity savedOthers = othersRepo.save(othersEntity);
+        othersDto.setId(savedOthers.getId());
+        return othersDto;
     }
 
     @Override
-    public void putOthers(Others_dto othersDto) {
-        Optional<OthersEntity> othersEntity = othersRepo.findById(othersDto.getId());
-        if (othersEntity.isPresent()) {
-            othersEntity.get().setPrice(othersDto.getPrice());
-            othersEntity.get().setAvailable(othersDto.isAvailable());
-            othersEntity.get().setSize(othersDto.getSize());
-//            othersEntity.get().setImage(othersDto.getImage());
-            othersEntity.get().setType_name(othersDto.getType_name());
-            othersEntity.get().setQuantity(othersDto.getQuantity());
-        }
+    public Others_dto putOthers(String name, int price, int quantity, OthersEnum othersEnum, Blob blob, int size, String colour) {
+        return null;
     }
 
     @Override
