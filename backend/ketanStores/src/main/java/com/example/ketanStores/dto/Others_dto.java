@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Others_dto {
     private Long id;
-    OthersEnum Type_name;
+    OthersEnum TypeName;
     String Name;
     int price;
     int size;

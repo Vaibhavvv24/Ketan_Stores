@@ -6,7 +6,7 @@ import com.example.ketanStores.enums.SilkEnum;
 
 public class Kurta_dto {
     Long id;
-    String Type_name;
+    String Name;
     int price;
     int size;
     int quantity;
@@ -18,5 +18,6 @@ public class Kurta_dto {
         this.quantity = quantity;
         this.available = available;
         this.image = image;
+        this.Name = Name;
     }
 }
