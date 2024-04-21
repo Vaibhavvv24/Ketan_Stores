@@ -111,4 +111,9 @@ public class Others_serviceimp implements Other_service{
         OthersEntity othersEntity=othersRepo.findById(id).get();
         othersRepo.delete(othersEntity);
     }
+
+    @Override
+    public List<Others_dto> getOthersByName(String name) {
+        return othersRepo.findAllByName(name).stream().map(OthersEntity::getOtherDto).collect(Collectors.toList());
+    }
 }

@@ -22,4 +22,6 @@ public interface Other_service {
     List<Others_dto> getOtherByTypeandSize(String type, int size);
 
     void deleteById(Long id);
+
+    List<Others_dto> getOthersByName(String name);
 }
