@@ -106,7 +106,6 @@ public class ChudidarServiceimp implements ChudidarService{
         ChudidarDto chudidarDto=new ChudidarDto();
         chudidarEntity.setId(savedone.getId());
         return chudidarDto;
-
     }
 
     @Override
