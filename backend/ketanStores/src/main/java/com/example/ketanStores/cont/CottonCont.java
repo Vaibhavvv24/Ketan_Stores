@@ -1,16 +1,22 @@
 package com.example.ketanStores.cont;
 
+import java.io.IOException;
 import java.lang.reflect.Array;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.example.ketanStores.dto.Silk_dto;
+import com.example.ketanStores.enums.CottonEnum;
+import com.example.ketanStores.enums.SilkEnum;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.ketanStores.dto.Cotton_dto;
 import com.example.ketanStores.service.Cotton_service;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.sql.rowset.serial.SerialBlob;
 
 
 @RestController
@@ -51,5 +57,16 @@ public class CottonCont {
             return ResponseEntity.status(404).body("No data found");
         }
         return ResponseEntity.ok().body(cotton);
+    }
+    @PostMapping("/cotton")
+    public ResponseEntity<?> postSilk(@RequestParam("name") String name, @RequestParam("img") MultipartFile file, @RequestParam("price") int price, @RequestParam("quantity") int quantity, @RequestParam("type") String type, @RequestParam("size") int size, @RequestParam("colour") String colour) throws IOException, SQLException {
+        byte[] bytes = file.getBytes();
+        Blob blob = new SerialBlob(bytes);
+        CottonEnum cottonEnum = CottonEnum.valueOf(type);
+        Cotton_dto cotton_dto = cotton_service.createCotton(name, price, quantity, cottonEnum, blob, size);
+        if (cotton_dto == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(cotton_dto);
     }
 }
