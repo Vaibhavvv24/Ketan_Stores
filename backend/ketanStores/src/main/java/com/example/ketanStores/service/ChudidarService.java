@@ -8,4 +8,6 @@ import java.sql.Blob;
 
 public interface ChudidarService{
     ChudidarDto createChuridar(String name, int price, int quantity, ChudidarEnum chudidarEnum, Blob blob,int size);
+
+    ChudidarDto getChudidar(Long id);
 }

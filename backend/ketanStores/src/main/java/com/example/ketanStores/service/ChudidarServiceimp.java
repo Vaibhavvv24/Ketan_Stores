@@ -6,11 +6,29 @@ import com.example.ketanStores.enums.ChudidarEnum;
 import com.example.ketanStores.repository.Chudidar_repo;
 import org.springframework.stereotype.Service;
 
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.sql.Blob;
+import java.util.Base64;
 
 @Service
 public class ChudidarServiceimp implements ChudidarService{
 
+    public String blobToBase64(Blob blob){
+        try (InputStream inputStream = blob.getBinaryStream()) {
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            byte[] buffer = new byte[4096];
+            int bytesRead;
+            while ((bytesRead = inputStream.read(buffer)) != -1) {
+                outputStream.write(buffer, 0, bytesRead);
+            }
+            byte[] imageBytes = outputStream.toByteArray();
+            return Base64.getEncoder().encodeToString(imageBytes);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
     private final Chudidar_repo chudidarRepo;
 
     public ChudidarServiceimp(Chudidar_repo chudidarRepo) {
@@ -31,5 +49,33 @@ public class ChudidarServiceimp implements ChudidarService{
         ChudidarEntity savedChuridar=chudidarRepo.save(chudidarEntity);
         chudidarDto.setId(savedChuridar.getId());
         return chudidarDto;
+    }
+
+    @Override
+    public ChudidarDto getChudidar(Long id) {
+        ChudidarEntity chudidarEntity=chudidarRepo.findById(id).get();
+        ChudidarDto chudidarDto=new ChudidarDto();
+        if(chudidarEntity.getQuantity()==0){
+            chudidarDto.setAvailable(false);
+            chudidarDto.setSize(chudidarEntity.getSize());
+            chudidarDto.setName(chudidarEntity.getName());
+            chudidarDto.setType_name(chudidarEntity.getType_name());
+            chudidarDto.setImage(blobToBase64(chudidarEntity.getImage()));
+            chudidarDto.setPrice(chudidarEntity.getPrice());
+            chudidarDto.setId(chudidarEntity.getId());
+            chudidarDto.setQuantity(chudidarEntity.getQuantity());
+        }
+        else{
+            chudidarDto.setAvailable(true);
+            chudidarDto.setSize(chudidarEntity.getSize());
+            chudidarDto.setName(chudidarEntity.getName());
+            chudidarDto.setType_name(chudidarEntity.getType_name());
+            chudidarDto.setImage(blobToBase64(chudidarEntity.getImage()));
+            chudidarDto.setPrice(chudidarEntity.getPrice());
+            chudidarDto.setId(chudidarEntity.getId());
+            chudidarDto.setQuantity(chudidarEntity.getQuantity());
+        }
+        return chudidarDto;
+
     }
 }

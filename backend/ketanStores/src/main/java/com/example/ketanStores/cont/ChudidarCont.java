@@ -5,10 +5,7 @@ import com.example.ketanStores.dto.ChudidarDto;
 import com.example.ketanStores.enums.ChudidarEnum;
 import com.example.ketanStores.service.ChudidarService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.sql.rowset.serial.SerialBlob;
@@ -35,6 +32,14 @@ public class ChudidarCont {
         chudidarDto=chudidarService.createChuridar(name,price,quantity,chudidarEnum,blob,size);
         if(chudidarDto==null){
             return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok().body(chudidarDto);
+    }
+    @GetMapping("/churidar/{id}")
+    public ResponseEntity<?> getChuridar(@PathVariable Long id){
+        ChudidarDto chudidarDto=chudidarService.getChudidar(id);
+        if(chudidarDto==null) {
+            return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok().body(chudidarDto);
     }
