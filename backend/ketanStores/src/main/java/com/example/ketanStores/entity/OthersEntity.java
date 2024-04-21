@@ -1,7 +1,7 @@
 package com.example.ketanStores.entity;
 import java.sql.Blob;
 
-import com.example.ketanStores.enums.others_enum;
+import com.example.ketanStores.enums.OthersEnum;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,10 +20,11 @@ public class OthersEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    others_enum Type_name;
+    OthersEnum Type_name;
     int price;
     int size;
     int quantity;
     boolean available;
     Blob image;
+    String name;
 }
