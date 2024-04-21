@@ -27,4 +27,5 @@ public class OthersEntity {
     boolean available;
     Blob image;
     String name;
+    String colour;
 }
