@@ -90,4 +90,22 @@ public class ChudidarServiceimp implements ChudidarService{
         ChudidarEnum chudidarEnum=ChudidarEnum.valueOf(type);
         return chudidarRepo.findAllByType(chudidarEnum).stream().map(ChudidarEntity::getChurdiarDto).collect(Collectors.toList());
     }
+
+    @Override
+    public ChudidarDto updateChudidar(Long id, int price, int quantity) {
+        ChudidarEntity chudidarEntity=chudidarRepo.findById(id).get();
+        chudidarEntity.setPrice(price);
+        if(chudidarEntity.isAvailable()) {
+            chudidarEntity.setQuantity(chudidarEntity.getQuantity() + quantity);
+        }
+        else{
+            chudidarEntity.setAvailable(true);
+            chudidarEntity.setQuantity(quantity);
+        }
+        ChudidarEntity savedone=chudidarRepo.save(chudidarEntity);
+        ChudidarDto chudidarDto=new ChudidarDto();
+        chudidarEntity.setId(savedone.getId());
+        return chudidarDto;
+
+    }
 }

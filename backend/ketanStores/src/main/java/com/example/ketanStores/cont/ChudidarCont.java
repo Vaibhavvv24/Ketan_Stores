@@ -39,8 +39,8 @@ public class ChudidarCont {
     }
     @GetMapping("/churidar/{id}")
     public ResponseEntity<?> getChuridar(@PathVariable Long id){
-        ChudidarDto chudidarDto=chudidarService.getChudidar(id);
-        if(chudidarDto==null) {
+        ChudidarDto chudidarDto = chudidarService.getChudidar(id);
+        if (chudidarDto==null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok().body(chudidarDto);
@@ -64,4 +64,13 @@ public class ChudidarCont {
         }
         return ResponseEntity.ok().body(chudidarDtos);
     }
+    @PutMapping("/chudidar/update/{id}")
+    public ResponseEntity<?> updateChudidar(@PathVariable Long id,@RequestParam("price") int price,@RequestParam("quantity") int quantity) {
+        ChudidarDto chudidarDto = chudidarService.updateChudidar(id,price,quantity);
+        if (chudidarDto == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(chudidarDto);
+    }
+
 }
