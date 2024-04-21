@@ -10,6 +10,13 @@ import lombok.Builder;
 public class SilkEntity {
     @Id
     private Long id;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @MapsId
+    private KurtaEntity kurtaEntity;
+
+    private SilkEnum type;
+
     public Long getId() {
         return id;
     }
@@ -58,11 +65,6 @@ public class SilkEntity {
     public void setType(SilkEnum type) {
         this.type = type;
     }
-    @OneToOne(fetch = FetchType.LAZY)
-    @MapsId
-    private KurtaEntity kurtaEntity;
-
-    private SilkEnum type;
 
     public SilkEntity(SilkEnum type) {
         this.type = type;

@@ -17,4 +17,6 @@ public interface Cotton_service {
     ArrayList<Cotton_dto> getbysize(int size);
     String blobToBase64(Blob blob);
     Cotton_dto convert_entity_to_dto(CottonEntity cottonEntity);
+
+    ArrayList<Cotton_dto> getByTypeAndSize(String type, int size);
 }

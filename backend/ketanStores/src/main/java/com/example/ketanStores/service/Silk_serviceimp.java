@@ -7,6 +7,7 @@ import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,4 +96,17 @@ public class Silk_serviceimp implements Silk_service{
         silk_Repo.save(silkEntity);
         return "Added";
     }
+
+    @Override
+    public ArrayList<Silk_dto> getByTypeAndSize(String type, int size) {
+        ArrayList<Silk_dto> silk_dtos = new ArrayList<>();
+        Iterable<SilkEntity> silkEntities = silk_Repo.findAll();
+        for (SilkEntity silkEntity : silkEntities) {
+            if (silkEntity.getType().toString().equals(type) && silkEntity.getSize() == size) {
+                silk_dtos.add(convert_entity_to_dto(silkEntity));
+            }
+        }
+        return silk_dtos;
+    }
+
 }

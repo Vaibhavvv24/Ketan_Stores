@@ -3,6 +3,7 @@ package com.example.ketanStores.service;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.example.ketanStores.dto.Silk_dto;
 import com.example.ketanStores.entity.SilkEntity;
@@ -17,4 +18,5 @@ public interface Silk_service{
     ArrayList<Silk_dto> getbytype(String type);
     ArrayList<Silk_dto> getbysize(int size);
     String add(SilkEntity silkEntity);
+    ArrayList<Silk_dto> getByTypeAndSize(String type, int size);
 }
