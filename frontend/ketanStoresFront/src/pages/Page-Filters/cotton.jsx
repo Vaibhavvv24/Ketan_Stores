@@ -7,11 +7,6 @@ export default function cotton() {
   return (
     <>
         <Navbar/>
-        <div>
-            <div><Link to='/ketan-stores/men/kurta/cotton/plain'>Plain</Link></div>
-            <div><Link to='/ketan-stores/men/kurta/cotton/digital-print'>Digital Print</Link></div>
-            <div><Link to='/ketan-stores/men/kurta/cotton/embroidery'>Embriodery</Link></div> 
-        </div>
         <Footer/>
     </>
   )

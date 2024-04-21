@@ -1,7 +1,10 @@
 package com.example.ketanStores.service;
 
+import com.example.ketanStores.dto.ChudidarDto;
 import com.example.ketanStores.dto.Others_dto;
+import com.example.ketanStores.entity.ChudidarEntity;
 import com.example.ketanStores.entity.OthersEntity;
+import com.example.ketanStores.enums.ChudidarEnum;
 import com.example.ketanStores.enums.OthersEnum;
 import com.example.ketanStores.repository.Others_repo;
 import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
@@ -11,7 +14,9 @@ import org.springframework.stereotype.Service;
 import java.io.InputStream;
 import java.sql.Blob;
 import java.util.Base64;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class Others_serviceimp implements Other_service{
@@ -35,7 +40,7 @@ public class Others_serviceimp implements Other_service{
     }
 
     @Override
-    public Others_dto getOthersById(Long id) {
+    public Others_dto getOtherById(Long id) {
         Others_dto othersDto = new Others_dto();
         Optional<OthersEntity> othersEntity = othersRepo.findById(id);
         if (othersEntity.isPresent()) {
@@ -44,7 +49,7 @@ public class Others_serviceimp implements Other_service{
             othersDto.setPrice(othersEntity.get().getPrice());
             othersDto.setQuantity(othersEntity.get().getQuantity());
             othersDto.setImage(Others_serviceimp.blobToBase64(othersEntity.get().getImage()));
-            othersDto.setTypeName(othersEntity.get().getTypeName());
+            othersDto.setTypeName(othersEntity.get().getType());
             othersDto.setAvailable(othersEntity.get().isAvailable());
             return othersDto;
         }
@@ -52,14 +57,25 @@ public class Others_serviceimp implements Other_service{
     }
 
     @Override
-    public Others_dto postOthers(String name, int price, int quantity, OthersEnum othersEnum, Blob blob, int size, String colour) {
+    public List<Others_dto> getOthers() {
+        return othersRepo.findAll().stream().map(OthersEntity::getOtherDto).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Others_dto> getOthersByType(String type) {
+        OthersEnum othersEnum = OthersEnum.valueOf(type);
+        return othersRepo.findAllByType(othersEnum).stream().map(OthersEntity::getOtherDto).collect(Collectors.toList());
+    }
+
+    @Override
+    public Others_dto createOther(String name, int price, int quantity, OthersEnum othersEnum, Blob blob, int size, String colour) {
         OthersEntity othersEntity = new OthersEntity();
         othersEntity.setSize(size);
         othersEntity.setPrice(price);
         othersEntity.setAvailable(Boolean.TRUE);
         othersEntity.setQuantity(quantity);
         othersEntity.setImage(blob);
-        othersEntity.setTypeName(othersEnum);
+        othersEntity.setType(othersEnum);
         othersEntity.setName(name);
         othersEntity.setColour(colour);
         Others_dto othersDto = new Others_dto();
@@ -69,12 +85,30 @@ public class Others_serviceimp implements Other_service{
     }
 
     @Override
-    public Others_dto putOthers(String name, int price, int quantity, OthersEnum othersEnum, Blob blob, int size, String colour) {
-        return null;
+    public Others_dto updateOther(Long id, int price, int quantity) {
+        OthersEntity othersEntity = othersRepo.findById(id).get();
+        othersEntity.setPrice(price);
+        if(othersEntity.isAvailable()) {
+            othersEntity.setQuantity(othersEntity.getQuantity() + quantity);
+        }
+        else{
+            othersEntity.setAvailable(true);
+            othersEntity.setQuantity(quantity);
+        }
+        OthersEntity savedone=othersRepo.save(othersEntity);
+        Others_dto othersDto = new Others_dto();
+        othersEntity.setId(savedone.getId());
+        return othersDto;
     }
 
     @Override
-    public void deleteOthersById(Long id) {
-        othersRepo.deleteById(id);
+    public List<Others_dto> getOtherByTypeandSize(String type, int size) {
+        return othersRepo.findAllByTypeAndSize(type,size).stream().map(OthersEntity::getOtherDto).collect(Collectors.toList());
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        OthersEntity othersEntity=othersRepo.findById(id).get();
+        othersRepo.delete(othersEntity);
     }
 }

@@ -10,6 +10,8 @@ import Men from "./pages/Page-Filters/Men";
 import Kurta from "./pages/Page-Filters/kurta";
 import Chudidar from "./pages/Page-Filters/chudidar";
 import Silk from "./pages/Page-Filters/silk";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import Cotton from "./pages/Page-Filters/cotton";
 
 
@@ -20,13 +22,17 @@ const App = () => {
         <CssVarsProvider>
           <Routes>
             <Route path='/' element={ <LoginFinal /> } />
-            <Route exact path='/ketan-stores' element={<Home />} />
-            <Route exact path='/ketan-stores/men' element={<Men />} />
-            <Route exact path="/ketan-stores/men/kurta" element={<Kurta/>} />
-            <Route exact path="/ketan-stores/men/chudidar" element={<Chudidar/>} />
-            <Route exact path="/ketan-stores/men/kurta/silk" element={<Silk/>} />
-            <Route exact path="/ketan-stores/men/kurta/cotton" element={<Cotton/>} />
           </Routes>
+        <Navbar />
+          <Routes>
+            <Route path='/ketan-stores/' element={<KetanStores/>} />
+            <Route path='/ketan-stores/men/' element={<Men />} />
+            <Route path="/ketan-stores/men/kurta/" element={<Kurta/>} />
+            <Route path="/ketan-stores/men/chudidar/" element={<Chudidar/>} />
+            <Route path="/ketan-stores/men/kurta/silk/" element={<Silk/>} />
+            <Route path="/ketan-stores/men/kurta/cotton/" element={ <Cotton /> } />
+          </Routes>
+        <Footer />
         </CssVarsProvider>
       </StyledEngineProvider>
     </>

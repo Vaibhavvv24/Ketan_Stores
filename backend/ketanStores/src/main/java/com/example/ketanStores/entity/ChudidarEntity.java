@@ -22,9 +22,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class ChudidarEntity {
-
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
