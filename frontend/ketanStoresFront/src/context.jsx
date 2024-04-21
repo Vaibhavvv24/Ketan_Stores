@@ -1,8 +1,36 @@
 import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
+
+    const [authToken, setAuthToken] = useState(
+      localStorage.getItem("authToken")
+        ? JSON.parse(localStorage.getItem("authToken"))
+        : null
+    );
+    const Navigate = useNavigate();
+
+    const loginUser = async (e) => {
+      e.preventDefault();
+      const response = await fetch("http://localhost:8080/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: e.target.email.value,
+          password: e.target.password.value,
+        }),
+      });
+      const data = await response.json();
+      if (data.jwt) {
+        setAuthToken(data);
+        localStorage.setItem("authToken", JSON.stringify(data));
+        Navigate("/ketan-stores/");
+      }
+    };
 
     // const [filterArray, setFilterArray] = useState([]);
 
@@ -107,118 +135,83 @@ const AppProvider = ({ children }) => {
     //   ],
     // });
 
-
     const [filterObject, setFilterObject] = useState({
-        categories: [
-            {
-                url: "/ketan-stores/",
-                name: "Ketan Stores",
-                width : 320
-            },
-            {
-                url: "/ketan-stores/men",
-                name: "Mens",
-                width : 450
-            },
-            {
-                url: "/ketan-stores/kids",
-                name: "Kids",
-                width : 450
-            },
-            {
-                url: "/ketan-stores/men/kurta/",
-                name: "Kurta",
-                width : 320
-            },
-            {
-                url: "/ketan-stores/men/chudidar/",
-                name: "Chudidar",
-                width : 320
-            },
-            {
-                url: "/ketan-stores/men/jacket-suit",
-                name: "Jacket Suit",
-                width : 320
-            },
-            {
-                url: "/ketan-stores/men/indo-western",
-                name: "Indo Western",
-                width : 320
-            },
-            {
-                url: "/ketan-stores/men/short-kurta",
-                name: "Short Kurta",
-                width : 320
-            },
-            {
-                url: "/ketan-stores/men/plus-size",
-                name: "Plus Size",
-                width : 320
-            },
-            {
-                url: "/ketan-stores/men/kurta/silk",
-                name: "Silk",
-                width : 450
-            },
-            {
-                url: "/ketan-stores/men/kurta/cotton",
-                name: "Cotton",
-                width : 450
-            }
-        ],
+      categories: [
+        {
+          url: "/ketan-stores/",
+          name: "Ketan Stores",
+          width: 320,
+        },
+        {
+          url: "/ketan-stores/men",
+          name: "Mens",
+          width: 400,
+        },
+        {
+          url: "/ketan-stores/kids",
+          name: "Kids",
+          width: 400,
+        },
+        {
+          url: "/ketan-stores/men/kurta/",
+          name: "Kurta",
+          width: 320,
+        },
+        {
+          url: "/ketan-stores/men/chudidar/",
+          name: "Chudidar",
+          width: 320,
+        },
+        {
+          url: "/ketan-stores/men/jacket-suit",
+          name: "Jacket Suit",
+          width: 320,
+        },
+        {
+          url: "/ketan-stores/men/indo-western",
+          name: "Indo Western",
+          width: 320,
+        },
+        {
+          url: "/ketan-stores/men/short-kurta",
+          name: "Short Kurta",
+          width: 320,
+        },
+        {
+          url: "/ketan-stores/men/plus-size",
+          name: "Plus Size",
+          width: 320,
+        },
+        {
+          url: "/ketan-stores/men/kurta/silk",
+          name: "Silk",
+          width: 400,
+        },
+        {
+          url: "/ketan-stores/men/kurta/cotton",
+          name: "Cotton",
+          width: 400,
+        },
+      ],
     });
 
     const filterMens = filterObject.categories.filter(
-       (item) =>
-         item.name === "Kurta" ||
-         item.name === "Chudidar" ||
-         item.name === "Jacket Suit" ||
-         item.name === "Indo Western" ||
-         item.name === "Short Kurta" ||
-         item.name === "Plus Size"
+      (item) =>
+        item.name === "Kurta" ||
+        item.name === "Chudidar" ||
+        item.name === "Jacket Suit" ||
+        item.name === "Indo Western" ||
+        item.name === "Short Kurta" ||
+        item.name === "Plus Size"
     );
 
     const filterKurta = filterObject.categories.filter(
-        (item) =>
-            item.name === "Silk" ||
-            item.name === "Cotton"
+      (item) => item.name === "Silk" || item.name === "Cotton"
     );
 
     const filterKetanStores = filterObject.categories.filter(
-        (item) =>
-            item.name === "Mens" ||
-            item.name === "Kids"
+      (item) => item.name === "Mens" || item.name === "Kids"
     );
-    // const [click, setClick] = useState(false);
-    // const [url, setUrl] = useState(window.location.pathname);
-
-    // useEffect(() => {
-    //   if (click === true) {
-    //     setUrl(window.location.pathname);
-    //     setClick(false);
-    //   }
-    // }, [click]);
-
-    // const [category, setCategories] = useState([]);
-
-    // useEffect(() => {
-    //   const urlArray = url.split("/");
-    //   const { categories } = filterObject;
-    //   setCategories(
-    //     categories.filter(({ lastName, url, name, filter }, index) => {
-    //       return (
-    //         urlArray[urlArray.length - 1] === lastName && url.includes(url)
-    //       );
-    //     })
-    //   );
-    // }, [url]);
-
-    // useEffect(() => {
-    //   if (category.length > 0) {
-    //     const { filter } = category[0];
-    //     setFilterArray(filter);
-    //   }
-    // }, [category]);
 
     return (
       <AppContext.Provider value={{ filterObject, filterMens, filterKurta, filterKetanStores }}>

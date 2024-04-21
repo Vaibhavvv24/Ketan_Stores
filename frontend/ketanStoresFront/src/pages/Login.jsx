@@ -70,6 +70,9 @@ export default function LoginFinal() {
             name='email'
             type='email'
             placeholder='johndoe@email.com'
+            onClick={ () => {
+              
+            }}
           />
         </FormControl>
         <FormControl>
