@@ -12,6 +12,12 @@ import lombok.Data;
 public class CottonEntity {
     @Id
     private Long id;
+    @OneToOne(fetch = FetchType.LAZY)
+    @MapsId
+    private KurtaEntity kurtaEntity;
+
+    private CottonEnum type;
+
     public String getName() {
         return kurtaEntity.getName();
     }
@@ -19,11 +25,6 @@ public class CottonEntity {
     public void setName(String name) {
         kurtaEntity.setName(name);
     }
-    @OneToOne(fetch = FetchType.LAZY)
-    @MapsId
-    private KurtaEntity kurtaEntity;
-
-    private CottonEnum type;
 
     public CottonEntity(CottonEnum type) {
         this.type = type;

@@ -20,7 +20,7 @@ public class OthersEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    OthersEnum Type_name;
+    OthersEnum TypeName;
     int price;
     int size;
     int quantity;
