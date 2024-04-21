@@ -118,4 +118,9 @@ public class ChudidarServiceimp implements ChudidarService{
         ChudidarEntity chudidarEntity=chudidarRepo.findById(id).get();
         chudidarRepo.delete(chudidarEntity);
     }
+
+    @Override
+    public List<ChudidarDto> getChudidarByName(String name) {
+        return chudidarRepo.findAllByName(name).stream().map(ChudidarEntity::getChurdiarDto).collect(Collectors.toList());
+    }
 }

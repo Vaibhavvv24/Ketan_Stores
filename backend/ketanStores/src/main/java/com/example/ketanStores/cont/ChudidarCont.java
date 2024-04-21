@@ -90,5 +90,15 @@ public class ChudidarCont {
         return ResponseEntity.ok().body(deletemap);
 
     }
+    @GetMapping("/chudidar/search/{name}")
+    public ResponseEntity<?> search(@PathVariable String name){
+        List<ChudidarDto> chudidarDtos=chudidarService.getChudidarByName(name);
+        if(chudidarDtos.isEmpty()){
+            List<ChudidarDto> chudidarDtos1=new ArrayList<>();
+            return ResponseEntity.ok().body(chudidarDtos1);
+        }
+        return ResponseEntity.ok().body(chudidarDtos);
+
+    }
 
 }
