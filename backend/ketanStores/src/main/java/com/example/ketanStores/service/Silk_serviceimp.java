@@ -135,4 +135,16 @@ public class Silk_serviceimp implements Silk_service{
         return silk_dto;
     }
 
+    @Override
+    public ArrayList<Silk_dto> getSilkByName(String name) {
+        ArrayList<Silk_dto> silk_dtos = new ArrayList<>();
+        Iterable<SilkEntity> silkEntities = silk_Repo.findAll();
+        for (SilkEntity silkEntity : silkEntities) {
+            if (silkEntity.getName().equals(name)) {
+                silk_dtos.add(convert_entity_to_dto(silkEntity));
+            }
+        }
+        return silk_dtos;
+    }
+
 }

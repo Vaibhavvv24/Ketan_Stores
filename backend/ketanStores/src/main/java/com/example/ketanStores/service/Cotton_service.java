@@ -2,6 +2,7 @@ package com.example.ketanStores.service;
 
 import java.sql.Blob;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.example.ketanStores.dto.Cotton_dto;
 import com.example.ketanStores.entity.CottonEntity;
@@ -24,4 +25,6 @@ public interface Cotton_service {
     ArrayList<Cotton_dto> getByTypeAndSize(String type, int size);
 
     Cotton_dto createCotton(String name, int price, int quantity, CottonEnum cottonEnum, Blob blob, int size);
+
+    ArrayList<Cotton_dto> getCottonByName(String name);
 }
