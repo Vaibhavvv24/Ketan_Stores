@@ -4,9 +4,16 @@ import java.sql.Blob;
 
 import com.example.ketanStores.enums.SilkEnum;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class SilkEntity {
     @Id
     private Long id;
