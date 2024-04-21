@@ -1,7 +1,11 @@
 package com.example.ketanStores.entity;
 
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.sql.Blob;
+import java.util.Base64;
 
+import com.example.ketanStores.dto.ChudidarDto;
 import com.example.ketanStores.enums.ChudidarEnum;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,16 +22,35 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class ChudidarEntity {
+
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private ChudidarEnum Type_name;
+    private ChudidarEnum type;
     private int size;
     private boolean available;
     private int quantity;
     private int price;
     private String name;
     private Blob image;
+
+    public String blobToBase64(Blob blob) {
+        try (InputStream inputStream = blob.getBinaryStream()) {
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            byte[] buffer = new byte[4096];
+            int bytesRead;
+            while ((bytesRead = inputStream.read(buffer)) != -1) {
+                outputStream.write(buffer, 0, bytesRead);
+            }
+            byte[] imageBytes = outputStream.toByteArray();
+            return Base64.getEncoder().encodeToString(imageBytes);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     public Long getId() {
         return id;
@@ -38,11 +61,11 @@ public class ChudidarEntity {
     }
 
     public ChudidarEnum getType_name() {
-        return Type_name;
+        return type;
     }
 
     public void setType_name(ChudidarEnum type_name) {
-        Type_name = type_name;
+        type = type_name;
     }
 
     public int getSize() {
@@ -91,5 +114,18 @@ public class ChudidarEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public ChudidarDto getChurdiarDto() {
+        ChudidarDto chudidarDto=new ChudidarDto();
+        chudidarDto.setPrice(price);
+        chudidarDto.setQuantity(quantity);
+        chudidarDto.setId(id);
+        chudidarDto.setSize(size);
+        chudidarDto.setName(name);
+        chudidarDto.setAvailable(available);
+        chudidarDto.setImage(blobToBase64(image));
+        chudidarDto.setType_name(type);
+        return chudidarDto;
     }
 }

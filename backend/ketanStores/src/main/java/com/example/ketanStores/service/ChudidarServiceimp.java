@@ -10,6 +10,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.sql.Blob;
 import java.util.Base64;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ChudidarServiceimp implements ChudidarService{
@@ -76,6 +78,16 @@ public class ChudidarServiceimp implements ChudidarService{
             chudidarDto.setQuantity(chudidarEntity.getQuantity());
         }
         return chudidarDto;
+    }
 
+    @Override
+    public List<ChudidarDto> getChuridars() {
+        return chudidarRepo.findAll().stream().map(ChudidarEntity::getChurdiarDto).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ChudidarDto> getChudidarByType(String type) {
+        ChudidarEnum chudidarEnum=ChudidarEnum.valueOf(type);
+        return chudidarRepo.findAllByType(chudidarEnum).stream().map(ChudidarEntity::getChurdiarDto).collect(Collectors.toList());
     }
 }

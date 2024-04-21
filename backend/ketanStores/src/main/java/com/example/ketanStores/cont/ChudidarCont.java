@@ -12,6 +12,8 @@ import javax.sql.rowset.serial.SerialBlob;
 import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class ChudidarCont {
@@ -43,5 +45,23 @@ public class ChudidarCont {
         }
         return ResponseEntity.ok().body(chudidarDto);
     }
-
+    @GetMapping("/churidars")
+    public ResponseEntity<?> getChuridars(){
+        List<ChudidarDto> chudidarDtos=chudidarService.getChuridars();
+        if(chudidarDtos.isEmpty()){
+            List<ChudidarDto> chudidarDtos1=new ArrayList<>();
+            return ResponseEntity.ok().body(chudidarDtos1);
+        }
+        else{
+            return ResponseEntity.ok().body(chudidarDtos);
+        }
+    }
+    @GetMapping("/chudiar/{type}")
+    public ResponseEntity<?> getByType(@PathVariable String type){
+        List<ChudidarDto> chudidarDtos=chudidarService.getChudidarByType(type);
+        if(chudidarDtos.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(chudidarDtos);
+    }
 }
