@@ -16,8 +16,8 @@ export default function Men() {
   const plusSize = filterMens.filter((item) => item.name === 'Plus Size');
 
   return (
-    <>
-      <div className='grid-rows-4 w-full'>
+    <div className='absolute top-[50px] h-[470px] w-full flex flex-col justify-evenly items-center'>
+      <div className='flex flex-row justify-evenly gap-10 items-center'>
         <Link to='/ketan-stores/men/kurta/'>
           <CardPalette filterItems={kurta} />
         </Link>
@@ -27,6 +27,8 @@ export default function Men() {
         <Link to='/ketan-stores/men/jacket-suit'>
           <CardPalette filterItems={jacketSuit} />
         </Link>
+      </div>
+      <div className='flex flex-row justify-evenly gap-10 items-center'>
         <Link to='/ketan-stores/men/indo-western'>
           <CardPalette filterItems={indoWestern} />
         </Link>
@@ -37,6 +39,6 @@ export default function Men() {
           <CardPalette filterItems={plusSize} />
         </Link>
       </div>
-    </>
+    </div>
   );
 }

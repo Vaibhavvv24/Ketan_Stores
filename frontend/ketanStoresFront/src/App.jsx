@@ -20,10 +20,12 @@ const App = () => {
     <>
       <StyledEngineProvider injectFirst>
         <CssVarsProvider>
-        <Navbar />
           <Routes>
             <Route path='/' element={ <LoginFinal /> } />
-            <Route path='/ketan-stores/' element={<Home />} />
+          </Routes>
+        <Navbar />
+          <Routes>
+            <Route path='/ketan-stores/' element={<KetanStores/>} />
             <Route path='/ketan-stores/men/' element={<Men />} />
             <Route path="/ketan-stores/men/kurta/" element={<Kurta/>} />
             <Route path="/ketan-stores/men/chudidar/" element={<Chudidar/>} />

@@ -111,6 +111,10 @@ const AppProvider = ({ children }) => {
     const [filterObject, setFilterObject] = useState({
         categories: [
             {
+                url: "/ketan-stores/",
+                name: "Ketan Stores",
+            },
+            {
                 url: "/ketan-stores/men",
                 name: "Mens",
             },
@@ -119,11 +123,11 @@ const AppProvider = ({ children }) => {
                 name: "Kids",
             },
             {
-                url: "/ketan-stores/men/kurta",
+                url: "/ketan-stores/men/kurta/",
                 name: "Kurta",
             },
             {
-                url: "/ketan-stores/men/chudidar",
+                url: "/ketan-stores/men/chudidar/",
                 name: "Chudidar",
             },
             {
@@ -168,7 +172,12 @@ const AppProvider = ({ children }) => {
             item.name === "Silk" ||
             item.name === "Cotton"
     );
-    
+
+    const filterKetanStores = filterObject.categories.filter(
+        (item) =>
+            item.name === "Mens" ||
+            item.name === "Kids"
+    );
     // const [click, setClick] = useState(false);
     // const [url, setUrl] = useState(window.location.pathname);
 
@@ -201,7 +210,7 @@ const AppProvider = ({ children }) => {
     // }, [category]);
 
     return (
-      <AppContext.Provider value={{ filterObject, filterMens }}>
+      <AppContext.Provider value={{ filterObject, filterMens, filterKurta, filterKetanStores }}>
         {children}
       </AppContext.Provider>
     );
