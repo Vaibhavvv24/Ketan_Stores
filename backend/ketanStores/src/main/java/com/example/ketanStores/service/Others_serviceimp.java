@@ -44,7 +44,7 @@ public class Others_serviceimp implements Other_service{
             othersDto.setPrice(othersEntity.get().getPrice());
             othersDto.setQuantity(othersEntity.get().getQuantity());
             othersDto.setImage(Others_serviceimp.blobToBase64(othersEntity.get().getImage()));
-            othersDto.setType_name(othersEntity.get().getType_name());
+            othersDto.setTypeName(othersEntity.get().getTypeName());
             othersDto.setAvailable(othersEntity.get().isAvailable());
             return othersDto;
         }
@@ -59,7 +59,7 @@ public class Others_serviceimp implements Other_service{
         othersEntity.setAvailable(Boolean.TRUE);
         othersEntity.setQuantity(quantity);
         othersEntity.setImage(blob);
-        othersEntity.setType_name(othersEnum);
+        othersEntity.setTypeName(othersEnum);
         othersEntity.setName(name);
         othersEntity.setColour(colour);
         Others_dto othersDto = new Others_dto();
