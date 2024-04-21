@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -72,5 +73,10 @@ public class SilkCont {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok().body(silk_dto);
+    }
+    @GetMapping("/silk/search/{name}")
+    public ResponseEntity<?> search(@PathVariable String name) {
+        List<Silk_dto> silk_dtos = silk_service.getSilkByName(name);
+        return ResponseEntity.ok().body(silk_dtos);
     }
 }

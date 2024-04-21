@@ -98,8 +98,5 @@ public class ChudidarCont {
             return ResponseEntity.ok().body(chudidarDtos1);
         }
         return ResponseEntity.ok().body(chudidarDtos);
-
     }
-
-
 }

@@ -84,12 +84,8 @@ public class OthersCont {
     }
     @GetMapping("/others/search/{name}")
     public ResponseEntity<?> search(@PathVariable String name){
-        List<ChudidarDto> chudidarDtos=otherService.getOthersByName(name);
-        if(chudidarDtos.isEmpty()){
-            List<ChudidarDto> chudidarDtos1=new ArrayList<>();
-            return ResponseEntity.ok().body(chudidarDtos1);
-        }
-        return ResponseEntity.ok().body(chudidarDtos);
+        List<Others_dto> othersDtos=otherService.getOthersByName(name);
+        return ResponseEntity.ok().body(othersDtos);
 
     }
 

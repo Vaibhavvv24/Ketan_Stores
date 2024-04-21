@@ -6,9 +6,12 @@ import java.lang.reflect.Array;
 import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import com.example.ketanStores.dto.Silk_dto;
+import com.example.ketanStores.entity.ChudidarEntity;
 import com.example.ketanStores.entity.KurtaEntity;
 import com.example.ketanStores.entity.SilkEntity;
 import com.example.ketanStores.repository.Kurta_repo;
@@ -82,6 +85,18 @@ public class Cotton_serviceimp implements Cotton_service{
     }
 
     @Override
+    public ArrayList<Cotton_dto> getCottonByName(String name) {
+        ArrayList<Cotton_dto> cotton_dtos = new ArrayList<>();
+        Iterable<CottonEntity> cottons = cotton_Repo.findAll();
+        for(CottonEntity cotton : cottons){
+            if(cotton.getName().equals(name)){
+                cotton_dtos.add(convert_entity_to_dto(cotton));
+            }
+        }
+        return cotton_dtos;
+    }
+
+    @Override
     public String blobToBase64(Blob blob){
         try (InputStream inputStream = blob.getBinaryStream()) {
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -131,5 +146,7 @@ public class Cotton_serviceimp implements Cotton_service{
             }
         }
         return cotton_dtos;
-    } 
+    }
+
+
 }

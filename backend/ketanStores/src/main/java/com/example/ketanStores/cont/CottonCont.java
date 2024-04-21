@@ -5,7 +5,11 @@ import java.lang.reflect.Array;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import com.example.ketanStores.dto.ChudidarDto;
 import com.example.ketanStores.dto.Silk_dto;
 import com.example.ketanStores.enums.CottonEnum;
 import com.example.ketanStores.enums.SilkEnum;
@@ -68,5 +72,10 @@ public class CottonCont {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok().body(cotton_dto);
+    }
+    @GetMapping("/cotton/search/{name}")
+    public ResponseEntity<?> search(@PathVariable String name){
+        List<Cotton_dto> cottonDtos=cotton_service.getCottonByName(name);
+        return ResponseEntity.ok().body(cottonDtos);
     }
 }
