@@ -12,7 +12,7 @@ export default function KetanStores() {
   const kids = filterKetanStores.filter((item) => item.name === 'Kids');
 
   return (
-    <div className='absolute top-[80px] h-[470px] w-full flex flex-row justify-evenly items-center'>
+    <div className='absolute top-[50px] h-[500px] w-full flex flex-row justify-evenly items-center'>
         <Link to='/ketan-stores/men'>
           <CardPalette filterItems={mens} />
         </Link>

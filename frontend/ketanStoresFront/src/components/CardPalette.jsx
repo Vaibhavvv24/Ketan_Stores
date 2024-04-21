@@ -15,7 +15,7 @@ export default function CardPalette({ filterItems }) {
 
   return (
   <div>
-    <Card sx={{ width: 320 }}>
+    <Card sx={{ width: filterItems[0].width }}>
       <div>
           <Typography level='title-lg'>{ name }</Typography>
       </div>
