@@ -15,4 +15,6 @@ public interface ChudidarService{
     List<ChudidarDto> getChuridars();
 
     List<ChudidarDto> getChudidarByType(String type);
+
+    ChudidarDto updateChudidar(Long id, int price, int quantity);
 }
