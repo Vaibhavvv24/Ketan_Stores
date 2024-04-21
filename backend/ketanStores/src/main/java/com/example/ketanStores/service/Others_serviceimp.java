@@ -102,7 +102,13 @@ public class Others_serviceimp implements Other_service{
     }
 
     @Override
-    public void deleteOtherById(Long id) {
-        othersRepo.deleteById(id);
+    public List<Others_dto> getOtherByTypeandSize(String type, int size) {
+        return othersRepo.findAllByTypeAndSize(type,size).stream().map(OthersEntity::getOtherDto).collect(Collectors.toList());
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        OthersEntity othersEntity=othersRepo.findById(id).get();
+        othersRepo.delete(othersEntity);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.ketanStores.service;
 
+import com.example.ketanStores.dto.ChudidarDto;
 import com.example.ketanStores.dto.Others_dto;
 import com.example.ketanStores.enums.ChudidarEnum;
 import com.example.ketanStores.enums.OthersEnum;
@@ -18,5 +19,7 @@ public interface Other_service {
 
     Others_dto updateOther(Long id, int price, int quantity);
 
-    void deleteOtherById(Long id);
+    List<Others_dto> getOtherByTypeandSize(String type, int size);
+
+    void deleteById(Long id);
 }

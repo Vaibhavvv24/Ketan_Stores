@@ -14,7 +14,9 @@ import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class OthersCont {
@@ -70,5 +72,22 @@ public class OthersCont {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok().body(othersDto);
+    }
+
+    @GetMapping("/other/{type}/filter/{size}")
+    public ResponseEntity<?> getByTypeSize(@PathVariable String type,@PathVariable int size) {
+        List<Others_dto> othersDtos = otherService.getOtherByTypeandSize(type,size);
+        if (othersDtos.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(othersDtos);
+    }
+
+    @DeleteMapping("/chudidar/delete/{id}")
+    public ResponseEntity<?> deleteById(@PathVariable Long id){
+        otherService.deleteById(id);
+        Map<String,String> deletemap=new HashMap<>();
+        deletemap.put("message","deleted successfully : "+id);
+        return ResponseEntity.ok().body(deletemap);
     }
 }
