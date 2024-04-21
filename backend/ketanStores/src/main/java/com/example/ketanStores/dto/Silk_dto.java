@@ -9,7 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder
+@AllArgsConstructor
 public class Silk_dto extends Kurta_dto{
     SilkEnum Type;
     public Silk_dto(SilkEnum Type,String Name, int price, int size, int quantity, boolean available, String image) {

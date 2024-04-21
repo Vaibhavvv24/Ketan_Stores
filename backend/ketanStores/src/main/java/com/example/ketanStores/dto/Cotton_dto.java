@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public class Cotton_dto extends Kurta_dto{
     CottonEnum type;
     public Cotton_dto(CottonEnum type,String Name, int price, int size, int quantity, boolean available, String image) {
