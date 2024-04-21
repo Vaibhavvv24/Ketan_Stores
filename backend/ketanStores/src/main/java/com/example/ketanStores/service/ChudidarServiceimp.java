@@ -107,4 +107,15 @@ public class ChudidarServiceimp implements ChudidarService{
         chudidarEntity.setId(savedone.getId());
         return chudidarDto;
     }
+
+    @Override
+    public List<ChudidarDto> getChudidarByTypeandSize(String type, int size) {
+        return chudidarRepo.findAllByTypeAndSize(type,size).stream().map(ChudidarEntity::getChurdiarDto).collect(Collectors.toList());
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        ChudidarEntity chudidarEntity=chudidarRepo.findById(id).get();
+        chudidarRepo.delete(chudidarEntity);
+    }
 }
