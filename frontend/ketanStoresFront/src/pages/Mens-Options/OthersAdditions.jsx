@@ -115,7 +115,7 @@ export default function OthersAdditions() {
                             </Typography>
                             <div className='flex justify-left items-center gap-5'>
                                 <Input
-                                    style = {{width: 206}}
+                                    style = {{width: 170}}
                                     name='price'
                                     type='text'
                                 />
@@ -140,4 +140,5 @@ export default function OthersAdditions() {
         </FormControl>
     )
 }
-//name, file, price, color, quantity, type, size
+
+//name, image, price, color, quantity, type, size
