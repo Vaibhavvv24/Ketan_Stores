@@ -221,8 +221,27 @@ const AppProvider = ({ children }) => {
       (item) => item.name === "Mens" || item.name === "Kids"
     );
 
+    const [optionsKetanStores, setOptionsKetanStores] = useState('null');
+    const [optionsMens, setOptionsMens] = useState('null');
+    const [optionsKurta, setOptionsKurta] = useState('null');
+
+    const displayMensOptions = (options) => {
+      setOptionsKurta('null');
+      setOptionsMens('null')
+      setOptionsKetanStores(options);
+    }
+
+    const displayKurtaOptions = (options) => {
+      setOptionsKurta('null')
+      setOptionsMens(options);
+    }
+
+    const displayClothKurtaOptions = (options) => {
+      setOptionsKurta(options);
+    }
+
     return (
-      <AppContext.Provider value={{ filterObject, filterMens, filterKurta, filterKetanStores, setemail , setpassword , email ,password , setAuthToken}}>
+      <AppContext.Provider value={{ filterObject, filterMens, filterKurta, filterKetanStores, setemail , setpassword , email ,password , setAuthToken , optionsKetanStores, displayMensOptions, displayKurtaOptions, optionsMens, displayClothKurtaOptions, optionsKurta}}>
         {children}
       </AppContext.Provider>
     );
