@@ -77,7 +77,7 @@ export default function OthersAdditions() {
                             <div className='flex justify-left items-center gap-5'>
                                 <span className='text-xl w-[10px] h-[30px]'>₹</span>
                                 <Input
-                                    style = {{width: 206}}
+                                    style = {{width: 177}}
                                     name='price'
                                     type='text'
                                 />
