@@ -13,7 +13,45 @@ import Radio from '@mui/material/Radio';
 import { useGlobalContext } from '../../context';
 
 export default function OthersAdditions() {
-    const {settingOthersFormProp} = useGlobalContext();
+    const { jwt } = useGlobalContext();
+    const [name, setName] = useState("");
+    const [price, setPrice] = useState("");
+    const [quantity, setQuantity] = useState("");
+    const [type, setType] = useState("");
+    const [size, setSize] = useState("");
+    const [image, setImage] = useState(null);
+  
+    const handleChudidar = async (e) => {
+    e.preventDefault();
+    console.log(name, price, quantity, type, size, image, jwt);
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("img", image);
+    formData.append("price", Number(price));
+    formData.append("quantity", Number(quantity));
+    formData.append("type", type.toUpperCase());
+    formData.append("size", size);
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/chudidar",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${jwt}`,
+          },
+        }
+      );
+      const data = await response;
+      console.log(data);
+      if (data) {
+        console.log(data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
 
   return (
         <FormControl>

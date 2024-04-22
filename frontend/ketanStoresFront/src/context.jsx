@@ -218,46 +218,8 @@ const AppProvider = ({ children }) => {
       setOptionsKurta(options);
     }
 
-    const [othersName, setOthersName] = useState('');
-    const [othersFile, setOthersFile] = useState('');
-    const [othersPrice, setOthersPrice] = useState('');
-    const [othersColor, setOthersColor] = useState('');
-    const [othersQuantity, setOthersQuantity] = useState('');
-    const [othersType, setOthersType] = useState('');
-    const [othersSize, setOthersSize] = useState(42);
-
-    const settingOthersFormProp = (parameter, value) => {
-      if (parameter === 'name') {
-        setOthersName(value);
-      } else if (parameter === 'file') {
-        setOthersFile(value);
-      } else if (parameter === 'price') {
-        if (!isNaN(value)) {
-          setOthersPrice(value);
-        }
-        else {
-          setOthersPrice('');
-        }
-      } 
-      else if (parameter === 'color' ) {
-        setOthersColor(value);
-      } 
-      else if (parameter === 'quantity') {
-        if (!isNaN(value)) {
-          setOthersQuantity(value);
-        }
-        else {
-          setOthersQuantity('');
-        }
-      } else if (parameter === 'type') {
-        setOthersType(value);
-      } else if (parameter === 'size') {
-        setOthersSize(value);
-      }
-    }
-
     return (
-      <AppContext.Provider value={{ filterObject, filterMens, filterKurta, filterKetanStores, setemail , setpassword , email ,password , setAuthToken , optionsKetanStores, displayMensOptions, displayKurtaOptions, optionsMens, displayClothKurtaOptions, optionsKurta, jwt , setjwt,  settingOthersFormProp}}>
+      <AppContext.Provider value={{ filterObject, filterMens, filterKurta, filterKetanStores, setemail , setpassword , email ,password , setAuthToken , optionsKetanStores, displayMensOptions, displayKurtaOptions, optionsMens, displayClothKurtaOptions, optionsKurta, jwt , setjwt}}>
         {children}
       </AppContext.Provider>
     );
