@@ -103,4 +103,4 @@ export default function OthersAdditions() {
     )
 }
 
-//name, file, price, color, quantity, type, size
+//name, image, price, color, quantity, type, size

@@ -49,7 +49,13 @@ export default function ChudidarAdditions() {
       const data = await response;
       console.log(data);
       if (data) {
-        console.log(data);
+          console.log(data);
+          setName("");
+          setPrice("");
+          setQuantity("");
+          setType("");
+          setSize("");
+          setImage(null);
       }
     } catch (error) {
       console.log(error);
