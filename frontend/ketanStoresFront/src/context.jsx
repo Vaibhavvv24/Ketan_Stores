@@ -9,28 +9,36 @@ const AppProvider = ({ children }) => {
       localStorage.getItem("authToken")
         ? JSON.parse(localStorage.getItem("authToken"))
         : null
-    );
-    const Navigate = useNavigate();
+  );
+    const [email, setemail] = useState(''); 
+    const [password, setpassword] = useState('');
+    // const Navigate = useNavigate();
+    // const loginUser = async (e) => {
+    //   e.preventDefault();
+    //   console.log(e.target.email.value, e.target.password.value);
+    //   const response = await fetch("http://localhost:8080/api/auth/login", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({
+    //       email: e.target.email.value,
+    //       password: e.target.password.value,
+    //     }),
+    //   });
+    //   const data = await response.json();
+    //   console.log(data);
+    //   if (data.jwt) {
+    //     setAuthToken(data);
+    //     localStorage.setItem("authToken", JSON.stringify(data));
+    //     Navigate("/ketan-stores/");
+    //   }
+    // };
+  
 
-    const loginUser = async (e) => {
-      e.preventDefault();
-      const response = await fetch("http://localhost:8080/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: e.target.email.value,
-          password: e.target.password.value,
-        }),
-      });
-      const data = await response.json();
-      if (data.jwt) {
-        setAuthToken(data);
-        localStorage.setItem("authToken", JSON.stringify(data));
-        Navigate("/ketan-stores/");
-      }
-    };
+    // useEffect(() => {
+    //   loginUser();  
+    // }, [password]);
 
     // const [filterArray, setFilterArray] = useState([]);
 
@@ -226,7 +234,7 @@ const AppProvider = ({ children }) => {
     }
 
     return (
-      <AppContext.Provider value={{ filterObject, filterMens, filterKurta, filterKetanStores, optionsKetanStores, displayMensOptions, displayKurtaOptions, optionsMens }}>
+      <AppContext.Provider value={{ filterObject, filterMens, filterKurta, filterKetanStores, setemail , setpassword , email ,password , setAuthToken , optionsKetanStores, displayMensOptions, displayKurtaOptions, optionsMens}}>
         {children}
       </AppContext.Provider>
     );

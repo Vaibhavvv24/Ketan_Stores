@@ -22,19 +22,78 @@ const App = () => {
       <StyledEngineProvider injectFirst>
         <CssVarsProvider>
           <Routes>
-            <Route path='/' element={ <LoginFinal /> } />
+            <Route path='/' element={<LoginFinal />} />
+            <Route
+              path='/ketan-stores/'
+              element={
+                <>
+                  <Navbar />
+                  <KetanStores />
+                  <Footer />
+                </>
+              }
+            />
+            <Route
+              path='/ketan-stores/men/'
+              element={
+                <>
+                  <Navbar />
+                  <Men />
+                  <Footer />
+                </>
+              }
+            />
+            <Route
+              path='/ketan-stores/men/kurta/'
+              element={
+                <>
+                  <Navbar />
+                  <Kurta />
+                  <Footer />
+                </>
+              }
+            />
+            <Route
+              path='/ketan-stores/men/chudidar/'
+              element={
+                <>
+                  <Navbar />
+                  <Chudidar />
+                  <Footer />
+                </>
+              }
+            />
+            <Route
+              path='/ketan-stores/men/kurta/silk/'
+              element={
+                <>
+                  <Navbar />
+                  <Silk />
+                  <Footer />
+                </>
+              }
+            />
+            <Route
+              path='/ketan-stores/men/kurta/cotton/'
+              element={
+                <>
+                  <Navbar />
+                  <Cotton />
+                  <Footer />
+                </>
+              }
+            />
+            <Route
+              path='/add-items/'
+              element={
+                <>
+                  <Navbar />
+                  <AddItems />
+                  <Footer />
+                </>
+              }
+            />
           </Routes>
-        <Navbar />
-          <Routes>
-            <Route path='/ketan-stores/' element={<KetanStores/>} />
-            <Route path='/ketan-stores/men/' element={<Men />} />
-            <Route path="/ketan-stores/men/kurta/" element={<Kurta/>} />
-            <Route path="/ketan-stores/men/chudidar/" element={<Chudidar/>} />
-            <Route path="/ketan-stores/men/kurta/silk/" element={<Silk/>} />
-            <Route path="/ketan-stores/men/kurta/cotton/" element={ <Cotton /> } />
-            <Route path='/add-items' element={<AddItems/>} />
-          </Routes>
-        <Footer />
         </CssVarsProvider>
       </StyledEngineProvider>
     </>
