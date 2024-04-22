@@ -13,6 +13,7 @@ import Radio from '@mui/material/Radio';
 import { useGlobalContext } from '../../context';
 import KurtaAdditions from './KurtaAdditions';
 import ChudidarAdditions from './ChudidarAdditions';
+import OthersAdditions from './OthersAdditions';
 
 export default function MensAddItems() {
   const { displayKurtaOptions, optionsMens } = useGlobalContext();
@@ -21,8 +22,8 @@ export default function MensAddItems() {
     <FormControl>
       <div className='flex-col justify-evenly h-full w-full mt-2'>
           <div className='flex-col justify-left pl-1 items-center gap-2 w-full'>
-              <Typography level='h6' component='h1'>
-                <span className='text-xs'>2.</span><b className='pl-2'>Choose from Mens:</b>
+              <Typography level='h6' component='h1' className='flex items-center h-[22px]'>
+                  <span className='text-xs'>2.</span><FormLabel className='pl-2'>Choose from Mens:</FormLabel>
               </Typography>
               <div className='flex justify-center items-center w-full'>
                   <RadioGroup
@@ -72,6 +73,9 @@ export default function MensAddItems() {
       }
       {
         optionsMens === 'chudidar' ? <ChudidarAdditions /> : null
+      }
+      {
+        optionsMens === "Jacket & Suits" || optionsMens === "Short Kurta" || optionsMens === "Indo Western" || optionsMens === "Plus Size" ? <OthersAdditions /> : null
       }
     </FormControl>
   )
