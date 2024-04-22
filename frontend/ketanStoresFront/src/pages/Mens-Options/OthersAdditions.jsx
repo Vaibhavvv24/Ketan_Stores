@@ -13,6 +13,15 @@ import Radio from '@mui/material/Radio';
 import { useGlobalContext } from '../../context';
 
 export default function OthersAdditions() {
+    const { jwt } = useGlobalContext();
+    const [name, setName] = useState("");
+    const [price, setPrice] = useState("");
+    const [quantity, setQuantity] = useState("");
+    const [type, setType] = useState("");
+    const [size, setSize] = useState("");
+    const [image, setImage] = useState(null);
+  
+    const handleChudidar = async (e) => {
     e.preventDefault();
     console.log(name, price, quantity, type, size, image, jwt);
     const formData = new FormData();
@@ -131,5 +140,4 @@ export default function OthersAdditions() {
         </FormControl>
     )
 }
-
 //name, file, price, color, quantity, type, size
