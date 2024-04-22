@@ -9,36 +9,14 @@ const AppProvider = ({ children }) => {
       localStorage.getItem("authToken")
         ? JSON.parse(localStorage.getItem("authToken"))
         : null
-  );
-    const [email, setemail] = useState(''); 
-    const [password, setpassword] = useState('');
-    // const Navigate = useNavigate();
-    // const loginUser = async (e) => {
-    //   e.preventDefault();
-    //   console.log(e.target.email.value, e.target.password.value);
-    //   const response = await fetch("http://localhost:8080/api/auth/login", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //       email: e.target.email.value,
-    //       password: e.target.password.value,
-    //     }),
-    //   });
-    //   const data = await response.json();
-    //   console.log(data);
-    //   if (data.jwt) {
-    //     setAuthToken(data);
-    //     localStorage.setItem("authToken", JSON.stringify(data));
-    //     Navigate("/ketan-stores/");
-    //   }
-    // };
-  
-
-    // useEffect(() => {
-    //   loginUser();  
-    // }, [password]);
+    );
+    const [jwt, setjwt] = useState(
+      localStorage.getItem("authToken")
+        ? JSON.parse(localStorage.getItem("authToken")).jwt
+        : ""
+    );
+    const [email, setemail] = useState("");
+    const [password, setpassword] = useState("");
 
     // const [filterArray, setFilterArray] = useState([]);
 
@@ -221,20 +199,38 @@ const AppProvider = ({ children }) => {
       (item) => item.name === "Mens" || item.name === "Kids"
     );
 
-    const [optionsKetanStores, setOptionsKetanStores] = useState('null');
-    const [optionsMens, setOptionsMens] = useState('null');
+    const [optionsKetanStores, setOptionsKetanStores] = useState("null");
+    const [optionsMens, setOptionsMens] = useState("null");
 
     const displayMensOptions = (options) => {
-      setOptionsMens('null')
+      setOptionsMens("null");
       setOptionsKetanStores(options);
-    }
+    };
 
     const displayKurtaOptions = (options) => {
       setOptionsMens(options);
-    }
+    };
 
     return (
-      <AppContext.Provider value={{ filterObject, filterMens, filterKurta, filterKetanStores, setemail , setpassword , email ,password , setAuthToken , optionsKetanStores, displayMensOptions, displayKurtaOptions, optionsMens}}>
+      <AppContext.Provider
+        value={{
+          filterObject,
+          filterMens,
+          filterKurta,
+          filterKetanStores,
+          setemail,
+          setpassword,
+          email,
+          password,
+          setAuthToken,
+          optionsKetanStores,
+          displayMensOptions,
+          displayKurtaOptions,
+          optionsMens,
+          jwt,
+          setjwt,
+        }}
+      >
         {children}
       </AppContext.Provider>
     );

@@ -13,7 +13,7 @@ import Silk from "./pages/Page-Filters/silk";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Cotton from "./pages/Page-Filters/cotton";
-import AddItems from "./AddItems";
+import AddItems from "./pages/AddItems";
 
 
 const App = () => {
