@@ -7,10 +7,7 @@ import java.util.Base64;
 
 import com.example.ketanStores.dto.ChudidarDto;
 import com.example.ketanStores.enums.ChudidarEnum;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -31,6 +28,7 @@ public class ChudidarEntity {
     private int quantity;
     private int price;
     private String name;
+    @Column(columnDefinition = "longblob")
     private Blob image;
 
     public String blobToBase64(Blob blob) {
