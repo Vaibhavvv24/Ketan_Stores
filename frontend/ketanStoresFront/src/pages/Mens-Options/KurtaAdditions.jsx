@@ -18,8 +18,8 @@ export default function KurtaAdditions() {
     <FormControl>
         <div className='flex-col justify-evenly h-full w-full mt-2'>
             <div className='flex-col justify-left pl-1 items-center gap-2'>
-                <Typography level='h6' component='h1'>
-                    <span className='text-xs'>3.</span><b className='pl-2'>Choose from Kurta:</b>
+                <Typography level='h6' component='h1' className='flex items-center h-[22px]'>
+                    <span className='text-xs'>3.</span><FormLabel className='pl-2'>Choose from Kurta:</FormLabel>
                 </Typography>
                 <div className='flex justify-center items-center w-full mt-2'>
                     <RadioGroup

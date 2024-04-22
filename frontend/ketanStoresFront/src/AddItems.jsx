@@ -44,8 +44,8 @@ return(
             <FormControl>
                 <div className='flex-col justify-evenly h-full w-full'>
                     <div className='flex-col justify-left pl-1 items-center gap-2'>
-                        <Typography level='h6' component='h1'>
-                            <span className='text-xs'>1.</span><b className='pl-2'>Choose:</b>
+                        <Typography level='h6' component='h1' className='flex items-center h-[22px]'>
+                          <span className='text-xs'>1.</span><FormLabel className='pl-2'>Choose:</FormLabel>
                         </Typography>
                         <div className='flex justify-center items-center w-full'>
                             <RadioGroup
