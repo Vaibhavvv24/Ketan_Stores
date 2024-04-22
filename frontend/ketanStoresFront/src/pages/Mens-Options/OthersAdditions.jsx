@@ -10,6 +10,7 @@ import Input from "@mui/joy/Input";
 import Button from "@mui/joy/Button";
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
+import { useState } from 'react';
 import { useGlobalContext } from '../../context';
 
 export default function OthersAdditions() {
@@ -113,9 +114,8 @@ export default function OthersAdditions() {
                                 <span className='text-xs'>7.</span><FormLabel className='pl-2'>Price:</FormLabel> 
                             </Typography>
                             <div className='flex justify-left items-center gap-5'>
-                                <span className='text-xl w-[10px] h-[30px]'>₹</span>
                                 <Input
-                                    style = {{width: 177}}
+                                    style = {{width: 206}}
                                     name='price'
                                     type='text'
                                 />
