@@ -13,6 +13,7 @@ import Radio from '@mui/material/Radio';
 import { useGlobalContext } from '../../context';
 import KurtaAdditions from './KurtaAdditions';
 import ChudidarAdditions from './ChudidarAdditions';
+import OthersAdditions from './OthersAdditions';
 
 export default function MensAddItems() {
   const { displayKurtaOptions, optionsMens } = useGlobalContext();
@@ -72,6 +73,9 @@ export default function MensAddItems() {
       }
       {
         optionsMens === 'chudidar' ? <ChudidarAdditions /> : null
+      }
+      {
+        optionsMens === "Jacket & Suits" || optionsMens === "Short Kurta" || optionsMens === "Indo Western" || optionsMens === "Plus Size" ? <OthersAdditions /> : null
       }
     </FormControl>
   )
