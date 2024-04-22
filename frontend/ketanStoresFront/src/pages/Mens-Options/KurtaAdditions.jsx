@@ -106,7 +106,7 @@ export default function KurtaAdditions() {
             component='h1'
             className='flex items-center h-[22px]'
           >
-            <span className='text-xs'>4.</span>
+            <span className='text-xs'>3.</span>
             <FormLabel className='pl-2'>Choose from Kurta:</FormLabel>
           </Typography>
           <div className='flex justify-center items-center w-full mt-2'>
@@ -154,14 +154,14 @@ export default function KurtaAdditions() {
                 component='h1'
                 className='flex items-center h-[22px] mt-2'
               >
-                <span className='text-xs'>5.</span>
+                <span className='text-xs'>4.</span>
                 <FormLabel className='pl-2'>Name:</FormLabel>
               </Typography>
               <Input
                 name='name'
                 type='name'
                 onChange={(e) => {
-                  setName(e.target.value);
+                  setName(e.target.value.trim());
                 }}
               />
             </FormControl>
@@ -172,7 +172,7 @@ export default function KurtaAdditions() {
                   component='h1'
                   className='flex items-center justify-left h-[22px]'
                 >
-                  <span className='text-xs'>6.</span>
+                  <span className='text-xs'>5.</span>
                   <FormLabel className='pl-2'>Color:</FormLabel>
                 </Typography>
                 <div className='flex justify-left items-center gap-12'>
@@ -181,7 +181,7 @@ export default function KurtaAdditions() {
                     name='type'
                     type='text'
                     onChange={(e) => {
-                      setColor(e.target.value);
+                      setColor(e.target.value.trim());
                     }}
                   />
                 </div>
@@ -192,7 +192,7 @@ export default function KurtaAdditions() {
                   component='h1'
                   className='flex items-center justify-left h-[22px]'
                 >
-                  <span className='text-xs'>7.</span>
+                  <span className='text-xs'>6.</span>
                   <FormLabel className='pl-2'>Size:</FormLabel>
                 </Typography>
                 <div className='flex justify-left items-center gap-5'>
@@ -201,7 +201,12 @@ export default function KurtaAdditions() {
                     name='type'
                     type='text'
                     onChange={(e) => {
-                      setSize(e.target.value);
+                      if (!isNaN(e.target.value) && e.target.value === "") {
+                        setSize(Number(e.target.value))
+                      }
+                      else{
+                        setSize("");
+                      }
                     }}
                   />
                 </div>
@@ -214,7 +219,7 @@ export default function KurtaAdditions() {
                   component='h1'
                   className='flex items-center justify-left h-[22px]'
                 >
-                  <span className='text-xs'>8.</span>
+                  <span className='text-xs'>7.</span>
                   <FormLabel className='pl-2'>Quantity:</FormLabel>
                 </Typography>
                 <div className='flex justify-left items-center gap-12'>
@@ -223,7 +228,12 @@ export default function KurtaAdditions() {
                     name='type'
                     type='text'
                     onChange={(e) => {
-                      setQuantity(e.target.value);
+                      if (!isNaN(e.target.value) && e.target.value === "") {
+                        setQuantity(Number(e.target.value))
+                      }
+                      else{
+                        setQuantity("");
+                      }
                     }}
                   />
                 </div>
@@ -234,7 +244,7 @@ export default function KurtaAdditions() {
                   component='h1'
                   className='flex items-center justify-left h-[22px]'
                 >
-                  <span className='text-xs'>9.</span>
+                  <span className='text-xs'>8.</span>
                   <FormLabel className='pl-2'>Price:</FormLabel>
                 </Typography>
                 <div className='flex justify-left items-center gap-5'>
@@ -244,7 +254,12 @@ export default function KurtaAdditions() {
                     name='type'
                     type='text'
                     onChange={(e) => {
-                      setPrice(e.target.value);
+                      if (!isNaN(e.target.value) && e.target.value === "") {
+                        setPrice(Number(e.target.value))
+                      }
+                      else{
+                        setPrice("");
+                      }
                     }}
                   />
                 </div>
@@ -256,7 +271,7 @@ export default function KurtaAdditions() {
                 component='h1'
                 className='flex items-center justify-left h-[22px] mt-2'
               >
-                <span className='text-xs'>10.</span>
+                <span className='text-xs'>9.</span>
                 <FormLabel className='pl-2'>Image:</FormLabel>
               </Typography>
               <Input
@@ -275,7 +290,7 @@ export default function KurtaAdditions() {
                     component='h1'
                     className='flex items-center h-[22px]'
                   >
-                    <span className='text-xs'>11.</span>
+                    <span className='text-xs'>10.</span>
                     <FormLabel className='pl-2'>Type:</FormLabel>
                   </Typography>
                   <div className='flex justify-center items-center w-full mt-2'>
@@ -326,7 +341,7 @@ export default function KurtaAdditions() {
                     component='h1'
                     className='flex items-center h-[22px]'
                   >
-                    <span className='text-xs'>11.</span>
+                    <span className='text-xs'>10.</span>
                     <FormLabel className='pl-2'>Type:</FormLabel>
                   </Typography>
                   <div className='flex justify-center items-center gap-15 w-full mt-2'>
@@ -385,13 +400,9 @@ export default function KurtaAdditions() {
           </div>
         </div>
       </FormControl>
-      <Button
-        className='bg-blue-500'
-        sx={{ mt: 2 }}
-        onClick={handleBothSilk_Cotton}
-      >
-        Add Item
-      </Button>
+      {
+            name === "" || price === "" || quantity === "" || size === "" || type === "" || image === null ? <Button className='bg-gray-500 hover:bg-gray-700' sx={{ mt: 2 }}>Add Item</Button>
+            : <Button onClick={handleChudidar} className='bg-blue-500 hover:bg-blue-700' sx={{ mt: 2 }}>Add Item</Button>      }
     </FormControl>
   );
 }

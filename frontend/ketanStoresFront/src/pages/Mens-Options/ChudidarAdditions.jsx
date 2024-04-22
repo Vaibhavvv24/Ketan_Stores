@@ -21,7 +21,7 @@ export default function ChudidarAdditions() {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
-  const [type, setType] = useState("");
+  const [type, setType] = useState("WHITE");
   const [size, setSize] = useState("");
   const [image, setImage] = useState(null);
 
@@ -64,51 +64,65 @@ export default function ChudidarAdditions() {
 
   return (
     <FormControl>
-      <div className='flex-col justify-evenly h-full w-full mt-2;'>
+      <div className='flex-col justify-evenly h-full w-full mt-2'>
         <div>
           <FormControl>
-            <Typography level='h6' component='h1'>
-              <FormLabel>Name</FormLabel>
+            <Typography level='h6' component='h1' className='flex items-center justify-left h-[22px]'>
+                <span className='text-xs'>3.</span><FormLabel className='pl-2'>Name:</FormLabel> 
+            </Typography>
               <Input
                 // html input attribute
                 name='name'
                 type='name'
                 onChange={(e) => {
-                  setName(e.target.value);
+                  setName(e.target.value.trim());
                 }}
               />
+          </FormControl>
+          <div className='flex justify-left h-full w-full mt-2 items-center gap-12'>
+            <FormControl>
+                <Typography level='h6' component='h1' className='flex items-center justify-left h-[22px]'>
+                    <span className='text-xs'>4.</span><FormLabel className='pl-2'>Quantity:</FormLabel> 
+                </Typography>
+                <Input
+                style = {{width: 206}}
+                name='quantity'
+                type='text'
+                onChange={(e) => {
+                    if (!isNaN(e.target.value) && e.target.value.trim() !== "") {
+                        setQuantity(Number(e.target.value));
+                    }
+                    else{
+                        setQuantity("");
+                    }
+                }}
+                />
+            </FormControl>
+            <FormControl>
+            <Typography level='h6' component='h1' className='flex items-center justify-left h-[22px] mt-2'>
+                <span className='text-xs'>5.</span><FormLabel className='pl-2'>Price:</FormLabel>
             </Typography>
-          </FormControl>
+                <Input
+                style = {{width: 206}}
+                name='price'
+                type='text'
+                onChange={(e) => {
+                    if (!isNaN(e.target.value) && e.target.value.trim() !== "") {
+                        setPrice(Number(e.target.value));
+                    }
+                    else{
+                        setPrice("");
+                    }
+                }}
+                />
+            </FormControl>
+          </div>
+          <div className='flex justify-left h-full w-full mt-2 items-center gap-12'>
           <FormControl>
-            <FormLabel>Price</FormLabel>
-            <Input
-              name='price'
-              type='text'
-              onChange={(e) => {
-                setPrice(e.target.value);
-              }}
-            />
-          </FormControl>
-          <FormControl>
-            <FormLabel>Quantity</FormLabel>
-            <Input
-              name='quantity'
-              type='text'
-              onChange={(e) => {
-                setQuantity(e.target.value);
-              }}
-            />
-          </FormControl>
-          <FormControl>
-            <FormLabel>Type</FormLabel>
-            {/* <Input
-              name='type'
-              type='text'
-              onChange={(e) => {
-                setType(e.target.value);
-              }}
-            /> */}
-            <Select defaultValue='White'>
+            <Typography level='h6' component='h1' className='flex items-center justify-left h-[22px]'>
+                <span className='text-xs'>6.</span><FormLabel className='pl-2'>Type:</FormLabel>
+            </Typography>
+            <Select defaultValue='White' style={{ width: 206 }}>
               <Option
                 value='White'
                 onClick={(e) => {
@@ -136,17 +150,28 @@ export default function ChudidarAdditions() {
             </Select>
           </FormControl>
           <FormControl>
-            <FormLabel>Size</FormLabel>
+            <Typography level='h6' component='h1' className='flex items-center justify-left h-[22px]'>
+                <span className='text-xs'>7.</span><FormLabel className='pl-2'>Size:</FormLabel>
+            </Typography>
             <Input
+              style = {{width: 206}}
               name='size'
               type='text'
               onChange={(e) => {
-                setSize(e.target.value);
+                if (!isNaN(e.target.value) && e.target.value.trim() !== "") {
+                  setSize(Number(e.target.value));
+                }
+                else{
+                  setSize("");
+                }
               }}
             />
           </FormControl>
-          <FormControl>
-            <FormLabel>Image</FormLabel>
+          </div>
+          <FormControl className='flex justify-left h-full w-full mt-2'>
+            <Typography level='h6' component='h1' className='flex items-center justify-left h-[22px]'>
+                <span className='text-xs'>8.</span><FormLabel className='pl-2'>Image:</FormLabel>
+            </Typography>
             <Input
               name='image'
               type='file'
@@ -156,10 +181,11 @@ export default function ChudidarAdditions() {
             />
           </FormControl>
         </div>
-        <Button sx={{ mt: 1 /* margin top */ }} onClick={handleChudidar}>
-          Add Item
-        </Button>
       </div>
+      {
+            name === "" || price === "" || quantity === "" || size === "" || type === "" || image === null ? <Button className='bg-gray-500 hover:bg-gray-700' sx={{ mt: 2 }}>Add Item</Button>
+            : <Button onClick={handleChudidar} className='bg-blue-500 hover:bg-blue-700' sx={{ mt: 2 }}>Add Item</Button>
+      }
     </FormControl>
   );
 }
