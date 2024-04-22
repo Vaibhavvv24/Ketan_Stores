@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:5173")
 public class ChudidarCont {
 
     private final ChudidarService chudidarService;
@@ -27,7 +28,7 @@ public class ChudidarCont {
     }
 
 
-    @PostMapping("/churidar")
+    @PostMapping("/chudidar")
     public ResponseEntity<?> postChuridar(@RequestParam("name") String name, @RequestParam("img") MultipartFile file, @RequestParam("price") int price, @RequestParam("quantity") int quantity, @RequestParam("type") String chudidar,@RequestParam("size") int size) throws IOException, SQLException {
         ChudidarDto chudidarDto=new ChudidarDto();
         byte[] bytes = file.getBytes();

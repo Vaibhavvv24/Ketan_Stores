@@ -10,54 +10,123 @@ import Input from "@mui/joy/Input";
 import Button from "@mui/joy/Button";
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
-import { useGlobalContext } from '../../context';
-
+import { useState } from "react";
+import axios from "axios";
+import { useGlobalContext } from "../../context";
 
 export default function ChudidarAdditions() {
+  const { jwt } = useGlobalContext();
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [type, setType] = useState("");
+  const [size, setSize] = useState("");
+  const [image, setImage] = useState(null);
+
+  const handleChudidar = async (e) => {
+    e.preventDefault();
+    console.log(name, price, quantity, type, size, image, jwt);
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("img", image);
+    formData.append("price", price);
+    formData.append("quantity", quantity);
+    formData.append("type", type);
+    formData.append("size", size);
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/chudidar",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${jwt}`,
+          },
+        }
+      );
+      const data = await response.json();
+      console.log(data);
+      if (data) {
+        console.log(data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-      <FormControl>
-            <div className='flex-col justify-evenly h-full w-full mt-2;'>
-                <div>
-                    <Typography level='h6' component='h1'>
-                    <FormLabel>Name</FormLabel>
-                        <Input
-                            // html input attribute
-                            name='name'
-                            type='name'
-                            onClick={ () => {
-                            
-                            }}
-                        />
-                    </Typography>
-                    <FormLabel>Price</FormLabel>
-                    <Input
-                        name = 'price'
-                        type = 'number'
-                    />
-                    <FormLabel>Quantity</FormLabel>
-                    <Input
-                        name = 'quantity'
-                        type = 'number'
-                    />
-                    <FormLabel>Type</FormLabel>
-                    <Input
-                        name = 'type'
-                        type = 'text'
-                    />
-                    <FormLabel>Size</FormLabel>
-                    <Input
-                        name = 'size'
-                        type = 'text'
-                    />
-                    <FormLabel>Image</FormLabel>
-                    <Input
-                        name = 'image'
-                        type = 'file'
-                    />
-                </div>
-            </div>
-            <Button className='bg-blue-500' sx={{ mt: 2 }}>Add Item</Button> 
-      </FormControl>
-  )
+    <FormControl>
+      <div className='flex-col justify-evenly h-full w-full mt-2;'>
+        <div>
+          <FormControl>
+            <Typography level='h6' component='h1'>
+              <FormLabel>Name</FormLabel>
+              <Input
+                // html input attribute
+                name='name'
+                type='name'
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+              />
+            </Typography>
+          </FormControl>
+          <FormControl>
+            <FormLabel>Price</FormLabel>
+            <Input
+              name='price'
+              type='number'
+              onChange={(e) => {
+                setPrice(e.target.value);
+              }}
+            />
+          </FormControl>
+          <FormControl>
+            <FormLabel>Quantity</FormLabel>
+            <Input
+              name='quantity'
+              type='number'
+              onChange={(e) => {
+                setQuantity(e.target.value);
+              }}
+            />
+          </FormControl>
+          <FormControl>
+            <FormLabel>Type</FormLabel>
+            <Input
+              name='type'
+              type='text'
+              onChange={(e) => {
+                setType(e.target.value);
+              }}
+            />
+          </FormControl>
+          <FormControl>
+            <FormLabel>Size</FormLabel>
+            <Input
+              name='size'
+              type='text'
+              onChange={(e) => {
+                setSize(e.target.value);
+              }}
+            />
+          </FormControl>
+          <FormControl>
+            <FormLabel>Image</FormLabel>
+            <Input
+              name='image'
+              type='file'
+              onChange={(e) => {
+                setImage(e.target.files[0]);
+              }}
+            />
+          </FormControl>
+        </div>
+        <Button sx={{ mt: 1 /* margin top */ }} onClick={handleChudidar}>
+          Add Item
+        </Button>
+      </div>
+    </FormControl>
+  );
 }
 //name, image (img) json object, price, quantity, type, size

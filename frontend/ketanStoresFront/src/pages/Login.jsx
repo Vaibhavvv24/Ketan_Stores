@@ -38,7 +38,7 @@ function ModeToggle() {
 }
 
 export default function LoginFinal() {
-  const { setemail, setpassword, email, password ,setAuthToken} =
+  const { setemail, setpassword, email, password ,setAuthToken , setjwt} =
     useGlobalContext();
 
   const Navigate = useNavigate();
@@ -62,6 +62,7 @@ export default function LoginFinal() {
         // For example, store token and navigate to another page
         setAuthToken(data);
         localStorage.setItem("authToken", JSON.stringify(data));
+        setjwt(data.jwt);
         // Assuming Navigate function exists to navigate to another page
         Navigate("/ketan-stores/");
       } else {
