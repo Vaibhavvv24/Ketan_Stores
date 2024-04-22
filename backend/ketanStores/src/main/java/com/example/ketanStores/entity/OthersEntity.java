@@ -7,10 +7,7 @@ import java.util.Base64;
 import com.example.ketanStores.dto.ChudidarDto;
 import com.example.ketanStores.dto.Others_dto;
 import com.example.ketanStores.enums.OthersEnum;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -30,6 +27,7 @@ public class OthersEntity {
     private int size;
     private int quantity;
     private boolean available;
+    @Column(columnDefinition = "longblob")
     private Blob image;
     private String name;
     private String colour;

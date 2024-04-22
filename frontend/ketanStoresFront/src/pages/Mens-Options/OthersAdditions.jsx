@@ -65,9 +65,6 @@ export default function OthersAdditions() {
                         <Input
                             name='name'
                             type='name'
-                            onChange = { (e) => {
-                                settingOthersFormProp('name', e.target.value);
-                            }}
                         />
                     </FormControl>
                     <div className='flex justify-left h-full w-full mt-2 items-center gap-12'>

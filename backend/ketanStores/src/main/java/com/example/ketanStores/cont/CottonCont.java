@@ -24,7 +24,7 @@ import javax.sql.rowset.serial.SerialBlob;
 
 
 @RestController
-@RequestMapping("/kurta/cotton")
+@RequestMapping("/kurta_cotton")
 @CrossOrigin(origins = "http://localhost:5173")
 public class CottonCont {
     private final Cotton_service cotton_service;

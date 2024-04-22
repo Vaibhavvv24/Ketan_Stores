@@ -19,7 +19,7 @@ import javax.sql.rowset.serial.SerialBlob;
 
 
 @RestController
-@RequestMapping("/kurta/silk")
+@RequestMapping("/kurta_silk")
 @CrossOrigin(origins = "http://localhost:5173")
 public class SilkCont {
     private final Silk_service silk_service;

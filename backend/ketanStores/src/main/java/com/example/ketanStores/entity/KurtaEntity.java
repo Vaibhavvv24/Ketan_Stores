@@ -22,6 +22,7 @@ public class KurtaEntity {
     int size;
     int quantity;
     boolean available;
+    @Column(columnDefinition = "longblob")
     Blob image;
 
     public KurtaEntity(String Name,int price, int size, int quantity, boolean available, Blob image) {
