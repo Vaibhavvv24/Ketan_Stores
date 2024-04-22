@@ -55,23 +55,14 @@ export default function KurtaAdditions() {
                             }}
                         />
                     </FormControl>
-                    <FormControl>
-                    <Typography level='h6' component='h1' className='flex items-center h-[22px] mt-2'>
-                        <span className='text-xs'>6.</span><FormLabel className='pl-2'>Color:</FormLabel>
-                    </Typography>
-                    <Input
-                        name = 'color'
-                        type = 'text'
-                    />
-                    </FormControl>
                     <div className='flex justify-left h-full w-full mt-2 items-center gap-12'>
                         <FormControl className='flex-col justify-left h-full mt-2 items-start gap-2'>
                             <Typography level='h6' component='h1' className='flex items-center justify-left h-[22px]'>
-                                <span className='text-xs'>7.</span><FormLabel className='pl-2'>Quantity:</FormLabel> 
+                                <span className='text-xs'>6.</span><FormLabel className='pl-2'>Color:</FormLabel> 
                             </Typography>
                             <div className='flex justify-left items-center gap-12'>
                                 <Input
-                                    style = {{width: 192}}
+                                    style = {{width: 206}}
                                     name = 'type'
                                     type = 'text'
                                 />
@@ -79,12 +70,38 @@ export default function KurtaAdditions() {
                         </FormControl>
                         <FormControl className='flex-col justify-left h-full mt-2 items-start gap-2'>
                             <Typography level='h6' component='h1' className='flex items-center justify-left h-[22px]'>
-                                <span className='text-xs'>8.</span><FormLabel className='pl-2'>Price:</FormLabel> 
+                                <span className='text-xs'>7.</span><FormLabel className='pl-2'>Size:</FormLabel> 
+                            </Typography>
+                            <div className='flex justify-left items-center gap-5'>
+                                <Input
+                                    style = {{width: 206}}
+                                    name = 'type'
+                                    type = 'text'
+                                />
+                            </div>        
+                        </FormControl>
+                    </div>
+                    <div className='flex justify-left h-full w-full mt-2 items-center gap-12'>
+                        <FormControl className='flex-col justify-left h-full mt-2 items-start gap-2'>
+                            <Typography level='h6' component='h1' className='flex items-center justify-left h-[22px]'>
+                                <span className='text-xs'>8.</span><FormLabel className='pl-2'>Quantity:</FormLabel> 
+                            </Typography>
+                            <div className='flex justify-left items-center gap-12'>
+                                <Input
+                                    style = {{width: 206}}
+                                    name = 'type'
+                                    type = 'text'
+                                />
+                            </div>        
+                        </FormControl>
+                        <FormControl className='flex-col justify-left h-full mt-2 items-start gap-2'>
+                            <Typography level='h6' component='h1' className='flex items-center justify-left h-[22px]'>
+                                <span className='text-xs'>9.</span><FormLabel className='pl-2'>Price:</FormLabel> 
                             </Typography>
                             <div className='flex justify-left items-center gap-5'>
                                 <span className='text-xl w-[10px] h-[30px]'>₹</span>
                                 <Input
-                                    style = {{width: 192}}
+                                    style = {{width: 177}}
                                     name = 'type'
                                     type = 'text'
                                 />
@@ -93,19 +110,19 @@ export default function KurtaAdditions() {
                     </div>
                     <FormControl>
                         <Typography level='h6' component='h1' className='flex items-center justify-left h-[22px] mt-2'>
-                            <span className='text-xs'>9.</span><FormLabel className='pl-2'>Image:</FormLabel>
+                            <span className='text-xs'>10.</span><FormLabel className='pl-2'>Image:</FormLabel>
                         </Typography>
                         <Input
                             name = 'image'
                             type = 'file'
                         />
-                    </FormControl>
+                    </FormControl>             
                     {
                         optionsKurta === 'silk' ? (
                             <div className='flex-col justify-evenly h-full w-full mt-2'>
                             <div className='flex-col justify-left items-center gap-2'>
                                 <Typography level='h6' component='h1' className='flex items-center h-[22px]'>
-                                    <span className='text-xs'>10.</span><FormLabel className='pl-2'>Type:</FormLabel>
+                                    <span className='text-xs'>11.</span><FormLabel className='pl-2'>Type:</FormLabel>
                                 </Typography>
                                 <div className='flex justify-center items-center w-full mt-2'>
                                     <RadioGroup
@@ -132,7 +149,7 @@ export default function KurtaAdditions() {
                     { optionsKurta === 'cotton' ? (<div className='flex-col justify-evenly h-full w-full mt-2'>
                         <div className='flex-col justify-left items-center gap-2 w-full mt-2'>
                             <Typography level='h6' component='h1' className='flex items-center h-[22px]'>
-                                <span className='text-xs'>10.</span><FormLabel className='pl-2'>Type:</FormLabel>
+                                <span className='text-xs'>11.</span><FormLabel className='pl-2'>Type:</FormLabel>
                             </Typography>
                             <div className='flex justify-center items-center gap-15 w-full mt-2'>
                                 <RadioGroup
@@ -164,6 +181,7 @@ export default function KurtaAdditions() {
                 </div>
             </div>
         </FormControl>
+        <Button className='bg-blue-500' sx={{ mt: 2 }}>Add Item</Button> 
     </FormControl>
   )
 }

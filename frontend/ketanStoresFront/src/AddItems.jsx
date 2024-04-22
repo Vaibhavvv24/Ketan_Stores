@@ -71,7 +71,6 @@ return(
                     optionsKetanStores === "mens" ? <MensAddItems /> : null
                 }
             </FormControl>
-            <Button sx={{ mt: 1 /* margin top */ }}>Log in</Button>
             </Sheet>
         </main>
         </div>

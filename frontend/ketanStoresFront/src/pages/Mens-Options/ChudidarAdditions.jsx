@@ -56,6 +56,7 @@ export default function ChudidarAdditions() {
                     />
                 </div>
             </div>
+            <Button className='bg-blue-500' sx={{ mt: 2 }}>Add Item</Button> 
       </FormControl>
   )
 }
