@@ -213,8 +213,20 @@ const AppProvider = ({ children }) => {
       (item) => item.name === "Mens" || item.name === "Kids"
     );
 
+    const [optionsKetanStores, setOptionsKetanStores] = useState('null');
+    const [optionsMens, setOptionsMens] = useState('null');
+
+    const displayMensOptions = (options) => {
+      setOptionsMens('null')
+      setOptionsKetanStores(options);
+    }
+
+    const displayKurtaOptions = (options) => {
+      setOptionsMens(options);
+    }
+
     return (
-      <AppContext.Provider value={{ filterObject, filterMens, filterKurta, filterKetanStores }}>
+      <AppContext.Provider value={{ filterObject, filterMens, filterKurta, filterKetanStores, optionsKetanStores, displayMensOptions, displayKurtaOptions, optionsMens }}>
         {children}
       </AppContext.Provider>
     );
