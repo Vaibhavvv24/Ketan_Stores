@@ -13,6 +13,7 @@ import Silk from "./pages/Page-Filters/silk";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Cotton from "./pages/Page-Filters/cotton";
+import AddItems from "./AddItems";
 
 
 const App = () => {
@@ -82,6 +83,15 @@ const App = () => {
                 </>
               }
             />
+            <Route
+              path='/add-items/'
+              element={
+                <>
+                  <Navbar />
+                  <AddItems />
+                  <Footer />
+                </>
+              }
           </Routes>
         </CssVarsProvider>
       </StyledEngineProvider>
