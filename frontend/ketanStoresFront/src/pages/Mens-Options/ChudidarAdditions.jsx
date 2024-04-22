@@ -10,6 +10,8 @@ import Input from "@mui/joy/Input";
 import Button from "@mui/joy/Button";
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
+import Select from "@mui/joy/Select";
+import Option from "@mui/joy/Option";
 import { useState } from "react";
 import axios from "axios";
 import { useGlobalContext } from "../../context";
@@ -29,9 +31,9 @@ export default function ChudidarAdditions() {
     const formData = new FormData();
     formData.append("name", name);
     formData.append("img", image);
-    formData.append("price", price);
-    formData.append("quantity", quantity);
-    formData.append("type", type);
+    formData.append("price", Number(price));
+    formData.append("quantity", Number(quantity));
+    formData.append("type", type.toUpperCase());
     formData.append("size", size);
     try {
       const response = await axios.post(
@@ -44,7 +46,7 @@ export default function ChudidarAdditions() {
           },
         }
       );
-      const data = await response.json();
+      const data = await response;
       console.log(data);
       if (data) {
         console.log(data);
@@ -75,7 +77,7 @@ export default function ChudidarAdditions() {
             <FormLabel>Price</FormLabel>
             <Input
               name='price'
-              type='number'
+              type='text'
               onChange={(e) => {
                 setPrice(e.target.value);
               }}
@@ -85,7 +87,7 @@ export default function ChudidarAdditions() {
             <FormLabel>Quantity</FormLabel>
             <Input
               name='quantity'
-              type='number'
+              type='text'
               onChange={(e) => {
                 setQuantity(e.target.value);
               }}
@@ -93,13 +95,39 @@ export default function ChudidarAdditions() {
           </FormControl>
           <FormControl>
             <FormLabel>Type</FormLabel>
-            <Input
+            {/* <Input
               name='type'
               type='text'
               onChange={(e) => {
                 setType(e.target.value);
               }}
-            />
+            /> */}
+            <Select defaultValue='White'>
+              <Option
+                value='White'
+                onClick={(e) => {
+                  setType("White");
+                }}
+              >
+                White
+              </Option>
+              <Option
+                value='Cream'
+                onClick={(e) => {
+                  setType("Cream");
+                }}
+              >
+                Cream
+              </Option>
+              <Option
+                value='Colour'
+                onClick={(e) => {
+                  setType("Colour");
+                }}
+              >
+                Colour
+              </Option>
+            </Select>
           </FormControl>
           <FormControl>
             <FormLabel>Size</FormLabel>
