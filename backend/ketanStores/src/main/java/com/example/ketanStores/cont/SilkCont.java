@@ -1,7 +1,6 @@
 package com.example.ketanStores.cont;
 import com.example.ketanStores.enums.SilkEnum;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.ketanStores.dto.Silk_dto;
 import com.example.ketanStores.entity.SilkEntity;
@@ -14,11 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.sql.rowset.serial.SerialBlob;
@@ -26,6 +20,7 @@ import javax.sql.rowset.serial.SerialBlob;
 
 @RestController
 @RequestMapping("/kurta/silk")
+@CrossOrigin(origins = "http://localhost:5173")
 public class SilkCont {
     private final Silk_service silk_service;
     public SilkCont(Silk_service silk_service) {
