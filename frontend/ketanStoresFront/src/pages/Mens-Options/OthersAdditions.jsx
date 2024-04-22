@@ -12,19 +12,21 @@ import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
 import { useState } from 'react';
 import { useGlobalContext } from '../../context';
+import axios from 'axios';
 
 export default function OthersAdditions() {
-    const { jwt } = useGlobalContext();
+    const { jwt, optionsMens } = useGlobalContext();
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
     const [quantity, setQuantity] = useState("");
-    const [type, setType] = useState("");
+    const [type, setType] = useState(optionsMens);
     const [size, setSize] = useState("");
     const [image, setImage] = useState(null);
+    const [color, setColor] = useState("");
   
     const handleChudidar = async (e) => {
     e.preventDefault();
-    console.log(name, price, quantity, type, size, image, jwt);
+    console.log(name, color, price, quantity, type, size, image, jwt);
     const formData = new FormData();
     formData.append("name", name);
     formData.append("img", image);
@@ -32,9 +34,10 @@ export default function OthersAdditions() {
     formData.append("quantity", Number(quantity));
     formData.append("type", type.toUpperCase());
     formData.append("size", size);
+    formData.append("color", color);
     try {
       const response = await axios.post(
-        "http://localhost:8080/chudidar",
+        "http://localhost:8080/others",
         formData,
         {
           headers: {
@@ -43,6 +46,7 @@ export default function OthersAdditions() {
           },
         }
       );
+
       const data = await response;
       console.log(data);
       if (data) {
@@ -65,6 +69,9 @@ export default function OthersAdditions() {
                         <Input
                             name='name'
                             type='name'
+                            onChange = { (e) => {
+                                setName(e.target.value);
+                            }}
                         />
                     </FormControl>
                     <div className='flex justify-left h-full w-full mt-2 items-center gap-12'>
@@ -75,8 +82,11 @@ export default function OthersAdditions() {
                             <div className='flex justify-left items-center gap-12'>
                                 <Input
                                     style = {{width: 206}}
-                                    name = 'type'
+                                    name = 'color'
                                     type = 'text'
+                                    onChange = { (e) => {
+                                        setColor(e.target.value);
+                                    }}
                                 />
                             </div>        
                         </FormControl>
@@ -87,8 +97,11 @@ export default function OthersAdditions() {
                             <div className='flex justify-left items-center gap-5'>
                                 <Input
                                     style = {{width: 206}}
-                                    name = 'type'
+                                    name = 'size'
                                     type = 'text'
+                                    onChange = { (e) => {
+                                        setSize(e.target.value);
+                                    }}
                                 />
                             </div>        
                         </FormControl>
@@ -101,8 +114,11 @@ export default function OthersAdditions() {
                             <div className='flex justify-left items-center gap-12'>
                                 <Input
                                     style = {{width: 206}}
-                                    name = 'type'
+                                    name = 'quantity'
                                     type = 'text'
+                                    onChange = { (e) => {
+                                        setQuantity(e.target.value);
+                                    }}
                                 />
                             </div>        
                         </FormControl>
@@ -111,10 +127,14 @@ export default function OthersAdditions() {
                                 <span className='text-xs'>7.</span><FormLabel className='pl-2'>Price:</FormLabel> 
                             </Typography>
                             <div className='flex justify-left items-center gap-5'>
+                                <span className='text-xl w-[10px] h-[30px]'>₹</span>
                                 <Input
                                     style = {{width: 170}}
                                     name='price'
                                     type='text'
+                                    onChange = { (e) => {
+                                        setPrice(e.target.value);
+                                    }}
                                 />
                             </div>        
                         </FormControl>
@@ -126,6 +146,9 @@ export default function OthersAdditions() {
                     <Input
                         name = 'image'
                         type = 'file'
+                        onChange = { (e) => {
+                            setImage(e.target.value);
+                        }}
                     />
                     </FormControl>
                 </div>
@@ -133,7 +156,7 @@ export default function OthersAdditions() {
             {
                 //:<Button className='bg-gray-500' sx={{ mt: 2 }}>Add Item</Button>
             }
-            <Button className='bg-blue-500' sx={{ mt: 2 }}>Add Item</Button> 
+            <Button onClick={handleChudidar} className='bg-blue-500' sx={{ mt: 2 }}>Add Item</Button> 
         </FormControl>
     )
 }
