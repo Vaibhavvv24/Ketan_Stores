@@ -24,7 +24,7 @@ export default function ChudidarAdditions() {
 
   const handleChudidar = async (e) => {
     e.preventDefault();
-    console.log(name, price, quantity, type, size, image);
+    console.log(name, price, quantity, type, size, image , jwt);
     try {
       const response = await fetch("http://localhost:8080/chudidar", {
         method: "POST",
