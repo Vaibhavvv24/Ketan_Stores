@@ -11,6 +11,7 @@ import Button from "@mui/joy/Button";
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
 import { useState } from "react";
+import axios from "axios";
 import { useGlobalContext } from "../../context";
 
 export default function ChudidarAdditions() {
@@ -24,23 +25,25 @@ export default function ChudidarAdditions() {
 
   const handleChudidar = async (e) => {
     e.preventDefault();
-    console.log(name, price, quantity, type, size, image , jwt);
+    console.log(name, price, quantity, type, size, image, jwt);
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("img", image);
+    formData.append("price", price);
+    formData.append("quantity", quantity);
+    formData.append("type", type);
+    formData.append("size", size);
     try {
-      const response = await fetch("http://localhost:8080/chudidar", {
-        method: "POST",
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${jwt}`,
-        },
-        body: JSON.stringify({
-          name: name,
-          price: price,
-          quantity: quantity,
-          type: type,
-          size: size,
-          image: image,
-        }),
-      });
+      const response = await axios.post(
+        "http://localhost:8080/chudidar",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${jwt}`,
+          },
+        }
+      );
       const data = await response.json();
       console.log(data);
       if (data) {

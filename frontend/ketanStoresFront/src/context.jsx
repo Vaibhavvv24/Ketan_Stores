@@ -219,7 +219,7 @@ const AppProvider = ({ children }) => {
     }
 
     return (
-      <AppContext.Provider value={{ filterObject, filterMens, filterKurta, filterKetanStores, setemail , setpassword , email ,password , setAuthToken , optionsKetanStores, displayMensOptions, displayKurtaOptions, optionsMens, displayClothKurtaOptions, optionsKurta}}>
+      <AppContext.Provider value={{ filterObject, filterMens, filterKurta, filterKetanStores, setemail , setpassword , email ,password , setAuthToken , optionsKetanStores, displayMensOptions, displayKurtaOptions, optionsMens, displayClothKurtaOptions, optionsKurta , jwt , setjwt}}>
         {children}
       </AppContext.Provider>
     );
