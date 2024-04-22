@@ -92,6 +92,7 @@ const App = () => {
                   <Footer />
                 </>
               }
+            />
           </Routes>
         </CssVarsProvider>
       </StyledEngineProvider>
