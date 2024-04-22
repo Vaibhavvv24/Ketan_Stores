@@ -15,57 +15,59 @@ import { useGlobalContext } from '../../context';
 export default function OthersAdditions() {
   return (
         <FormControl>
-            <div className='flex-col justify-evenly h-full w-full mt-2;'>
+            <div className='flex-col justify-evenly h-full w-full mt-2 pl-1'>
                 <div>
                     <FormControl>
-                    <Typography level='h6' component='h1'>
-                    <FormLabel>Name</FormLabel>
+                    <Typography level='h6' component='h1' className='flex items-center h-[22px] mt-2'>
+                    <span className='text-xs'>3.</span><FormLabel className='pl-2'>Name:</FormLabel>
+                    </Typography>
                         <Input
-                            // html input attribute
                             name='name'
                             type='name'
                             onClick={ () => {    
                             }}
                         />
-                    </Typography>
                     </FormControl>
                     <FormControl>
-                    <FormLabel>Color</FormLabel>
+                    <Typography level='h6' component='h1' className='flex items-center h-[22px] mt-2'>
+                        <span className='text-xs'>4.</span><FormLabel className='pl-2'>Color:</FormLabel>
+                    </Typography>
                     <Input
                         name = 'color'
                         type = 'text'
                     />
                     </FormControl>
+                    <div className='flex justify-left h-full w-full mt-2 items-center gap-12'>
+                        <FormControl className='flex-col justify-left h-full mt-2 items-start gap-2'>
+                            <Typography level='h6' component='h1' className='flex items-center justify-left h-[22px]'>
+                                <span className='text-xs'>5.</span><FormLabel className='pl-2'>Quantity:</FormLabel> 
+                            </Typography>
+                            <div className='flex justify-left items-center gap-12'>
+                                <Input
+                                    style = {{width: 192}}
+                                    name = 'type'
+                                    type = 'text'
+                                />
+                            </div>        
+                        </FormControl>
+                        <FormControl className='flex-col justify-left h-full mt-2 items-start gap-2'>
+                            <Typography level='h6' component='h1' className='flex items-center justify-left h-[22px]'>
+                                <span className='text-xs'>6.</span><FormLabel className='pl-2'>Price:</FormLabel> 
+                            </Typography>
+                            <div className='flex justify-left items-center gap-5'>
+                                <span className='text-xl w-[10px] h-[30px]'>₹</span>
+                                <Input
+                                    style = {{width: 192}}
+                                    name = 'type'
+                                    type = 'text'
+                                />
+                            </div>        
+                        </FormControl>
+                    </div>
                     <FormControl>
-                    <FormLabel>Price</FormLabel>
-                    <Input
-                        name = 'price'
-                        type = 'number'
-                    />
-                    </FormControl>
-                    <FormControl>
-                    <FormLabel>Quantity</FormLabel>
-                    <Input
-                        name = 'quantity'
-                        type = 'number'
-                    />
-                    </FormControl>
-                    <FormControl>
-                    <FormLabel>Type</FormLabel>
-                    <Input
-                        name = 'type'
-                        type = 'text'
-                    />
-                    </FormControl>
-                    <FormControl>
-                    <FormLabel>Size</FormLabel>
-                    <Input
-                        name = 'size'
-                        type = 'text'
-                    />
-                    </FormControl>
-                    <FormControl>
-                    <FormLabel>Image</FormLabel>
+                    <Typography level='h6' component='h1' className='flex items-center justify-left h-[22px] mt-2'>
+                        <span className='text-xs'>7.</span><FormLabel className='pl-2'>Image:</FormLabel>
+                    </Typography>
                     <Input
                         name = 'image'
                         type = 'file'
