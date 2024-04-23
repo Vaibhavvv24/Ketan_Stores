@@ -132,8 +132,8 @@ public class Silk_serviceimp implements Silk_service{
         kurtaEntity.setColour(colour);
         Silk_dto silk_dto = new Silk_dto();
         silkEntity.setKurtaEntity(kurtaEntity);
-        SilkEntity savedSilkEntity = silk_Repo.save(silkEntity);
         kurtaRepo.save(kurtaEntity);
+        SilkEntity savedSilkEntity = silk_Repo.save(silkEntity);
         silk_dto.setId(savedSilkEntity.getId());
         return silk_dto;
     }
