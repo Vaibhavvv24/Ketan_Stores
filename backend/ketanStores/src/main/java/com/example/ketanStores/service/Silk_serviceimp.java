@@ -9,8 +9,10 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import com.example.ketanStores.entity.KurtaEntity;
+import com.example.ketanStores.entity.OthersEntity;
 import com.example.ketanStores.enums.ChudidarEnum;
 import com.example.ketanStores.repository.Kurta_repo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -152,6 +154,19 @@ public class Silk_serviceimp implements Silk_service{
         Iterable<SilkEntity> silkEntities = silk_Repo.findAll();
         for (SilkEntity silkEntity : silkEntities) {
             if (silkEntity.getColour().equals(colour)) {
+                silk_dtos.add(convert_entity_to_dto(silkEntity));
+            }
+        }
+        return silk_dtos;
+    }
+
+    @Override
+    public ArrayList<Silk_dto> getSilkByColourAndtype(String type, String colour) {
+        SilkEnum silkEnum = SilkEnum.valueOf(type);
+        ArrayList<Silk_dto> silk_dtos = new ArrayList<>();
+        Iterable<SilkEntity> silkEntities = silk_Repo.findAll();
+        for (SilkEntity silkEntity : silkEntities) {
+            if (silkEntity.getColour().equals(colour) && silkEntity.getType().toString().equals(type)) {
                 silk_dtos.add(convert_entity_to_dto(silkEntity));
             }
         }

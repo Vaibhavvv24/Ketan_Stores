@@ -71,4 +71,10 @@ public class SilkCont {
         ArrayList<Silk_dto> silk_dtos = silk_service.getSilkByColour(colour);
         return ResponseEntity.ok().body(silk_dtos);
     }
+
+    @GetMapping("/silk/{type}/colour/{colour}")
+    public ResponseEntity<?> getByTypeColour(@PathVariable String type, @PathVariable String colour) {
+        ArrayList<Silk_dto> silk_dtos = silk_service.getSilkByColourAndtype(type, colour);
+        return ResponseEntity.ok().body(silk_dtos);
+    }
 }
