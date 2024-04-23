@@ -73,7 +73,6 @@ public class Others_serviceimp implements Other_service {
         OthersEntity othersEntity = new OthersEntity();
         othersEntity.setSize(size);
         othersEntity.setPrice(price);
-        othersEntity.setAvailable(Boolean.TRUE);
         othersEntity.setQuantity(quantity);
         othersEntity.setImage(blob);
         othersEntity.setType(othersEnum);

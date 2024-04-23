@@ -42,7 +42,6 @@ public class ChudidarServiceimp implements ChudidarService{
         ChudidarEntity chudidarEntity=new ChudidarEntity();
         chudidarEntity.setSize(size);
         chudidarEntity.setPrice(price);
-        chudidarEntity.setAvailable(Boolean.TRUE);
         chudidarEntity.setQuantity(quantity);
         chudidarEntity.setImage(blob);
         chudidarEntity.setType_name(chudidarEnum);
@@ -93,13 +92,6 @@ public class ChudidarServiceimp implements ChudidarService{
     public ChudidarDto updateChudidar(Long id, int price, int quantity) {
         ChudidarEntity chudidarEntity=chudidarRepo.findById(id).get();
         chudidarEntity.setPrice(price);
-//        if(chudidarEntity.isAvailable()) {
-//            chudidarEntity.setQuantity(chudidarEntity.getQuantity() + quantity);
-//        }
-//        else{
-//            chudidarEntity.setAvailable(true);
-//            chudidarEntity.setQuantity(quantity);
-//        }
         chudidarEntity.setQuantity(chudidarEntity.getQuantity() + quantity);
         ChudidarEntity savedone=chudidarRepo.save(chudidarEntity);
         ChudidarDto chudidarDto=new ChudidarDto();
