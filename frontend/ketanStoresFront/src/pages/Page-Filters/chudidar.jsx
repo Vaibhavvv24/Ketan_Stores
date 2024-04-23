@@ -22,6 +22,8 @@ export default function Chudidar() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const { jwt } = useGlobalContext();
+  const [type, setType] = useState("");
+  const [size, setSize] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:8080/churidars", {
@@ -42,13 +44,72 @@ export default function Chudidar() {
     });
   }, []);
 
+  const display = (e) => {
+    if (type === ""){
+      fetch("http://localhost:8080/churidars", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${jwt}`,
+        },
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        setData(data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+    }
+    else if (type !== "" && size === "") {
+      fetch(`http://localhost:8080/chudiar/${type}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${jwt}`,
+        },
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        setData(data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });      
+    }
+    else if (type !== "" && size !== "") {
+      fetch(`http://localhost:8080/chudidar/${type}/filter/${size}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${jwt}`,
+        },
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        setData(data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+    }
+  }
+
+  console.log(type, size);
+
   return (
     <div>
       <main>
         <CssBaseline />
         <Sheet
           sx={{
-            width: 660,
+            width: 580,
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-evenly",
@@ -78,44 +139,18 @@ export default function Chudidar() {
                   className='flex items-center h-[22px]'
                 >
                   <span className='text-xs'>1.</span>
-                  <FormLabel className='pl-2'>Size:</FormLabel>
-                </Typography>
-                <div className='flex justify-center items-center w-full mt-2'>
-                  <Input type='text' placeholder='Enter Size' style = {{width: 170}}/>
-                </div>
-              </div>
-            </div>
-          </FormControl>
-          <FormControl>
-            <div className='flex justify-evenly h-full w-full'>
-              <div className='flex-col justify-left pl-1 items-center gap-2 mt-2'>
-                <Typography
-                  level='h6'
-                  component='h1'
-                  className='flex items-center h-[22px]'
-                >
-                  <span className='text-xs'>2.</span>
-                  <FormLabel className='pl-2'>Colour:</FormLabel>
-                </Typography>
-                <div className='flex justify-center items-center w-full mt-2'>
-                  <Input type='text' placeholder='Enter Colour' style = {{width: 170}} />
-                </div>
-              </div>
-            </div>
-          </FormControl>
-          <FormControl>
-            <div className='flex justify-evenly h-full w-full'>
-              <div className='flex-col justify-left pl-1 items-center gap-2 mt-2'>
-                <Typography
-                  level='h6'
-                  component='h1'
-                  className='flex items-center h-[22px]'
-                >
-                  <span className='text-xs'>3.</span>
                   <FormLabel className='pl-2'>Type:</FormLabel>
                 </Typography>
                 <div className='flex justify-center items-center w-full mt-2'>
-                <Select defaultValue='Plain' style = {{width: 170}}>
+                <Select defaultValue='All' style = {{width: 200}}>
+                    <Option
+                      value='All'
+                      onClick={(e) => {
+                        setType("");
+                      }}
+                    >
+                      All
+                    </Option>
                     <Option
                       value='White'
                       onClick={(e) => {
@@ -145,11 +180,36 @@ export default function Chudidar() {
               </div>
             </div>
           </FormControl>
+          <FormControl>
+            <div className='flex justify-evenly h-full w-full'>
+              <div className='flex-col justify-left pl-1 items-center gap-2 mt-2'>
+                <Typography
+                  level='h6'
+                  component='h1'
+                  className='flex items-center h-[22px]'
+                >
+                  <span className='text-xs'>2.</span>
+                  <FormLabel className='pl-2'>Size:</FormLabel>
+                </Typography>
+                <div className='flex justify-center items-center w-full mt-2'>
+                  {type.trim() === "" ? <Input disabled type='text' placeholder='Enter Size' style = {{width: 200}} /> : <Input type='text' placeholder='Enter Size' style = {{width: 200}}
+                  onChange={(e) =>{
+                    if (!isNaN(e.target.value) && e.target.value !== ""){
+                      setSize(Number(e.target.value.trim()));
+                    }
+                    else{
+                      setSize(e.target.value.trim());
+                    }}}/>}
+                </div>
+              </div>
+            </div>
+          </FormControl>
           </div>
+          <Button onClick = {display}>Go</Button>
         </Sheet>
       </main>
       {
-        !loading && data && data.map((item, index) => {
+        !loading && data && data.length > 0 && data.map((item, index) => {
             console.log(item); // Check the structure of each item
             return (
               <div key={index}>
