@@ -37,25 +37,16 @@ public class SilkCont {
     @GetMapping("/all")
     public ResponseEntity<?> getall() {
         ArrayList<Silk_dto> silk = silk_service.getall();
-        if (silk.isEmpty()) {
-            return ResponseEntity.status(404).body("No data found");
-        }
         return ResponseEntity.ok().body(silk);
     }
     @GetMapping("/{type}")
     public ResponseEntity<?> getbytype(@PathVariable("type") String type) {
         ArrayList<Silk_dto> silk = silk_service.getbytype(type);
-        if (silk.isEmpty()) {
-            return ResponseEntity.status(404).body("No data found");
-        }
         return ResponseEntity.ok().body(silk);
     }
     @GetMapping("/size")
     public ResponseEntity<?> getbysize(@RequestParam("size") int size) {
         ArrayList<Silk_dto> silk = silk_service.getbysize(size);
-        if (silk.isEmpty()) {
-            return ResponseEntity.status(404).body("No data found");
-        }
         return ResponseEntity.ok().body(silk);
     }
     @PostMapping("/silk")
@@ -78,9 +69,12 @@ public class SilkCont {
     @GetMapping("/silk/colour_filter/{colour}")
     public ResponseEntity<?> getByColour(@PathVariable String colour) {
         ArrayList<Silk_dto> silk_dtos = silk_service.getSilkByColour(colour);
-        if (silk_dtos.isEmpty()) {
-            ResponseEntity.status(404).body("No data found");
-        }
+        return ResponseEntity.ok().body(silk_dtos);
+    }
+
+    @GetMapping("/silk/{type}/colour/{colour}")
+    public ResponseEntity<?> getByTypeColour(@PathVariable String type, @PathVariable String colour) {
+        ArrayList<Silk_dto> silk_dtos = silk_service.getSilkByColourAndtype(type, colour);
         return ResponseEntity.ok().body(silk_dtos);
     }
 }

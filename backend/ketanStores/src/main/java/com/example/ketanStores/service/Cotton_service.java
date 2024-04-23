@@ -29,4 +29,6 @@ public interface Cotton_service {
     ArrayList<Cotton_dto> getCottonByName(String name);
 
     ArrayList<Cotton_dto> getCottonByColour(String colour);
+
+    ArrayList<Cotton_dto> getByTypeColour(String type, String colour);
 }

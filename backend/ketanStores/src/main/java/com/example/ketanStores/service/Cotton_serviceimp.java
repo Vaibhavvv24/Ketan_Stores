@@ -50,6 +50,7 @@ public class Cotton_serviceimp implements Cotton_service{
         String image = blobToBase64(cottonEntity.getImage());
         String colour = cottonEntity.getColour();
         Cotton_dto cotton_dto = new Cotton_dto(Type,Name,price, size, quantity, image, colour);
+        cotton_dto.setId(cottonEntity.getId());
         return cotton_dto;
     }
 
@@ -101,6 +102,18 @@ public class Cotton_serviceimp implements Cotton_service{
         Iterable<CottonEntity> cottonEntities = cotton_Repo.findAll();
         for (CottonEntity cottonEntity : cottonEntities) {
             if (cottonEntity.getColour().equals(colour)) {
+                cotton_dtos.add(convert_entity_to_dto(cottonEntity));
+            }
+        }
+        return cotton_dtos;
+    }
+
+    @Override
+    public ArrayList<Cotton_dto> getByTypeColour(String type, String colour) {
+        ArrayList<Cotton_dto> cotton_dtos = new ArrayList<>();
+        Iterable<CottonEntity> cottonEntities = cotton_Repo.findAll();
+        for (CottonEntity cottonEntity : cottonEntities) {
+            if (cottonEntity.getColour().equals(colour) && cottonEntity.getType().toString().equals(type)) {
                 cotton_dtos.add(convert_entity_to_dto(cottonEntity));
             }
         }

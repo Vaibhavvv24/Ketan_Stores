@@ -23,6 +23,9 @@ export default function Silk() {
   const [silkdata, setSilkData] = useState([]);
   const [loading, setLoading] = useState(true);
   const { jwt } = useGlobalContext();
+  const [size, setSize] = useState("");
+  const [color, setColor] = useState("");
+  const [type, setType] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:8080/kurta_silk/all", {
