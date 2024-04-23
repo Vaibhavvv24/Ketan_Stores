@@ -108,6 +108,18 @@ public class Cotton_serviceimp implements Cotton_service{
     }
 
     @Override
+    public ArrayList<Cotton_dto> getByTypeColour(String type, String colour) {
+        ArrayList<Cotton_dto> cotton_dtos = new ArrayList<>();
+        Iterable<CottonEntity> cottonEntities = cotton_Repo.findAll();
+        for (CottonEntity cottonEntity : cottonEntities) {
+            if (cottonEntity.getColour().equals(colour) && cottonEntity.getType().toString().equals(type)) {
+                cotton_dtos.add(convert_entity_to_dto(cottonEntity));
+            }
+        }
+        return cotton_dtos;
+    }
+
+    @Override
     public String blobToBase64(Blob blob){
         try (InputStream inputStream = blob.getBinaryStream()) {
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();

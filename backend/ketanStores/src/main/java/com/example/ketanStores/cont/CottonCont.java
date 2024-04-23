@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import com.example.ketanStores.enums.CottonEnum;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.ketanStores.dto.Cotton_dto;
@@ -67,6 +68,12 @@ public class CottonCont {
     @GetMapping("/cotton/colour_filter/{colour}")
     public ResponseEntity<?> getByColour(@PathVariable String colour) {
         ArrayList<Cotton_dto> cotton_dtos = cotton_service.getCottonByColour(colour);
+        return ResponseEntity.ok().body(cotton_dtos);
+    }
+
+    @GetMapping("/cotton/{type}/colour/{colour}")
+    public ResponseEntity<?> getByTypeColour(@PathVariable String type, @PathVariable String colour) {
+        ArrayList<Cotton_dto> cotton_dtos = cotton_service.getByTypeColour(type, colour);
         return ResponseEntity.ok().body(cotton_dtos);
     }
 }
