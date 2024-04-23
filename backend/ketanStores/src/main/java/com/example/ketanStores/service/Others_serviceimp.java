@@ -50,7 +50,6 @@ public class Others_serviceimp implements Other_service{
             othersDto.setQuantity(othersEntity.get().getQuantity());
             othersDto.setImage(Others_serviceimp.blobToBase64(othersEntity.get().getImage()));
             othersDto.setTypeName(othersEntity.get().getType());
-            othersDto.setAvailable(othersEntity.get().isAvailable());
             return othersDto;
         }
         return null;

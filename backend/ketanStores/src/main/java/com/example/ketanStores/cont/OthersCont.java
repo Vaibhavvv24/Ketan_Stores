@@ -57,7 +57,7 @@ public class OthersCont {
         }
     }
 
-    @GetMapping("/other/{type}")
+    @GetMapping("/other/filter/{type}")
     public ResponseEntity<?> getByType(@PathVariable String type){
         List<Others_dto> othersDtos=otherService.getOthersByType(type);
         if(othersDtos.isEmpty()) {
