@@ -59,7 +59,7 @@ public class ChudidarCont {
             return ResponseEntity.ok().body(chudidarDtos);
         }
     }
-    @GetMapping("/chudiar/{type}")
+    @GetMapping("/chudidar/{type}")
     public ResponseEntity<?> getByType(@PathVariable String type){
         List<ChudidarDto> chudidarDtos=chudidarService.getChudidarByType(type);
         if(chudidarDtos.isEmpty()) {
