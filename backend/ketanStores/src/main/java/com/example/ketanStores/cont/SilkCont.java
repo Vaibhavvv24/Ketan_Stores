@@ -77,4 +77,13 @@ public class SilkCont {
         ArrayList<Silk_dto> silk_dtos = silk_service.getSilkByColourAndtype(type, colour);
         return ResponseEntity.ok().body(silk_dtos);
     }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> updateSilk(@PathVariable Long id,@RequestParam("price") int price,@RequestParam("quantity") int quantity, @RequestParam("colour") String colour) {
+        Silk_dto silk_dto = silk_service.updateSilk(id, price, quantity, colour);
+        if (silk_dto == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(silk_dto);
+    }
 }
