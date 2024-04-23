@@ -124,7 +124,7 @@ public class Others_serviceimp implements Other_service {
     @Override
     public List<Others_dto> getOtherByTypeandColour(String type, String colour) {
         OthersEnum othersEnum = OthersEnum.valueOf(type);
-        return othersRepo.findAllBYTypeAndColour(othersEnum, colour).stream().map(OthersEntity::getOtherDto)
+        return othersRepo.findAllByTypeAndColour(othersEnum, colour).stream().map(OthersEntity::getOtherDto)
                 .collect(Collectors.toList());
     }
 }
