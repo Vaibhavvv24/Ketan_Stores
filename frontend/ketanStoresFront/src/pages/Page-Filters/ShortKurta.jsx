@@ -1,19 +1,30 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import Navbar from '../../components/Navbar'
-import Footer from '../../components/Footer'
-import { useState, useEffect } from 'react'
-import { useGlobalContext } from '../../context'
-import { CssBaseline, Sheet, Typography, FormControl, FormLabel, Input, Button, RadioGroup, Radio, Select, Option } from '@mui/joy'
-import Base64decode from '../../components/Base64decode'
+/** @format */
 
-export default function cotton() {
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useColorScheme } from "@mui/joy/styles";
+import Sheet from "@mui/joy/Sheet";
+import CssBaseline from "@mui/joy/CssBaseline";
+import Typography from "@mui/joy/Typography";
+import FormControl from "@mui/joy/FormControl";
+import FormLabel from "@mui/joy/FormLabel";
+import Input from "@mui/joy/Input";
+import Button from "@mui/joy/Button";
+import RadioGroup from "@mui/material/RadioGroup";
+import Radio from "@mui/material/Radio";
+import Select from "@mui/joy/Select";
+import Option from "@mui/joy/Option";
+import { useState } from "react";
+import { useGlobalContext } from "../../context";
+import Base64decode from "../../components/Base64decode";
+
+export default function ShortKurta() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const { jwt } = useGlobalContext();
 
   useEffect(() => {
-    fetch("http://localhost:8080/kurta_cotton/all", {
+    fetch("http://localhost:8080/other/filter/SHORT_KURTA", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -92,40 +103,6 @@ export default function cotton() {
               </div>
             </div>
           </FormControl>
-          <FormControl>
-            <div className='flex justify-evenly h-full w-full'>
-              <div className='flex-col justify-left pl-1 items-center gap-2 mt-2'>
-                <Typography
-                  level='h6'
-                  component='h1'
-                  className='flex items-center h-[22px]'
-                >
-                  <span className='text-xs'>3.</span>
-                  <FormLabel className='pl-2'>Type:</FormLabel>
-                </Typography>
-                <div className='flex justify-center items-center w-full mt-2'>
-                <Select defaultValue='Plain' style = {{width: 170}}>
-                    <Option
-                      value='Plain'
-                      onClick={(e) => {
-                        setType("Plain");
-                      }}
-                    >
-                      Plain
-                    </Option>
-                    <Option
-                      value='Print & Design'
-                      onClick={(e) => {
-                        setType("PRINT_AND_DESIGN");
-                      }}
-                    >
-                      Print & Design
-                    </Option>
-                  </Select>
-                </div>
-              </div>
-            </div>
-          </FormControl>
           </div>
         </Sheet>
       </main>
@@ -141,11 +118,14 @@ export default function cotton() {
                 <h1>{item.colour}</h1>
                 <h1>{item.name}</h1>
                 <Base64decode base64String={item.image} />
+                {/* <img src={item.img} alt="img" /> */}
                 {/* Render other properties as needed */}
               </div>
             );
           })
       }
     </div>
-  )
+  );
 }
+
+//Size, colour, type

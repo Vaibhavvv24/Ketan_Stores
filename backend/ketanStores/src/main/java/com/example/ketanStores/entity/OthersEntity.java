@@ -63,7 +63,6 @@ public class OthersEntity {
         othersDto.setId(id);
         othersDto.setSize(size);
         othersDto.setName(name);
-        othersDto.setAvailable(available);
         othersDto.setImage(blobToBase64(image));
         othersDto.setTypeName(type);
         othersDto.setColour(colour);

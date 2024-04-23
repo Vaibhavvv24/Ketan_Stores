@@ -62,6 +62,7 @@ export default function KurtaAdditions() {
       console.log(data);
       if (data) {
         console.log(data);
+        alert("Item Added Successfully");
       }
     } catch (error) {
       console.log(error);
@@ -93,6 +94,7 @@ export default function KurtaAdditions() {
       console.log(data);
       if (data) {
         console.log(data);
+        alert("Item Added Successfully");
       }
     } catch (error) {
       console.log(error);
@@ -203,10 +205,9 @@ export default function KurtaAdditions() {
                     name='type'
                     type='text'
                     onChange={(e) => {
-                      if (!isNaN(e.target.value) && e.target.value === "") {
-                        setSize(Number(e.target.value))
-                      }
-                      else{
+                      if (!isNaN(e.target.value) && e.target.value !== "") {
+                        setSize(Number(e.target.value));
+                      } else {
                         setSize("");
                       }
                     }}
@@ -230,10 +231,9 @@ export default function KurtaAdditions() {
                     name='type'
                     type='text'
                     onChange={(e) => {
-                      if (!isNaN(e.target.value) && e.target.value === "") {
-                        setQuantity(Number(e.target.value))
-                      }
-                      else{
+                      if (!isNaN(e.target.value) && e.target.value !== "") {
+                        setQuantity(Number(e.target.value));
+                      } else {
                         setQuantity("");
                       }
                     }}
@@ -256,10 +256,9 @@ export default function KurtaAdditions() {
                     name='type'
                     type='text'
                     onChange={(e) => {
-                      if (!isNaN(e.target.value) && e.target.value === "") {
-                        setPrice(Number(e.target.value))
-                      }
-                      else{
+                      if (!isNaN(e.target.value) && e.target.value !== "") {
+                        setPrice(Number(e.target.value));
+                      } else {
                         setPrice("");
                       }
                     }}
@@ -295,24 +294,24 @@ export default function KurtaAdditions() {
                     <span className='text-xs'>10.</span>
                     <FormLabel className='pl-2'>Type:</FormLabel>
                   </Typography>
-            <Select defaultValue='Plain'>
-              <Option
-                value='Plain'
-                onClick={(e) => {
-                  setType("Plain");
-                }}
-              >
-                Plain
-              </Option>
-              <Option
-                value='Print & Design'
-                onClick={(e) => {
-                  setType("Print & Design");
-                }}
-              >
-                Print & Design
-              </Option>
-            </Select>
+                  <Select defaultValue='Plain'>
+                    <Option
+                      value='Plain'
+                      onClick={(e) => {
+                        setType("Plain");
+                      }}
+                    >
+                      Plain
+                    </Option>
+                    <Option
+                      value='Print & Design'
+                      onClick={(e) => {
+                        setType("PRINT_AND_DESIGN");
+                      }}
+                    >
+                      Print & Design
+                    </Option>
+                  </Select>
                 </div>
               </div>
             ) : null}
@@ -328,41 +327,62 @@ export default function KurtaAdditions() {
                     <span className='text-xs'>10.</span>
                     <FormLabel className='pl-2'>Type:</FormLabel>
                   </Typography>
-                  <Select defaultValue='White'>
-              <Option
-                value='Plain'
-                onClick={(e) => {
-                  setType("Plain");
-                }}
-              >
-                Plain
-              </Option>
-              <Option
-                value='Digital Print'
-                onClick={(e) => {
-                  setType("Digital Print");
-                }}
-              >
-                Cream
-              </Option>
-              <Option
-                value='Embroidery'
-                onClick={(e) => {
-                  setType("Embroidery");
-                }}
-              >
-                Embroidery
-              </Option>
-            </Select>
+                  <Select defaultValue='Plain'>
+                    <Option
+                      value='Plain'
+                      onClick={(e) => {
+                        setType("Plain");
+                      }}
+                    >
+                      Plain
+                    </Option>
+                    <Option
+                      value='Digital Print'
+                      onClick={(e) => {
+                        setType("DIGITAL_PRINT");
+                      }}
+                    >
+                      Digital Print
+                    </Option>
+                    <Option
+                      value='Embroidery'
+                      onClick={(e) => {
+                        setType("Embroidery");
+                      }}
+                    >
+                      Embroidery
+                    </Option>
+                  </Select>
                 </div>
               </div>
             ) : null}
           </div>
         </div>
       </FormControl>
-      {
-            name === "" || price === "" || quantity === "" || size === "" || type === "" || image === null ? <Button className='bg-gray-500 hover:bg-gray-700' sx={{ mt: 2 }}>Add Item</Button>
-            : <Button onClick={handleChudidar} className='bg-blue-500 hover:bg-blue-700' sx={{ mt: 2 }}>Add Item</Button>      }
+      {name === "" ||
+      price === "" ||
+      quantity === "" ||
+      size === "" ||
+      type === "" ||
+      image === null ? (
+        <Button
+          className='bg-gray-500 hover:bg-gray-700'
+          sx={{ mt: 2 }}
+          onClick={(e) => {
+            console.log(name, price, quantity, color, size, image, type);
+          }}
+        >
+          Add Item
+        </Button>
+      ) : (
+        <Button
+          onClick={handleBothSilk_Cotton}
+          className='bg-blue-500 hover:bg-blue-700'
+          sx={{ mt: 2 }}
+        >
+          Add Item
+        </Button>
+      )}
     </FormControl>
   );
 }

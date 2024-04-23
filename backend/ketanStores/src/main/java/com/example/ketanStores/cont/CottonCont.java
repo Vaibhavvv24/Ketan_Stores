@@ -79,4 +79,13 @@ public class CottonCont {
         List<Cotton_dto> cottonDtos=cotton_service.getCottonByName(name);
         return ResponseEntity.ok().body(cottonDtos);
     }
+
+    @GetMapping("/cotton/colour_filter/{colour}")
+    public ResponseEntity<?> getByColour(@PathVariable String colour) {
+        ArrayList<Cotton_dto> cotton_dtos = cotton_service.getCottonByColour(colour);
+        if (cotton_dtos.isEmpty()) {
+            return ResponseEntity.status(404).body("No data found");
+        }
+        return ResponseEntity.ok().body(cotton_dtos);
+    }
 }

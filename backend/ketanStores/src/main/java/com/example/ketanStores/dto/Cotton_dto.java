@@ -13,8 +13,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Cotton_dto extends Kurta_dto{
     CottonEnum type;
-    public Cotton_dto(CottonEnum type,String Name, int price, int size, int quantity, boolean available, String image) {
-        super(Name,price, size, quantity, available, image);
+    public Cotton_dto(CottonEnum type,String Name, int price, int size, int quantity, String image, String colour) {
+        super(Name,price, size, quantity, image, colour);
         this.type = type;
     }
     public int getprice(){
@@ -25,9 +25,6 @@ public class Cotton_dto extends Kurta_dto{
     }
     public int getquantity(){
         return quantity;
-    }
-    public boolean getavailable(){
-        return available;
     }
     public String getimage(){
         return image;

@@ -32,4 +32,6 @@ public interface Silk_service{
     Silk_dto createSilk(String name, int price, int quantity, SilkEnum silkEnum, Blob blob, int size);
 
     ArrayList<Silk_dto> getSilkByName(String name);
+
+    ArrayList<Silk_dto> getSilkByColour(String colour);
 }

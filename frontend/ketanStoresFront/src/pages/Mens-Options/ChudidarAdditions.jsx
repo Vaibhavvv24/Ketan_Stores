@@ -51,12 +51,7 @@ export default function ChudidarAdditions() {
       console.log(data);
       if (data) {
         console.log(data);
-        setName("");
-        setPrice("");
-        setQuantity("");
-        setType("");
-        setSize("");
-        setImage(null);
+        alert("Item Added Successfully");
       }
     } catch (error) {
       console.log(error);

@@ -19,7 +19,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class Others_serviceimp implements Other_service{
+public class Others_serviceimp implements Other_service {
     @Autowired
     Others_repo othersRepo;
 
@@ -50,8 +50,6 @@ public class Others_serviceimp implements Other_service{
             othersDto.setQuantity(othersEntity.get().getQuantity());
             othersDto.setImage(Others_serviceimp.blobToBase64(othersEntity.get().getImage()));
             othersDto.setTypeName(othersEntity.get().getType());
-            othersDto.setAvailable(othersEntity.get().isAvailable());
-            othersDto.setColour(othersEntity.get().getColour());
             return othersDto;
         }
         return null;
@@ -65,11 +63,13 @@ public class Others_serviceimp implements Other_service{
     @Override
     public List<Others_dto> getOthersByType(String type) {
         OthersEnum othersEnum = OthersEnum.valueOf(type);
-        return othersRepo.findAllByType(othersEnum).stream().map(OthersEntity::getOtherDto).collect(Collectors.toList());
+        return othersRepo.findAllByType(othersEnum).stream().map(OthersEntity::getOtherDto)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public Others_dto createOther(String name, int price, int quantity, OthersEnum othersEnum, Blob blob, int size, String colour) {
+    public Others_dto createOther(String name, int price, int quantity, OthersEnum othersEnum, Blob blob, int size,
+            String colour) {
         OthersEntity othersEntity = new OthersEntity();
         othersEntity.setSize(size);
         othersEntity.setPrice(price);
@@ -89,14 +89,13 @@ public class Others_serviceimp implements Other_service{
     public Others_dto updateOther(Long id, int price, int quantity) {
         OthersEntity othersEntity = othersRepo.findById(id).get();
         othersEntity.setPrice(price);
-        if(othersEntity.isAvailable()) {
+        if (othersEntity.isAvailable()) {
             othersEntity.setQuantity(othersEntity.getQuantity() + quantity);
-        }
-        else{
+        } else {
             othersEntity.setAvailable(true);
             othersEntity.setQuantity(quantity);
         }
-        OthersEntity savedone=othersRepo.save(othersEntity);
+        OthersEntity savedone = othersRepo.save(othersEntity);
         Others_dto othersDto = new Others_dto();
         othersEntity.setId(savedone.getId());
         return othersDto;
@@ -105,12 +104,13 @@ public class Others_serviceimp implements Other_service{
     @Override
     public List<Others_dto> getOtherByTypeandSize(String type, int size) {
         OthersEnum othersEnum = OthersEnum.valueOf(type);
-        return othersRepo.findAllByTypeAndSize(othersEnum,size).stream().map(OthersEntity::getOtherDto).collect(Collectors.toList());
+        return othersRepo.findAllByTypeAndSize(othersEnum, size).stream().map(OthersEntity::getOtherDto)
+                .collect(Collectors.toList());
     }
 
     @Override
     public void deleteById(Long id) {
-        OthersEntity othersEntity=othersRepo.findById(id).get();
+        OthersEntity othersEntity = othersRepo.findById(id).get();
         othersRepo.delete(othersEntity);
     }
 
@@ -122,12 +122,14 @@ public class Others_serviceimp implements Other_service{
     @Override
     public List<Others_dto> getOtherByTypeandSizeandColour(String type, int size, String colour) {
         OthersEnum othersEnum = OthersEnum.valueOf(type);
-        return othersRepo.findAllByTypeAndSizeAndColour(othersEnum,size,colour).stream().map(OthersEntity::getOtherDto).collect(Collectors.toList());
+        return othersRepo.findAllByTypeAndSizeAndColour(othersEnum, size, colour).stream()
+                .map(OthersEntity::getOtherDto).collect(Collectors.toList());
     }
 
     @Override
     public List<Others_dto> getOtherByTypeandColour(String type, String colour) {
         OthersEnum othersEnum = OthersEnum.valueOf(type);
-        return othersRepo.findAllBYTypeAndColour(othersEnum,colour).stream().map(OthersEntity::getOtherDto).collect(Collectors.toList());
+        return othersRepo.findAllBYTypeAndColour(othersEnum, colour).stream().map(OthersEntity::getOtherDto)
+                .collect(Collectors.toList());
     }
 }

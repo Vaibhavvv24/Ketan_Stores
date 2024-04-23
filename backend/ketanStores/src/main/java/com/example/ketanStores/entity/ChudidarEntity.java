@@ -71,14 +71,6 @@ public class ChudidarEntity {
         this.size = size;
     }
 
-    public boolean isAvailable() {
-        return available;
-    }
-
-    public void setAvailable(boolean available) {
-        this.available = available;
-    }
-
     public int getQuantity() {
         return quantity;
     }
@@ -119,7 +111,6 @@ public class ChudidarEntity {
         chudidarDto.setId(id);
         chudidarDto.setSize(size);
         chudidarDto.setName(name);
-        chudidarDto.setAvailable(available);
         chudidarDto.setImage(blobToBase64(image));
         chudidarDto.setType_name(type);
         return chudidarDto;

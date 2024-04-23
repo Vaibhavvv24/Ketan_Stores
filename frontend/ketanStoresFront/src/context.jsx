@@ -18,109 +18,6 @@ const AppProvider = ({ children }) => {
     const [email, setemail] = useState("");
     const [password, setpassword] = useState("");
 
-    // const [filterArray, setFilterArray] = useState([]);
-
-    // const [filterObject, setFilterObject] = useState({
-    //   categories: [
-    //     {
-    //       lastName: "men",
-    //       url: "/ketan-stores/men",
-    //       name: "Mens",
-    //       filter: [
-    //         [
-    //           {
-    //             lastName: "kurta",
-    //             Name: "Kurta",
-    //           },
-    //           {
-    //             lastName: "chudidar",
-    //             Name: "Chudidar",
-    //           },
-    //           {
-    //             lastName: "jacket-suit",
-    //             Name: "Jacket Suit",
-    //           },
-    //         ],
-    //         [
-    //           {
-    //             lastName: "indo-western",
-    //             Name: "Indo Western",
-    //           },
-    //           {
-    //             lastName: "short-kurta",
-    //             Name: "Short Kurta",
-    //           },
-    //           {
-    //             lastName: "plus-size",
-    //             Name: "Plus Size",
-    //           },
-    //         ],
-    //       ],
-    //     },
-    //     {
-    //       lastName: "kids",
-    //       url: "/ketan-stores/kids",
-    //       name: "Kids",
-    //       filter: [],
-    //     },
-    //     {
-    //       lastName: "kurta",
-    //       url: "/ketan-stores/men/kurta",
-    //       name: "Kurta",
-    //       filter: [
-    //         [
-    //           {
-    //             lastName: "silk",
-    //             Name: "Silk",
-    //           },
-    //           {
-    //             lastName: "cotton",
-    //             Name: "Cotton",
-    //           }
-    //         ],
-    //       ],
-    //     },
-    //     {
-    //       lastName: "chudidar",
-    //       url: "/ketan-stores/men/chudidar",
-    //       name: "Chudidar",
-    //       filter: [
-    //         [
-    //           {
-    //             lastName: "white",
-    //             Name: "White",
-    //           },
-    //           {
-    //             lastName: "cream",
-    //             Name: "Cream",
-    //           },
-    //           {
-    //             lastName: "colour",
-    //             Name: "Colour",
-    //           },
-    //         ],
-    //       ],
-    //     },
-    //     {
-    //       lastName: "ketan-stores",
-    //       url: "/ketan-stores/",
-    //       name: "Ketan Stores",
-    //       filter: [
-    //         [
-    //           {
-    //             lastName: "men",
-    //             Name: "Men",
-    //           },
-    //           {
-    //             lastName: "kids",
-    //             Name: "Kids",
-    //           },
-    //         ],
-    //       ],
-    //     },
-    //   ],
-    // });
-
     const [filterObject, setFilterObject] = useState({
       categories: [
         {
@@ -210,7 +107,8 @@ const AppProvider = ({ children }) => {
     };
 
     const displayKurtaOptions = (options) => {
-      setOptionsKurta('null')
+      setOptionsKurta('null');
+      console.log(options);
       setOptionsMens(options);
     }
 

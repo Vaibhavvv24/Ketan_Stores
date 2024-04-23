@@ -58,7 +58,6 @@ public class ChudidarServiceimp implements ChudidarService{
         ChudidarEntity chudidarEntity=chudidarRepo.findById(id).get();
         ChudidarDto chudidarDto=new ChudidarDto();
         if(chudidarEntity.getQuantity()==0){
-            chudidarDto.setAvailable(false);
             chudidarDto.setSize(chudidarEntity.getSize());
             chudidarDto.setName(chudidarEntity.getName());
             chudidarDto.setType_name(chudidarEntity.getType_name());
@@ -68,7 +67,6 @@ public class ChudidarServiceimp implements ChudidarService{
             chudidarDto.setQuantity(chudidarEntity.getQuantity());
         }
         else{
-            chudidarDto.setAvailable(true);
             chudidarDto.setSize(chudidarEntity.getSize());
             chudidarDto.setName(chudidarEntity.getName());
             chudidarDto.setType_name(chudidarEntity.getType_name());

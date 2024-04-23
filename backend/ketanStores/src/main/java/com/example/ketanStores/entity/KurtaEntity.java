@@ -21,21 +21,30 @@ public class KurtaEntity {
     int price;
     int size;
     int quantity;
-    boolean available;
+    String colour;
     @Column(columnDefinition = "longblob")
     Blob image;
 
-    public KurtaEntity(String Name,int price, int size, int quantity, boolean available, Blob image) {
+    public KurtaEntity(String Name,int price, int size, int quantity, Blob image, String colour) {
         this.Name = Name;
         this.price = price;
         this.size = size;
         this.quantity = quantity;
-        this.available = available;
         this.image = image;
+        this.colour = colour;
     }
     public String getName() {
         return Name;
     }
+
+    public String getColour() {
+        return colour;
+    }
+
+    public void setColour(String colour) {
+        this.colour = colour;
+    }
+
     public Long getId() {
         return id;
     }
@@ -50,10 +59,6 @@ public class KurtaEntity {
 
     public int getQuantity() {
         return quantity;
-    }
-
-    public boolean getAvailable() {
-        return available;
     }
 
     public Blob getImage() {
@@ -74,10 +79,6 @@ public class KurtaEntity {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-    }
-
-    public void setAvailable(boolean available) {
-        this.available = available;
     }
 
     public void setImage(Blob image) {
