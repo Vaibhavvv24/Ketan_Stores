@@ -181,7 +181,7 @@ public class Silk_serviceimp implements Silk_service{
         silkEntity.setColour(colour);
         silkEntity.setPrice(price);
         silkEntity.setQuantity(quantity);
-        return this.convert_entity_to_dto(silk_Repo.save())
+        return this.convert_entity_to_dto(silk_Repo.save(silkEntity));
     }
 
 }
