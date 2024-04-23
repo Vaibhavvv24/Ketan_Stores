@@ -12,14 +12,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Silk_dto extends Kurta_dto{
     SilkEnum Type;
-    public Silk_dto(SilkEnum Type,String Name, int price, int size, int quantity, boolean available, String image) {
-        super(Name,price, size, quantity, available, image);
+    public Silk_dto(SilkEnum Type,String Name, int price, int size, int quantity, String image) {
+        super(Name,price, size, quantity, image);
         this.Type = Type;
     }
-
     public Silk_dto() {
     }
-
     public int getprice(){
         return price;
     }
@@ -28,9 +26,6 @@ public class Silk_dto extends Kurta_dto{
     }
     public int getquantity(){
         return quantity;
-    }
-    public boolean getavailable(){
-        return available;
     }
     public String getimage(){
         return image;

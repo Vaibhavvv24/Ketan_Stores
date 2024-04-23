@@ -42,9 +42,6 @@ public class CottonEntity {
     public int getPrice() {
         return kurtaEntity.getPrice();
     }
-    public boolean isAvailable() {
-        return kurtaEntity.getAvailable();
-    }
     public int getSize() {
         return kurtaEntity.getSize();
     }
@@ -64,9 +61,6 @@ public class CottonEntity {
     }
     public void setPrice(int price) {
         kurtaEntity.setPrice(price);
-    }
-    public void setAvailable(boolean available) {
-        kurtaEntity.setAvailable(available);
     }
     public CottonEnum getType() {
         return type;
