@@ -19,7 +19,7 @@ import { useGlobalContext } from "../../context";
 import Base64decode from "../../components/Base64decode";
 
 export default function Silk() {
-  const [data, setData] = useState([]);
+  const [silkdata, setSilkData] = useState([]);
   const [loading, setLoading] = useState(true);
   const { jwt } = useGlobalContext();
   const [size, setSize] = useState("");
@@ -37,7 +37,7 @@ export default function Silk() {
     .then(response => response.json())
     .then(data => {
       console.log(data);
-      setData(data);
+      setSilkData(data);
       setLoading(false);
     })
     .catch(error => {

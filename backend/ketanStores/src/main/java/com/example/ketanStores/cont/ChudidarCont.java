@@ -51,20 +51,11 @@ public class ChudidarCont {
     @GetMapping("/churidars")
     public ResponseEntity<?> getChuridars(){
         List<ChudidarDto> chudidarDtos=chudidarService.getChuridars();
-        if(chudidarDtos.isEmpty()){
-            List<ChudidarDto> chudidarDtos1=new ArrayList<>();
-            return ResponseEntity.ok().body(chudidarDtos1);
-        }
-        else{
             return ResponseEntity.ok().body(chudidarDtos);
-        }
     }
-    @GetMapping("/chudiar/{type}")
+    @GetMapping("/chudidar/{type}")
     public ResponseEntity<?> getByType(@PathVariable String type){
         List<ChudidarDto> chudidarDtos=chudidarService.getChudidarByType(type);
-        if(chudidarDtos.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
         return ResponseEntity.ok().body(chudidarDtos);
     }
     @PutMapping("/chudidar/update/{id}")
@@ -78,9 +69,6 @@ public class ChudidarCont {
     @GetMapping("/chudidar/{type}/filter/{size}")
     public ResponseEntity<?> getByTypeSize(@PathVariable String type,@PathVariable int size) {
         List<ChudidarDto> chudidarDtos = chudidarService.getChudidarByTypeandSize(type,size);
-        if (chudidarDtos.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
         return ResponseEntity.ok().body(chudidarDtos);
     }
     @DeleteMapping("/chudidar/delete/{id}")
@@ -94,10 +82,6 @@ public class ChudidarCont {
     @GetMapping("/chudidar/search/{name}")
     public ResponseEntity<?> search(@PathVariable String name){
         List<ChudidarDto> chudidarDtos=chudidarService.getChudidarByName(name);
-        if(chudidarDtos.isEmpty()){
-            List<ChudidarDto> chudidarDtos1=new ArrayList<>();
-            return ResponseEntity.ok().body(chudidarDtos1);
-        }
         return ResponseEntity.ok().body(chudidarDtos);
     }
 }
