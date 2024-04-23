@@ -34,10 +34,10 @@ export default function OthersAdditions() {
     formData.append("quantity", Number(quantity));
     formData.append("type", type.toUpperCase());
     formData.append("size", size);
-    formData.append("color", color);
+    formData.append("colour", color);
     try {
       const response = await axios.post(
-        "http://localhost:8080/others",
+        "http://localhost:8080/other",
         formData,
         {
           headers: {
@@ -147,7 +147,7 @@ export default function OthersAdditions() {
                         name = 'image'
                         type = 'file'
                         onChange = { (e) => {
-                            setImage(e.target.value);
+                            setImage(e.target.files[0]);
                         }}
                     />
                     </FormControl>
