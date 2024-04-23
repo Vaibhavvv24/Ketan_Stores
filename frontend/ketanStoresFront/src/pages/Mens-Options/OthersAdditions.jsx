@@ -53,7 +53,8 @@ export default function OthersAdditions() {
       const data = await response;
       console.log(data);
       if (data) {
-        console.log(data);
+          console.log(data);
+          alert("Item Added Successfully");
       }
     } catch (error) {
       console.log(error);
