@@ -20,7 +20,6 @@ public class ChudidarDto {
     int price;
     int size;
     int quantity;
-    boolean available;
     String image;
 
     public ChudidarEnum getType_name() {
@@ -53,14 +52,6 @@ public class ChudidarDto {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-    }
-
-    public boolean isAvailable() {
-        return available;
-    }
-
-    public void setAvailable(boolean available) {
-        this.available = available;
     }
 
     public String getImage() {

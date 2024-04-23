@@ -57,9 +57,6 @@ public class SilkEntity {
     public int getQuantity() {
         return kurtaEntity.getQuantity();
     }
-    public boolean isAvailable() {
-        return kurtaEntity.getAvailable();
-    }
     public void setImage(Blob image) {
         kurtaEntity.setImage(image);
     }

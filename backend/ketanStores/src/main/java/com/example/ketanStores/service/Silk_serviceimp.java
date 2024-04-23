@@ -46,9 +46,8 @@ public class Silk_serviceimp implements Silk_service{
         int price = silkEntity.getPrice();
         int size = silkEntity.getSize();
         int quantity = silkEntity.getQuantity();
-        boolean available = silkEntity.isAvailable();
         String image = blobToBase64(silkEntity.getImage());
-        Silk_dto silk_dto = new Silk_dto(Type,Name,price, size, quantity, available, image);
+        Silk_dto silk_dto = new Silk_dto(Type,Name,price, size, quantity, image);
         return silk_dto;
     }
     @Override
@@ -122,7 +121,6 @@ public class Silk_serviceimp implements Silk_service{
         SilkEntity silkEntity = new SilkEntity();
         kurtaEntity.setSize(size);
         kurtaEntity.setPrice(price);
-        kurtaEntity.setAvailable(Boolean.TRUE);
         kurtaEntity.setQuantity(quantity);
         kurtaEntity.setImage(blob);
         silkEntity.setType(silkEnum);

@@ -17,7 +17,6 @@ public class Others_dto {
     int price;
     int size;
     int quantity;
-    boolean available;
     String image;
     String colour;
 }
