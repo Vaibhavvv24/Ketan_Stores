@@ -51,6 +51,7 @@ public class Others_serviceimp implements Other_service{
             othersDto.setImage(Others_serviceimp.blobToBase64(othersEntity.get().getImage()));
             othersDto.setTypeName(othersEntity.get().getType());
             othersDto.setAvailable(othersEntity.get().isAvailable());
+            othersDto.setColour(othersEntity.get().getColour());
             return othersDto;
         }
         return null;
@@ -116,5 +117,17 @@ public class Others_serviceimp implements Other_service{
     @Override
     public List<Others_dto> getOthersByName(String name) {
         return othersRepo.findAllByName(name).stream().map(OthersEntity::getOtherDto).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Others_dto> getOtherByTypeandSizeandColour(String type, int size, String colour) {
+        OthersEnum othersEnum = OthersEnum.valueOf(type);
+        return othersRepo.findAllByTypeAndSizeAndColour(othersEnum,size,colour).stream().map(OthersEntity::getOtherDto).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Others_dto> getOtherByTypeandColour(String type, String colour) {
+        OthersEnum othersEnum = OthersEnum.valueOf(type);
+        return othersRepo.findAllBYTypeAndColour(othersEnum,colour).stream().map(OthersEntity::getOtherDto).collect(Collectors.toList());
     }
 }

@@ -48,8 +48,15 @@ public class OthersEntity {
         }
     }
 
+    public String getColour() {
+        return colour;
+    }
 
-        public Others_dto getOtherDto() {
+    public void setColour(String colour) {
+        this.colour = colour;
+    }
+
+    public Others_dto getOtherDto() {
         Others_dto othersDto =new Others_dto();
         othersDto.setPrice(price);
         othersDto.setQuantity(quantity);
@@ -59,6 +66,7 @@ public class OthersEntity {
         othersDto.setAvailable(available);
         othersDto.setImage(blobToBase64(image));
         othersDto.setTypeName(type);
+        othersDto.setColour(colour);
         return othersDto;
     }
 }
