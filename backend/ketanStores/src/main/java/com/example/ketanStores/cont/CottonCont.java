@@ -1,18 +1,11 @@
 package com.example.ketanStores.cont;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import com.example.ketanStores.dto.ChudidarDto;
-import com.example.ketanStores.dto.Silk_dto;
 import com.example.ketanStores.enums.CottonEnum;
-import com.example.ketanStores.enums.SilkEnum;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,25 +35,16 @@ public class CottonCont {
     @GetMapping("/all")
     public ResponseEntity<?> getall() {
         ArrayList<Cotton_dto> cotton = cotton_service.getall();
-        if (cotton.isEmpty()) {
-            return ResponseEntity.status(404).body("No data found");
-        }
         return ResponseEntity.ok().body(cotton);
     }
     @GetMapping("/{type}")
     public ResponseEntity<?> getbytype(@PathVariable("type") String type) {
         ArrayList<Cotton_dto> cotton = cotton_service.getbytype(type);
-        if (cotton.isEmpty()) {
-            return ResponseEntity.status(404).body("No data found");
-        }
         return ResponseEntity.ok().body(cotton);
     }
     @GetMapping("/size")
     public ResponseEntity<?> getbysize(@PathVariable("size") int size) {
         ArrayList<Cotton_dto> cotton = cotton_service.getbysize(size);
-        if (cotton.isEmpty()) {
-            return ResponseEntity.status(404).body("No data found");
-        }
         return ResponseEntity.ok().body(cotton);
     }
     @PostMapping("/cotton")
@@ -83,9 +67,6 @@ public class CottonCont {
     @GetMapping("/cotton/colour_filter/{colour}")
     public ResponseEntity<?> getByColour(@PathVariable String colour) {
         ArrayList<Cotton_dto> cotton_dtos = cotton_service.getCottonByColour(colour);
-        if (cotton_dtos.isEmpty()) {
-            return ResponseEntity.status(404).body("No data found");
-        }
         return ResponseEntity.ok().body(cotton_dtos);
     }
 }
