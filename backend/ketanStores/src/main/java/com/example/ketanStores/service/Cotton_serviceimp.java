@@ -47,9 +47,8 @@ public class Cotton_serviceimp implements Cotton_service{
         int price = cottonEntity.getPrice();
         int size = cottonEntity.getSize();
         int quantity = cottonEntity.getQuantity();
-        boolean available = cottonEntity.isAvailable();
         String image = blobToBase64(cottonEntity.getImage());
-        Cotton_dto cotton_dto = new Cotton_dto(Type,Name,price, size, quantity, available, image);
+        Cotton_dto cotton_dto = new Cotton_dto(Type,Name,price, size, quantity, image);
         return cotton_dto;
     }
 
@@ -71,7 +70,6 @@ public class Cotton_serviceimp implements Cotton_service{
         CottonEntity cottonEntity = new CottonEntity();
         kurtaEntity.setSize(size);
         kurtaEntity.setPrice(price);
-        kurtaEntity.setAvailable(Boolean.TRUE);
         kurtaEntity.setQuantity(quantity);
         kurtaEntity.setImage(blob);
         cottonEntity.setType(cottonEnum);
@@ -119,6 +117,7 @@ public class Cotton_serviceimp implements Cotton_service{
         for(CottonEntity cotton : cottons){
             cotton_dtos.add(convert_entity_to_dto(cotton));
         }
+        System.out.println(cotton_dtos);
         return cotton_dtos;
     }
 

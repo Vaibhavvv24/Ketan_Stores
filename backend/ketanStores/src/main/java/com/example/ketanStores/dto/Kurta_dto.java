@@ -15,13 +15,11 @@ public class Kurta_dto {
     int price;
     int size;
     int quantity;
-    boolean available;
     String image;
-    public Kurta_dto(String Name,int price, int size, int quantity, boolean available, String image) {
+    public Kurta_dto(String Name,int price, int size, int quantity, String image) {
         this.price = price;
         this.size = size;
         this.quantity = quantity;
-        this.available = available;
         this.image = image;
         this.Name = Name;
     }
