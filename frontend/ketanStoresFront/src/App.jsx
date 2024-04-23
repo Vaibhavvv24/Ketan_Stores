@@ -14,6 +14,10 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Cotton from "./pages/Page-Filters/cotton";
 import AddItems from "./pages/AddItems";
+import IndoWestern from "./pages/Page-Filters/IndoWestern";
+import JacketsAndSuits from "./pages/Page-Filters/JacketsAndSuits";
+import ShortKurta from "./pages/Page-Filters/ShortKurta";
+import PlusSize from "./pages/Page-Filters/PlusSize";
 
 
 const App = () => {
@@ -89,6 +93,46 @@ const App = () => {
                 <>
                   <Navbar />
                   <AddItems />
+                  <Footer />
+                </>
+              }
+            />
+            <Route 
+              path='/ketan-stores/men/indo-western/'
+              element={
+                <>
+                  <Navbar />
+                  <IndoWestern />
+                  <Footer />
+                </>
+              }
+            />
+            <Route
+              path='/ketan-stores/men/short-kurta/'
+              element={
+                <>
+                  <Navbar />
+                  <ShortKurta/>
+                  <Footer />
+                </>
+              }
+            />
+            <Route
+              path='/ketan-stores/men/jacket-suit/'
+              element={
+                <>
+                  <Navbar />
+                  <JacketsAndSuits/>
+                  <Footer />
+                </>
+              }
+            />
+            <Route
+              path='/ketan-stores/men/plus-size/'
+              element={
+                <>
+                  <Navbar />
+                  <PlusSize/>
                   <Footer />
                 </>
               }

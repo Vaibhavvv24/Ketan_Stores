@@ -24,7 +24,7 @@ export default function JacketsAndSuits() {
   const { jwt } = useGlobalContext();
 
   useEffect(() => {
-    fetch("http://localhost:8080/other/filter/JACKETS", {
+    fetch("http://localhost:8080/other/filter/JACKET_SUIT", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
