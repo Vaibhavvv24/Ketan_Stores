@@ -16,6 +16,7 @@ import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
 import { useState } from "react";
 import { useGlobalContext } from "../../context";
+import ItemsPalette from "../../components/ItemsPalette";
 import Base64decode from "../../components/Base64decode";
 
 export default function Silk() {
@@ -73,7 +74,7 @@ export default function Silk() {
           </div>
           <div className='flex justify-evenly h-full w-full mt-2 flex-wrap'>
             <FormControl>
-              <div className='flex justify-evenly h-full w-full sm: justify-center'>
+              <div className='flex justify-evenly h-full w-full'>
                 <div className='flex-col justify-left pl-1 items-center gap-2 mt-2'>
                   <Typography
                     level='h6'
@@ -151,24 +152,18 @@ export default function Silk() {
           </div>
         </Sheet>
       </main>
-      {
-        !loading && data && data.map((item, index) => {
+      <div className='grid grid-cols-3 w-full gap-3 px-10 h-full'>
+        {!loading &&
+          silkdata &&
+          silkdata.map((item, index) => {
             console.log(item); // Check the structure of each item
             return (
               <div key={index}>
-                <h1>{item.price}</h1>
-                <h1>{item.size}</h1>
-                <h1>{item.quantity}</h1>
-                <h1>{item.type}</h1>
-                <h1>{item.colour}</h1>
-                <h1>{item.name}</h1>
-                <Base64decode base64String={item.image} />
-                {/* <img src={item.img} alt="img" /> */}
-                {/* Render other properties as needed */}
+                <ItemsPalette filterItems={[item]} />
               </div>
             );
-          })
-      }
+          })}
+      </div>
     </div>
   );
 }
