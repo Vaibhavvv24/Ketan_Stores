@@ -74,4 +74,13 @@ public class SilkCont {
         List<Silk_dto> silk_dtos = silk_service.getSilkByName(name);
         return ResponseEntity.ok().body(silk_dtos);
     }
+
+    @GetMapping("/silk/colour_filter/{colour}")
+    public ResponseEntity<?> getByColour(@PathVariable String colour) {
+        ArrayList<Silk_dto> silk_dtos = silk_service.getSilkByColour(colour);
+        if (silk_dtos.isEmpty()) {
+            ResponseEntity.status(404).body("No data found");
+        }
+        return ResponseEntity.ok().body(silk_dtos);
+    }
 }

@@ -47,7 +47,8 @@ public class Silk_serviceimp implements Silk_service{
         int size = silkEntity.getSize();
         int quantity = silkEntity.getQuantity();
         String image = blobToBase64(silkEntity.getImage());
-        Silk_dto silk_dto = new Silk_dto(Type,Name,price, size, quantity, image);
+        String colour = silkEntity.getColour();
+        Silk_dto silk_dto = new Silk_dto(Type,Name,price, size, quantity, image, colour);
         return silk_dto;
     }
     @Override
@@ -139,6 +140,18 @@ public class Silk_serviceimp implements Silk_service{
         Iterable<SilkEntity> silkEntities = silk_Repo.findAll();
         for (SilkEntity silkEntity : silkEntities) {
             if (silkEntity.getName().equals(name)) {
+                silk_dtos.add(convert_entity_to_dto(silkEntity));
+            }
+        }
+        return silk_dtos;
+    }
+
+    @Override
+    public ArrayList<Silk_dto> getSilkByColour(String colour) {
+        ArrayList<Silk_dto> silk_dtos = new ArrayList<>();
+        Iterable<SilkEntity> silkEntities = silk_Repo.findAll();
+        for (SilkEntity silkEntity : silkEntities) {
+            if (silkEntity.getColour().equals(colour)) {
                 silk_dtos.add(convert_entity_to_dto(silkEntity));
             }
         }

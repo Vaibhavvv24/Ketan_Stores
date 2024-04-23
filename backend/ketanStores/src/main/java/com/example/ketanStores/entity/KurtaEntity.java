@@ -21,19 +21,30 @@ public class KurtaEntity {
     int price;
     int size;
     int quantity;
+    String colour;
     @Column(columnDefinition = "longblob")
     Blob image;
 
-    public KurtaEntity(String Name,int price, int size, int quantity, Blob image) {
+    public KurtaEntity(String Name,int price, int size, int quantity, Blob image, String colour) {
         this.Name = Name;
         this.price = price;
         this.size = size;
         this.quantity = quantity;
         this.image = image;
+        this.colour = colour;
     }
     public String getName() {
         return Name;
     }
+
+    public String getColour() {
+        return colour;
+    }
+
+    public void setColour(String colour) {
+        this.colour = colour;
+    }
+
     public Long getId() {
         return id;
     }
