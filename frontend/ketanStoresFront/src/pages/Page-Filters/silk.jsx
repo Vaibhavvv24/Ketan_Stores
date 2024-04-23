@@ -1,6 +1,6 @@
 /** @format */
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useColorScheme } from "@mui/joy/styles";
 import Sheet from "@mui/joy/Sheet";
@@ -14,8 +14,34 @@ import RadioGroup from "@mui/material/RadioGroup";
 import Radio from "@mui/material/Radio";
 import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
+import { useState } from "react";
+import { useGlobalContext } from "../../context";
+import Base64decode from "../../components/Base64decode";
 
 export default function Silk() {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const { jwt } = useGlobalContext();
+
+  useEffect(() => {
+    fetch("http://localhost:8080/kurta_silk/all", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${jwt}`,
+      },
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      setData(data);
+      setLoading(false);
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+    });
+  }, []);
+
   return (
     <div>
       <main>
@@ -114,6 +140,24 @@ export default function Silk() {
           </div>
         </Sheet>
       </main>
+      {
+        !loading && data && data.map((item, index) => {
+            console.log(item); // Check the structure of each item
+            return (
+              <div key={index}>
+                <h1>{item.price}</h1>
+                <h1>{item.size}</h1>
+                <h1>{item.quantity}</h1>
+                <h1>{item.type}</h1>
+                <h1>{item.colour}</h1>
+                <h1>{item.name}</h1>
+                <Base64decode base64String={item.image} />
+                {/* <img src={item.img} alt="img" /> */}
+                {/* Render other properties as needed */}
+              </div>
+            );
+          })
+      }
     </div>
   );
 }
