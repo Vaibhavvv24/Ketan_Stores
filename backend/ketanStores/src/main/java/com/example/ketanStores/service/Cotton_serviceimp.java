@@ -67,13 +67,14 @@ public class Cotton_serviceimp implements Cotton_service{
     }
 
     @Override
-    public Cotton_dto createCotton(String name, int price, int quantity, CottonEnum cottonEnum, Blob blob, int size) {
+    public Cotton_dto createCotton(String name, int price, int quantity, CottonEnum cottonEnum, Blob blob, int size, String colour) {
         KurtaEntity kurtaEntity = new KurtaEntity();
         CottonEntity cottonEntity = new CottonEntity();
         kurtaEntity.setSize(size);
         kurtaEntity.setPrice(price);
         kurtaEntity.setQuantity(quantity);
         kurtaEntity.setImage(blob);
+        kurtaEntity.setColour(colour);
         cottonEntity.setType(cottonEnum);
         kurtaEntity.setName(name);
         Cotton_dto cotton_dto = new Cotton_dto();

@@ -29,7 +29,7 @@ public interface Silk_service{
 
     ArrayList<Silk_dto> getByTypeAndSize(String type, int size);
 
-    Silk_dto createSilk(String name, int price, int quantity, SilkEnum silkEnum, Blob blob, int size);
+    Silk_dto createSilk(String name, int price, int quantity, SilkEnum silkEnum, Blob blob, int size, String colour);
 
     ArrayList<Silk_dto> getSilkByName(String name);
 

@@ -54,7 +54,7 @@ public class SilkCont {
         byte[] bytes = file.getBytes();
         Blob blob = new SerialBlob(bytes);
         SilkEnum silkEnum = SilkEnum.valueOf(type);
-        Silk_dto silk_dto = silk_service.createSilk(name, price, quantity, silkEnum, blob, size);
+        Silk_dto silk_dto = silk_service.createSilk(name, price, quantity, silkEnum, blob, size, colour);
         if (silk_dto == null) {
             return ResponseEntity.notFound().build();
         }

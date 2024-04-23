@@ -53,7 +53,7 @@ public class CottonCont {
         byte[] bytes = file.getBytes();
         Blob blob = new SerialBlob(bytes);
         CottonEnum cottonEnum = CottonEnum.valueOf(type);
-        Cotton_dto cotton_dto = cotton_service.createCotton(name, price, quantity, cottonEnum, blob, size);
+        Cotton_dto cotton_dto = cotton_service.createCotton(name, price, quantity, cottonEnum, blob, size, colour);
         if (cotton_dto == null) {
             return ResponseEntity.notFound().build();
         }

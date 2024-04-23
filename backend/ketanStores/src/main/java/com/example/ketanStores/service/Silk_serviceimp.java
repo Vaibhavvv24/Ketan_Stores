@@ -120,7 +120,7 @@ public class Silk_serviceimp implements Silk_service{
     }
 
     @Override
-    public Silk_dto createSilk(String name, int price, int quantity, SilkEnum silkEnum, Blob blob, int size) {
+    public Silk_dto createSilk(String name, int price, int quantity, SilkEnum silkEnum, Blob blob, int size, String colour) {
         KurtaEntity kurtaEntity = new KurtaEntity();
         SilkEntity silkEntity = new SilkEntity();
         kurtaEntity.setSize(size);
