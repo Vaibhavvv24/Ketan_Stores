@@ -26,7 +26,6 @@ public class OthersEntity {
     private int price;
     private int size;
     private int quantity;
-    private boolean available;
     @Column(columnDefinition = "longblob")
     private Blob image;
     private String name;
