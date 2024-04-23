@@ -87,13 +87,7 @@ public class Others_serviceimp implements Other_service{
     public Others_dto updateOther(Long id, int price, int quantity) {
         OthersEntity othersEntity = othersRepo.findById(id).get();
         othersEntity.setPrice(price);
-        if(othersEntity.isAvailable()) {
-            othersEntity.setQuantity(othersEntity.getQuantity() + quantity);
-        }
-        else{
-            othersEntity.setAvailable(true);
-            othersEntity.setQuantity(quantity);
-        }
+        othersEntity.setQuantity(othersEntity.getQuantity() + quantity);
         OthersEntity savedone=othersRepo.save(othersEntity);
         Others_dto othersDto = new Others_dto();
         othersEntity.setId(savedone.getId());
