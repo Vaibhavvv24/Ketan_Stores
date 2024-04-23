@@ -155,7 +155,7 @@ export default function Silk() {
         </Sheet>
       </main>
       {
-        !loading && data && data.map((item, index) => {
+        !loading && silkdata && silkdata.map((item, index) => {
             console.log(item); // Check the structure of each item
             return (
               <div key={index}>
