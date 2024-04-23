@@ -13,6 +13,8 @@ import Radio from '@mui/material/Radio';
 import { useState } from "react";
 import { useGlobalContext } from "../../context";
 import axios from "axios";
+import Select from '@mui/joy/Select';
+import Option from '@mui/joy/Option';
 
 export default function KurtaAdditions() {
   const { displayClothKurtaOptions, optionsKurta, jwt } = useGlobalContext();
@@ -250,7 +252,7 @@ export default function KurtaAdditions() {
                 <div className='flex justify-left items-center gap-5'>
                   <span className='text-xl w-[10px] h-[30px]'>₹</span>
                   <Input
-                    style={{ width: 165 }}
+                    style={{ width: 170 }}
                     name='type'
                     type='text'
                     onChange={(e) => {
@@ -293,42 +295,24 @@ export default function KurtaAdditions() {
                     <span className='text-xs'>10.</span>
                     <FormLabel className='pl-2'>Type:</FormLabel>
                   </Typography>
-                  <div className='flex justify-center items-center w-full mt-2'>
-                    <RadioGroup
-                      row
-                      aria-labelledby='demo-row-radio-buttons-group-label'
-                      name='row-radio-buttons-group-2'
-                    >
-                      <div className='flex justify-center items-center gap-20'>
-                        <div className='flex justify-left items-center h-[20px]'>
-                          <input
-                            type='radio'
-                            value='plain'
-                            name='silk'
-                            onClick={(e) => {
-                              setType(e.target.value);
-                            }}
-                          />
-                          <Typography level='body-sm' className='pl-2'>
-                            Plain
-                          </Typography>
-                        </div>
-                        <div className='flex justify-left items-center h-[20px]'>
-                          <input
-                            type='radio'
-                            value='print & design'
-                            name='silk'
-                            onClick={(e) => {
-                              setType(e.target.value);
-                            }}
-                          />
-                          <Typography level='body-sm' className='pl-2'>
-                            Print & Design
-                          </Typography>
-                        </div>
-                      </div>
-                    </RadioGroup>
-                  </div>
+            <Select defaultValue='Plain'>
+              <Option
+                value='Plain'
+                onClick={(e) => {
+                  setType("Plain");
+                }}
+              >
+                Plain
+              </Option>
+              <Option
+                value='Print & Design'
+                onClick={(e) => {
+                  setType("Print & Design");
+                }}
+              >
+                Print & Design
+              </Option>
+            </Select>
                 </div>
               </div>
             ) : null}
@@ -344,56 +328,32 @@ export default function KurtaAdditions() {
                     <span className='text-xs'>10.</span>
                     <FormLabel className='pl-2'>Type:</FormLabel>
                   </Typography>
-                  <div className='flex justify-center items-center gap-15 w-full mt-2'>
-                    <RadioGroup
-                      style={{ width: 500 }}
-                      row
-                      aria-labelledby='demo-row-radio-buttons-group-label'
-                      name='row-radio-buttons-group-2'
-                    >
-                      <div className='flex justify-center items-center gap-20 w-full'>
-                        <div className='flex justify-left items-center h-[20px]'>
-                          <input
-                            type='radio'
-                            value='plain'
-                            name='cotton'
-                            onClick={(e) => {
-                              setType(e.target.value);
-                            }}
-                          />
-                          <Typography level='body-sm' className='pl-2'>
-                            Plain
-                          </Typography>
-                        </div>
-                        <div className='flex justify-left items-center h-[20px]'>
-                          <input
-                            type='radio'
-                            value='digital print'
-                            name='cotton'
-                            onClick={(e) => {
-                              setType(e.target.value);
-                            }}
-                          />
-                          <Typography level='body-sm' className='pl-2'>
-                            DigitalPrint
-                          </Typography>
-                        </div>
-                        <div className='flex justify-left items-center h-[20px]'>
-                          <input
-                            type='radio'
-                            value='embriodery'
-                            name='cotton'
-                            onClick={(e) => {
-                              setType(e.target.value);
-                            }}
-                          />
-                          <Typography level='body-sm' className='pl-2'>
-                            Embriodery
-                          </Typography>
-                        </div>
-                      </div>
-                    </RadioGroup>
-                  </div>
+                  <Select defaultValue='White'>
+              <Option
+                value='Plain'
+                onClick={(e) => {
+                  setType("Plain");
+                }}
+              >
+                Plain
+              </Option>
+              <Option
+                value='Digital Print'
+                onClick={(e) => {
+                  setType("Digital Print");
+                }}
+              >
+                Cream
+              </Option>
+              <Option
+                value='Embroidery'
+                onClick={(e) => {
+                  setType("Embroidery");
+                }}
+              >
+                Embroidery
+              </Option>
+            </Select>
                 </div>
               </div>
             ) : null}

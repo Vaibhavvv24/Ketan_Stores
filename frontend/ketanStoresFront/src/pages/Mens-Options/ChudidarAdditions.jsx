@@ -102,8 +102,10 @@ export default function ChudidarAdditions() {
             <Typography level='h6' component='h1' className='flex items-center justify-left h-[22px] mt-2'>
                 <span className='text-xs'>5.</span><FormLabel className='pl-2'>Price:</FormLabel>
             </Typography>
+            <div className='flex justify-left items-center gap-5'>
+                <span className='text-xl w-[10px] h-[30px]'>₹</span>
                 <Input
-                style = {{width: 206}}
+                style = {{width: 177}}
                 name='price'
                 type='text'
                 onChange={(e) => {
@@ -115,6 +117,7 @@ export default function ChudidarAdditions() {
                     }
                 }}
                 />
+            </div>
             </FormControl>
           </div>
           <div className='flex justify-left h-full w-full mt-2 items-center gap-12'>
