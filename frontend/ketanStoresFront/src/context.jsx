@@ -210,7 +210,8 @@ const AppProvider = ({ children }) => {
     };
 
     const displayKurtaOptions = (options) => {
-      setOptionsKurta('null')
+      setOptionsKurta('null');
+      console.log(options);
       setOptionsMens(options);
     }
 

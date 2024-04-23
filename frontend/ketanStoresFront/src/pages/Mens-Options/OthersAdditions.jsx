@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Form, Link } from 'react-router-dom'
 import { useColorScheme } from "@mui/joy/styles";
 import Sheet from "@mui/joy/Sheet";
@@ -17,14 +17,19 @@ export default function OthersAdditions() {
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
     const [quantity, setQuantity] = useState("");
-    const [type, setType] = useState(optionsMens);
     const [size, setSize] = useState("");
+    const [type, setType] = useState("");
     const [image, setImage] = useState(null);
     const [color, setColor] = useState("");
+
+    useEffect(() => {
+        setType(optionsMens);
+    }, [optionsMens]);
   
     const handleChudidar = async (e) => {
-    e.preventDefault();
-    console.log(name, color, price, quantity, type, size, image, jwt);
+        e.preventDefault();
+        setType(optionsMens);
+        console.log(name, color, price, quantity, type, size, image, jwt);
     const formData = new FormData();
     formData.append("name", name);
     formData.append("img", image);

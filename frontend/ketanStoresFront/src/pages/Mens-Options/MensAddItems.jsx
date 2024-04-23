@@ -77,7 +77,7 @@ export default function MensAddItems() {
                   <div className='flex justify-left items-center h-[20px]'>
                     <input
                       type='radio'
-                      value=' SHORT_KURTA'
+                      value='SHORT_KURTA'
                       onClick={(e) => displayKurtaOptions(e.target.value)}
                       name='mens'
                     />
