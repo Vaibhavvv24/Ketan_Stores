@@ -54,7 +54,7 @@ public class SilkCont {
         byte[] bytes = file.getBytes();
         Blob blob = new SerialBlob(bytes);
         SilkEnum silkEnum = SilkEnum.valueOf(type);
-        Silk_dto silk_dto = silk_service.createSilk(name, price, quantity, silkEnum, blob, size);
+        Silk_dto silk_dto = silk_service.createSilk(name, price, quantity, silkEnum, blob, size, colour);
         if (silk_dto == null) {
             return ResponseEntity.notFound().build();
         }
@@ -69,6 +69,12 @@ public class SilkCont {
     @GetMapping("/silk/colour_filter/{colour}")
     public ResponseEntity<?> getByColour(@PathVariable String colour) {
         ArrayList<Silk_dto> silk_dtos = silk_service.getSilkByColour(colour);
+        return ResponseEntity.ok().body(silk_dtos);
+    }
+
+    @GetMapping("/silk/{type}/colour/{colour}")
+    public ResponseEntity<?> getByTypeColour(@PathVariable String type, @PathVariable String colour) {
+        ArrayList<Silk_dto> silk_dtos = silk_service.getSilkByColourAndtype(type, colour);
         return ResponseEntity.ok().body(silk_dtos);
     }
 }

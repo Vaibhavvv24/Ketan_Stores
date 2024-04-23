@@ -24,9 +24,11 @@ public interface Cotton_service {
 
     ArrayList<Cotton_dto> getByTypeAndSize(String type, int size);
 
-    Cotton_dto createCotton(String name, int price, int quantity, CottonEnum cottonEnum, Blob blob, int size);
+    Cotton_dto createCotton(String name, int price, int quantity, CottonEnum cottonEnum, Blob blob, int size, String colour);
 
     ArrayList<Cotton_dto> getCottonByName(String name);
 
     ArrayList<Cotton_dto> getCottonByColour(String colour);
+
+    ArrayList<Cotton_dto> getByTypeColour(String type, String colour);
 }
