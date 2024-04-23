@@ -13,6 +13,8 @@ import Radio from '@mui/material/Radio';
 import { useState } from "react";
 import { useGlobalContext } from "../../context";
 import axios from "axios";
+import Select from '@mui/joy/Select';
+import Option from '@mui/joy/Option';
 
 export default function KurtaAdditions() {
   const { displayClothKurtaOptions, optionsKurta, jwt } = useGlobalContext();
@@ -106,7 +108,7 @@ export default function KurtaAdditions() {
             component='h1'
             className='flex items-center h-[22px]'
           >
-            <span className='text-xs'>4.</span>
+            <span className='text-xs'>3.</span>
             <FormLabel className='pl-2'>Choose from Kurta:</FormLabel>
           </Typography>
           <div className='flex justify-center items-center w-full mt-2'>
@@ -154,14 +156,14 @@ export default function KurtaAdditions() {
                 component='h1'
                 className='flex items-center h-[22px] mt-2'
               >
-                <span className='text-xs'>5.</span>
+                <span className='text-xs'>4.</span>
                 <FormLabel className='pl-2'>Name:</FormLabel>
               </Typography>
               <Input
                 name='name'
                 type='name'
                 onChange={(e) => {
-                  setName(e.target.value);
+                  setName(e.target.value.trim());
                 }}
               />
             </FormControl>
@@ -172,7 +174,7 @@ export default function KurtaAdditions() {
                   component='h1'
                   className='flex items-center justify-left h-[22px]'
                 >
-                  <span className='text-xs'>6.</span>
+                  <span className='text-xs'>5.</span>
                   <FormLabel className='pl-2'>Color:</FormLabel>
                 </Typography>
                 <div className='flex justify-left items-center gap-12'>
@@ -181,7 +183,7 @@ export default function KurtaAdditions() {
                     name='type'
                     type='text'
                     onChange={(e) => {
-                      setColor(e.target.value);
+                      setColor(e.target.value.trim());
                     }}
                   />
                 </div>
@@ -192,7 +194,7 @@ export default function KurtaAdditions() {
                   component='h1'
                   className='flex items-center justify-left h-[22px]'
                 >
-                  <span className='text-xs'>7.</span>
+                  <span className='text-xs'>6.</span>
                   <FormLabel className='pl-2'>Size:</FormLabel>
                 </Typography>
                 <div className='flex justify-left items-center gap-5'>
@@ -201,7 +203,12 @@ export default function KurtaAdditions() {
                     name='type'
                     type='text'
                     onChange={(e) => {
-                      setSize(e.target.value);
+                      if (!isNaN(e.target.value) && e.target.value === "") {
+                        setSize(Number(e.target.value))
+                      }
+                      else{
+                        setSize("");
+                      }
                     }}
                   />
                 </div>
@@ -214,7 +221,7 @@ export default function KurtaAdditions() {
                   component='h1'
                   className='flex items-center justify-left h-[22px]'
                 >
-                  <span className='text-xs'>8.</span>
+                  <span className='text-xs'>7.</span>
                   <FormLabel className='pl-2'>Quantity:</FormLabel>
                 </Typography>
                 <div className='flex justify-left items-center gap-12'>
@@ -223,7 +230,12 @@ export default function KurtaAdditions() {
                     name='type'
                     type='text'
                     onChange={(e) => {
-                      setQuantity(e.target.value);
+                      if (!isNaN(e.target.value) && e.target.value === "") {
+                        setQuantity(Number(e.target.value))
+                      }
+                      else{
+                        setQuantity("");
+                      }
                     }}
                   />
                 </div>
@@ -234,17 +246,22 @@ export default function KurtaAdditions() {
                   component='h1'
                   className='flex items-center justify-left h-[22px]'
                 >
-                  <span className='text-xs'>9.</span>
+                  <span className='text-xs'>8.</span>
                   <FormLabel className='pl-2'>Price:</FormLabel>
                 </Typography>
                 <div className='flex justify-left items-center gap-5'>
                   <span className='text-xl w-[10px] h-[30px]'>₹</span>
                   <Input
-                    style={{ width: 165 }}
+                    style={{ width: 170 }}
                     name='type'
                     type='text'
                     onChange={(e) => {
-                      setPrice(e.target.value);
+                      if (!isNaN(e.target.value) && e.target.value === "") {
+                        setPrice(Number(e.target.value))
+                      }
+                      else{
+                        setPrice("");
+                      }
                     }}
                   />
                 </div>
@@ -256,7 +273,7 @@ export default function KurtaAdditions() {
                 component='h1'
                 className='flex items-center justify-left h-[22px] mt-2'
               >
-                <span className='text-xs'>10.</span>
+                <span className='text-xs'>9.</span>
                 <FormLabel className='pl-2'>Image:</FormLabel>
               </Typography>
               <Input
@@ -275,45 +292,27 @@ export default function KurtaAdditions() {
                     component='h1'
                     className='flex items-center h-[22px]'
                   >
-                    <span className='text-xs'>11.</span>
+                    <span className='text-xs'>10.</span>
                     <FormLabel className='pl-2'>Type:</FormLabel>
                   </Typography>
-                  <div className='flex justify-center items-center w-full mt-2'>
-                    <RadioGroup
-                      row
-                      aria-labelledby='demo-row-radio-buttons-group-label'
-                      name='row-radio-buttons-group-2'
-                    >
-                      <div className='flex justify-center items-center gap-20'>
-                        <div className='flex justify-left items-center h-[20px]'>
-                          <input
-                            type='radio'
-                            value='plain'
-                            name='silk'
-                            onClick={(e) => {
-                              setType(e.target.value);
-                            }}
-                          />
-                          <Typography level='body-sm' className='pl-2'>
-                            Plain
-                          </Typography>
-                        </div>
-                        <div className='flex justify-left items-center h-[20px]'>
-                          <input
-                            type='radio'
-                            value='print & design'
-                            name='silk'
-                            onClick={(e) => {
-                              setType(e.target.value);
-                            }}
-                          />
-                          <Typography level='body-sm' className='pl-2'>
-                            Print & Design
-                          </Typography>
-                        </div>
-                      </div>
-                    </RadioGroup>
-                  </div>
+            <Select defaultValue='Plain'>
+              <Option
+                value='Plain'
+                onClick={(e) => {
+                  setType("Plain");
+                }}
+              >
+                Plain
+              </Option>
+              <Option
+                value='Print & Design'
+                onClick={(e) => {
+                  setType("Print & Design");
+                }}
+              >
+                Print & Design
+              </Option>
+            </Select>
                 </div>
               </div>
             ) : null}
@@ -326,72 +325,44 @@ export default function KurtaAdditions() {
                     component='h1'
                     className='flex items-center h-[22px]'
                   >
-                    <span className='text-xs'>11.</span>
+                    <span className='text-xs'>10.</span>
                     <FormLabel className='pl-2'>Type:</FormLabel>
                   </Typography>
-                  <div className='flex justify-center items-center gap-15 w-full mt-2'>
-                    <RadioGroup
-                      style={{ width: 500 }}
-                      row
-                      aria-labelledby='demo-row-radio-buttons-group-label'
-                      name='row-radio-buttons-group-2'
-                    >
-                      <div className='flex justify-center items-center gap-20 w-full'>
-                        <div className='flex justify-left items-center h-[20px]'>
-                          <input
-                            type='radio'
-                            value='plain'
-                            name='cotton'
-                            onClick={(e) => {
-                              setType(e.target.value);
-                            }}
-                          />
-                          <Typography level='body-sm' className='pl-2'>
-                            Plain
-                          </Typography>
-                        </div>
-                        <div className='flex justify-left items-center h-[20px]'>
-                          <input
-                            type='radio'
-                            value='digital print'
-                            name='cotton'
-                            onClick={(e) => {
-                              setType(e.target.value);
-                            }}
-                          />
-                          <Typography level='body-sm' className='pl-2'>
-                            DigitalPrint
-                          </Typography>
-                        </div>
-                        <div className='flex justify-left items-center h-[20px]'>
-                          <input
-                            type='radio'
-                            value='embriodery'
-                            name='cotton'
-                            onClick={(e) => {
-                              setType(e.target.value);
-                            }}
-                          />
-                          <Typography level='body-sm' className='pl-2'>
-                            Embriodery
-                          </Typography>
-                        </div>
-                      </div>
-                    </RadioGroup>
-                  </div>
+                  <Select defaultValue='White'>
+              <Option
+                value='Plain'
+                onClick={(e) => {
+                  setType("Plain");
+                }}
+              >
+                Plain
+              </Option>
+              <Option
+                value='Digital Print'
+                onClick={(e) => {
+                  setType("Digital Print");
+                }}
+              >
+                Cream
+              </Option>
+              <Option
+                value='Embroidery'
+                onClick={(e) => {
+                  setType("Embroidery");
+                }}
+              >
+                Embroidery
+              </Option>
+            </Select>
                 </div>
               </div>
             ) : null}
           </div>
         </div>
       </FormControl>
-      <Button
-        className='bg-blue-500'
-        sx={{ mt: 2 }}
-        onClick={handleBothSilk_Cotton}
-      >
-        Add Item
-      </Button>
+      {
+            name === "" || price === "" || quantity === "" || size === "" || type === "" || image === null ? <Button className='bg-gray-500 hover:bg-gray-700' sx={{ mt: 2 }}>Add Item</Button>
+            : <Button onClick={handleChudidar} className='bg-blue-500 hover:bg-blue-700' sx={{ mt: 2 }}>Add Item</Button>      }
     </FormControl>
   );
 }

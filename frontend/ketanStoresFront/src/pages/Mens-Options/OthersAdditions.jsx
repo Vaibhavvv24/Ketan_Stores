@@ -8,8 +8,6 @@ import FormControl from "@mui/joy/FormControl";
 import FormLabel from "@mui/joy/FormLabel";
 import Input from "@mui/joy/Input";
 import Button from "@mui/joy/Button";
-import RadioGroup from '@mui/material/RadioGroup';
-import Radio from '@mui/material/Radio';
 import { useState } from 'react';
 import { useGlobalContext } from '../../context';
 import axios from 'axios';
@@ -70,7 +68,7 @@ export default function OthersAdditions() {
                             name='name'
                             type='name'
                             onChange = { (e) => {
-                                setName(e.target.value);
+                                setName(e.target.value.trim());
                             }}
                         />
                     </FormControl>
@@ -85,7 +83,7 @@ export default function OthersAdditions() {
                                     name = 'color'
                                     type = 'text'
                                     onChange = { (e) => {
-                                        setColor(e.target.value);
+                                        setColor(e.target.value.trim());
                                     }}
                                 />
                             </div>        
@@ -100,7 +98,12 @@ export default function OthersAdditions() {
                                     name = 'size'
                                     type = 'text'
                                     onChange = { (e) => {
-                                        setSize(e.target.value);
+                                        if (!isNaN(e.target.value) && e.target.value.trim() !== ""){
+                                            setSize(Number(e.target.value));
+                                        }
+                                        else{
+                                            setSize("");
+                                        }
                                     }}
                                 />
                             </div>        
@@ -117,7 +120,12 @@ export default function OthersAdditions() {
                                     name = 'quantity'
                                     type = 'text'
                                     onChange = { (e) => {
-                                        setQuantity(e.target.value);
+                                        if (!isNaN(e.target.value.trim()) && e.target.value.trim() !== ""){
+                                            setQuantity(Number(e.target.value.trim()));
+                                        }
+                                        else{
+                                            setQuantity("");
+                                        }
                                     }}
                                 />
                             </div>        
@@ -133,7 +141,12 @@ export default function OthersAdditions() {
                                     name='price'
                                     type='text'
                                     onChange = { (e) => {
-                                        setPrice(e.target.value);
+                                        if (!isNaN(e.target.value.trim()) && e.target.value.trim() !== ""){
+                                            setPrice(Number(e.target.value.trim()));
+                                        }
+                                        else{
+                                            setPrice("");
+                                        }
                                     }}
                                 />
                             </div>        
@@ -154,9 +167,9 @@ export default function OthersAdditions() {
                 </div>
             </div>
             {
-                //:<Button className='bg-gray-500' sx={{ mt: 2 }}>Add Item</Button>
+                name === "" || price === "" || quantity === "" || size === "" || color === "" || type === "" || image === null ? <Button className='bg-gray-500 hover:bg-gray-700' sx={{ mt: 2 }}>Add Item</Button>
+                : <Button onClick={handleChudidar} className='bg-blue-500 hover:bg-blue-700' sx={{ mt: 2 }}>Add Item</Button>
             }
-            <Button onClick={handleChudidar} className='bg-blue-500' sx={{ mt: 2 }}>Add Item</Button> 
         </FormControl>
     )
 }
