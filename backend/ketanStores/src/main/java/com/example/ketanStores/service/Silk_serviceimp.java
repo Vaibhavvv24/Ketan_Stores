@@ -51,6 +51,7 @@ public class Silk_serviceimp implements Silk_service{
         String image = blobToBase64(silkEntity.getImage());
         String colour = silkEntity.getColour();
         Silk_dto silk_dto = new Silk_dto(Type,Name,price, size, quantity, image, colour);
+        silk_dto.setId(silkEntity.getId());
         return silk_dto;
     }
     @Override

@@ -50,6 +50,7 @@ public class Cotton_serviceimp implements Cotton_service{
         String image = blobToBase64(cottonEntity.getImage());
         String colour = cottonEntity.getColour();
         Cotton_dto cotton_dto = new Cotton_dto(Type,Name,price, size, quantity, image, colour);
+        cotton_dto.setId(cottonEntity.getId());
         return cotton_dto;
     }
 
