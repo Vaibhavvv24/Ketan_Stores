@@ -43,7 +43,7 @@ public class CottonCont {
         ArrayList<Cotton_dto> cotton = cotton_service.getbytype(type);
         return ResponseEntity.ok().body(cotton);
     }
-    @GetMapping("/size")
+    @GetMapping("/{size}")
     public ResponseEntity<?> getbysize(@PathVariable("size") int size) {
         ArrayList<Cotton_dto> cotton = cotton_service.getbysize(size);
         return ResponseEntity.ok().body(cotton);
@@ -53,7 +53,7 @@ public class CottonCont {
         byte[] bytes = file.getBytes();
         Blob blob = new SerialBlob(bytes);
         CottonEnum cottonEnum = CottonEnum.valueOf(type);
-        Cotton_dto cotton_dto = cotton_service.createCotton(name, price, quantity, cottonEnum, blob, size);
+        Cotton_dto cotton_dto = cotton_service.createCotton(name, price, quantity, cottonEnum, blob, size, colour);
         if (cotton_dto == null) {
             return ResponseEntity.notFound().build();
         }
@@ -75,5 +75,14 @@ public class CottonCont {
     public ResponseEntity<?> getByTypeColour(@PathVariable String type, @PathVariable String colour) {
         ArrayList<Cotton_dto> cotton_dtos = cotton_service.getByTypeColour(type, colour);
         return ResponseEntity.ok().body(cotton_dtos);
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> updateCotton(@PathVariable Long id,@RequestParam("price") int price,@RequestParam("quantity") int quantity, @RequestParam("colour") String colour) {
+        Cotton_dto cotton_dto = cotton_service.updateCotton(id, price, quantity, colour);
+        if (cotton_dto == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(cotton_dto);
     }
 }

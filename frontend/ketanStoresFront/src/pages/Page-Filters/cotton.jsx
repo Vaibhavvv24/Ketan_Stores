@@ -125,12 +125,20 @@ export default function cotton() {
                         Plain
                       </Option>
                       <Option
-                        value='Print & Design'
+                        value='Digital Print'
                         onClick={(e) => {
-                          setType("PRINT_AND_DESIGN");
+                          setType("DIGITAL_PRINT");
                         }}
                       >
-                        Print & Design
+                        Digital Print
+                      </Option>
+                      <Option
+                        value='Embroidery'
+                        onClick={(e) => {
+                          setType("EMBROIDERY");
+                        }}
+                      >
+                        Embroidery
                       </Option>
                     </Select>
                   </div>

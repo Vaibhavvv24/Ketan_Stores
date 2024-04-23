@@ -67,19 +67,22 @@ public class Cotton_serviceimp implements Cotton_service{
     }
 
     @Override
-    public Cotton_dto createCotton(String name, int price, int quantity, CottonEnum cottonEnum, Blob blob, int size) {
+    public Cotton_dto createCotton(String name, int price, int quantity, CottonEnum cottonEnum, Blob blob, int size, String colour) {
         KurtaEntity kurtaEntity = new KurtaEntity();
         CottonEntity cottonEntity = new CottonEntity();
         kurtaEntity.setSize(size);
         kurtaEntity.setPrice(price);
         kurtaEntity.setQuantity(quantity);
         kurtaEntity.setImage(blob);
+        kurtaEntity.setColour(colour);
         cottonEntity.setType(cottonEnum);
         kurtaEntity.setName(name);
+
         Cotton_dto cotton_dto = new Cotton_dto();
         cottonEntity.setKurtaEntity(kurtaEntity);
-        CottonEntity savedCottonEntity = cotton_Repo.save(cottonEntity);
         kurtaRepo.save(kurtaEntity);
+        CottonEntity savedCottonEntity = cotton_Repo.save(cottonEntity);
+
         cotton_dto.setId(savedCottonEntity.getId());
         return cotton_dto;
     }
@@ -118,6 +121,15 @@ public class Cotton_serviceimp implements Cotton_service{
             }
         }
         return cotton_dtos;
+    }
+
+    @Override
+    public Cotton_dto updateCotton(Long id, int price, int quantity, String colour) {
+        CottonEntity cottonEntity = cotton_Repo.findById(id).get();
+        cottonEntity.setColour(colour);
+        cottonEntity.setPrice(price);
+        cottonEntity.setQuantity(quantity);
+        return this.convert_entity_to_dto(cotton_Repo.save(cottonEntity));
     }
 
     @Override

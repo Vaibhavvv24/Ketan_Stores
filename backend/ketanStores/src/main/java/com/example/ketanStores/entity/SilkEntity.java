@@ -81,4 +81,8 @@ public class SilkEntity {
     public void setColour(String colour) {
         kurtaEntity.setColour(colour);
     }
+
+    public void setQuantity(int quantity) {
+        kurtaEntity.setQuantity(quantity);
+    }
 }

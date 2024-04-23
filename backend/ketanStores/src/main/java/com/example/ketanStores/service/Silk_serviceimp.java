@@ -120,7 +120,7 @@ public class Silk_serviceimp implements Silk_service{
     }
 
     @Override
-    public Silk_dto createSilk(String name, int price, int quantity, SilkEnum silkEnum, Blob blob, int size) {
+    public Silk_dto createSilk(String name, int price, int quantity, SilkEnum silkEnum, Blob blob, int size, String colour) {
         KurtaEntity kurtaEntity = new KurtaEntity();
         SilkEntity silkEntity = new SilkEntity();
         kurtaEntity.setSize(size);
@@ -129,6 +129,7 @@ public class Silk_serviceimp implements Silk_service{
         kurtaEntity.setImage(blob);
         silkEntity.setType(silkEnum);
         kurtaEntity.setName(name);
+        kurtaEntity.setColour(colour);
         Silk_dto silk_dto = new Silk_dto();
         silkEntity.setKurtaEntity(kurtaEntity);
         SilkEntity savedSilkEntity = silk_Repo.save(silkEntity);
@@ -172,6 +173,15 @@ public class Silk_serviceimp implements Silk_service{
             }
         }
         return silk_dtos;
+    }
+
+    @Override
+    public Silk_dto updateSilk(Long id, int price, int quantity, String colour) {
+        SilkEntity silkEntity = silk_Repo.findById(id).get();
+        silkEntity.setColour(colour);
+        silkEntity.setPrice(price);
+        silkEntity.setQuantity(quantity);
+        return this.convert_entity_to_dto(silk_Repo.save())
     }
 
 }
