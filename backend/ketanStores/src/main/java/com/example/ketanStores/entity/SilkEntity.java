@@ -61,13 +61,13 @@ public class SilkEntity {
         return kurtaEntity.getAvailable();
     }
     public void setImage(Blob image) {
-        kurtaEntity.image = image;
+        kurtaEntity.setImage(image);
     }
     public void setPrice(int price) {
-        kurtaEntity.price = price;
+        kurtaEntity.setPrice(price);
     }
     public void setSize(int size) {
-        kurtaEntity.size = size;
+        kurtaEntity.setSize(size);
     }
     public void setType(SilkEnum type) {
         this.type = type;

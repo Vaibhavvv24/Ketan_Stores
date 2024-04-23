@@ -119,6 +119,7 @@ public class Cotton_serviceimp implements Cotton_service{
         for(CottonEntity cotton : cottons){
             cotton_dtos.add(convert_entity_to_dto(cotton));
         }
+        System.out.println(cotton_dtos);
         return cotton_dtos;
     }
 

@@ -40,16 +40,16 @@ public class CottonEntity {
     }
 
     public int getPrice() {
-        return kurtaEntity.price;
+        return kurtaEntity.getPrice();
     }
     public boolean isAvailable() {
-        return kurtaEntity.available;
+        return kurtaEntity.getAvailable();
     }
     public int getSize() {
-        return kurtaEntity.size;
+        return kurtaEntity.getSize();
     }
     public int getQuantity() {
-        return kurtaEntity.quantity;
+        return kurtaEntity.getQuantity();
     }
     public void setId(Long id) {
         this.id = id;
@@ -63,16 +63,16 @@ public class CottonEntity {
         this.kurtaEntity = kurtaEntity;
     }
     public void setPrice(int price) {
-        kurtaEntity.price = price;
+        kurtaEntity.setPrice(price);
     }
     public void setAvailable(boolean available) {
-        kurtaEntity.available = available;
+        kurtaEntity.setAvailable(available);
     }
     public CottonEnum getType() {
         return type;
     }
     public Blob getImage() {
-        return kurtaEntity.image;
+        return kurtaEntity.getImage();
     }
     public void setType(CottonEnum type) {
         this.type = type;
