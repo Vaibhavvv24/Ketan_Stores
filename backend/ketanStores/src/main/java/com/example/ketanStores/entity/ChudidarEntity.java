@@ -103,6 +103,7 @@ public class ChudidarEntity {
         this.name = name;
     }
 
+
     public ChudidarDto getChurdiarDto() {
         ChudidarDto chudidarDto=new ChudidarDto();
         chudidarDto.setPrice(price);
