@@ -134,12 +134,12 @@ export default function cotton() {
             console.log(item); // Check the structure of each item
             return (
               <div key={index}>
+                <h1>{item.name}</h1>
                 <h1>{item.price}</h1>
                 <h1>{item.size}</h1>
                 <h1>{item.quantity}</h1>
                 <h1>{item.type}</h1>
                 <h1>{item.colour}</h1>
-                <h1>{item.name}</h1>
                 <Base64decode base64String={item.image} />
                 {/* Render other properties as needed */}
               </div>
