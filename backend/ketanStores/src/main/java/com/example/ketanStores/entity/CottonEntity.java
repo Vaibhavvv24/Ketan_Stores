@@ -48,6 +48,9 @@ public class CottonEntity {
     public int getQuantity() {
         return kurtaEntity.getQuantity();
     }
+    public void setQuantity(int quantity) {
+        kurtaEntity.setQuantity(quantity);
+    }
     public void setId(Long id) {
         this.id = id;
     }
@@ -78,5 +81,13 @@ public class CottonEntity {
 
     public void setColour(String colour) {
         kurtaEntity.setColour(colour);
+    }
+
+    public void setSize(int size) {
+        kurtaEntity.setSize(size);
+    }
+
+    public void setImage(Blob image) {
+        kurtaEntity.setImage(image);
     }
 }
