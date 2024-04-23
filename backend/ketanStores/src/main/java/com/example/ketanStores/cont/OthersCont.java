@@ -48,21 +48,12 @@ public class OthersCont {
     @GetMapping("/others")
     public ResponseEntity<?> getOthers(){
         List<Others_dto> othersDtos=otherService.getOthers();
-        if(othersDtos.isEmpty()){
-            List<Others_dto> othersDtos1=new ArrayList<>();
-            return ResponseEntity.ok().body(othersDtos1);
-        }
-        else{
-            return ResponseEntity.ok().body(othersDtos);
-        }
+        return ResponseEntity.ok().body(othersDtos);
     }
 
     @GetMapping("/other/filter/{type}")
     public ResponseEntity<?> getByType(@PathVariable String type){
         List<Others_dto> othersDtos=otherService.getOthersByType(type);
-        if(othersDtos.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
         return ResponseEntity.ok().body(othersDtos);
     }
 
@@ -78,32 +69,22 @@ public class OthersCont {
     @GetMapping("/other/{type}/filter/{size}")
     public ResponseEntity<?> getByTypeSize(@PathVariable String type,@PathVariable int size) {
         List<Others_dto> othersDtos = otherService.getOtherByTypeandSize(type,size);
-        if (othersDtos.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
         return ResponseEntity.ok().body(othersDtos);
     }
     @GetMapping("/other/{type}/colour/{colour}")
     public ResponseEntity<?> getByTypeColour(@PathVariable String type,@PathVariable String colour) {
         List<Others_dto> othersDtos = otherService.getOtherByTypeandColour(type,colour);
-        if (othersDtos.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
         return ResponseEntity.ok().body(othersDtos);
     }
     @GetMapping("/other/{type}/filter/{size}/colour/{colour}")
     public ResponseEntity<?> getByTypeSizeColour(@PathVariable String type,@PathVariable int size,@PathVariable String colour) {
         List<Others_dto> othersDtos = otherService.getOtherByTypeandSizeandColour(type,size,colour);
-        if (othersDtos.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
         return ResponseEntity.ok().body(othersDtos);
     }
     @GetMapping("/others/search/{name}")
     public ResponseEntity<?> search(@PathVariable String name){
         List<Others_dto> othersDtos=otherService.getOthersByName(name);
         return ResponseEntity.ok().body(othersDtos);
-
     }
 
     @DeleteMapping("/others/delete/{id}")
