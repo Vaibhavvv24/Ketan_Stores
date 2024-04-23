@@ -73,4 +73,12 @@ public class SilkEntity {
     public SilkEntity(SilkEnum type) {
         this.type = type;
     }
+
+    public String getColour() {
+        return kurtaEntity.getColour();
+    }
+
+    public void setColour(String colour) {
+        kurtaEntity.setColour(colour);
+    }
 }

@@ -16,11 +16,13 @@ public class Kurta_dto {
     int size;
     int quantity;
     String image;
-    public Kurta_dto(String Name,int price, int size, int quantity, String image) {
+    String colour;
+    public Kurta_dto(String Name,int price, int size, int quantity, String image, String colour) {
         this.price = price;
         this.size = size;
         this.quantity = quantity;
         this.image = image;
         this.Name = Name;
+        this.colour = colour;
     }
 }

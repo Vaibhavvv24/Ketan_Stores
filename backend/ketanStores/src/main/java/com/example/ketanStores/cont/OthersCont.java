@@ -83,6 +83,22 @@ public class OthersCont {
         }
         return ResponseEntity.ok().body(othersDtos);
     }
+    @GetMapping("/other/{type}/colour/{colour}")
+    public ResponseEntity<?> getByTypeColour(@PathVariable String type,@PathVariable String colour) {
+        List<Others_dto> othersDtos = otherService.getOtherByTypeandColour(type,colour);
+        if (othersDtos.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(othersDtos);
+    }
+    @GetMapping("/other/{type}/filter/{size}/colour/{colour}")
+    public ResponseEntity<?> getByTypeSizeColour(@PathVariable String type,@PathVariable int size,@PathVariable String colour) {
+        List<Others_dto> othersDtos = otherService.getOtherByTypeandSizeandColour(type,size,colour);
+        if (othersDtos.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(othersDtos);
+    }
     @GetMapping("/others/search/{name}")
     public ResponseEntity<?> search(@PathVariable String name){
         List<Others_dto> othersDtos=otherService.getOthersByName(name);
@@ -97,4 +113,5 @@ public class OthersCont {
         deletemap.put("message","deleted successfully : "+id);
         return ResponseEntity.ok().body(deletemap);
     }
+
 }

@@ -71,5 +71,12 @@ public class CottonEntity {
     public void setType(CottonEnum type) {
         this.type = type;
     }
-    
+
+    public String getColour() {
+        return kurtaEntity.getColour();
+    }
+
+    public void setColour(String colour) {
+        kurtaEntity.setColour(colour);
+    }
 }

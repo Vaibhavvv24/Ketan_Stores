@@ -12,8 +12,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Silk_dto extends Kurta_dto{
     SilkEnum Type;
-    public Silk_dto(SilkEnum Type,String Name, int price, int size, int quantity, String image) {
-        super(Name,price, size, quantity, image);
+    public Silk_dto(SilkEnum Type,String Name, int price, int size, int quantity, String image, String colour) {
+        super(Name,price, size, quantity, image, colour);
         this.Type = Type;
     }
     public Silk_dto() {
@@ -29,5 +29,10 @@ public class Silk_dto extends Kurta_dto{
     }
     public String getimage(){
         return image;
+    }
+
+    @Override
+    public String getColour() {
+        return colour;
     }
 }

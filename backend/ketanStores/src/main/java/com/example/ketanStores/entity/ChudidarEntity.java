@@ -24,7 +24,6 @@ public class ChudidarEntity {
     private Long id;
     private ChudidarEnum type;
     private int size;
-    private boolean available;
     private int quantity;
     private int price;
     private String name;
@@ -102,6 +101,7 @@ public class ChudidarEntity {
     public void setName(String name) {
         this.name = name;
     }
+
 
     public ChudidarDto getChurdiarDto() {
         ChudidarDto chudidarDto=new ChudidarDto();
