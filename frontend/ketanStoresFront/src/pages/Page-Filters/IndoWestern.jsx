@@ -121,7 +121,7 @@ export default function IndoWestern() {
         <CssBaseline />
         <Sheet
           sx={{
-            width: 660,
+            width: "40%",
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-evenly",
@@ -162,7 +162,7 @@ export default function IndoWestern() {
                       style={{ width: 170 }}
                       onChange={(e) => {
                       if (!isNaN(e.target.value) && e.target.value.trim() !== "") {
-                        setSize(Number(e.target.value));
+                        setSize(Number(e.target.value.trim()));
                       }
                       else{
                         setSize(e.target.value);
@@ -188,7 +188,7 @@ export default function IndoWestern() {
                       type='text'
                       placeholder='Enter Colour'
                       style={{ width: 170 }}
-                      onChange={(e) => setColour(e.target.value)}
+                      onChange={(e) => setColour(e.target.value.trim())}
                     />
                   </div>
                 </div>
