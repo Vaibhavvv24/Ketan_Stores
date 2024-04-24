@@ -55,7 +55,7 @@ export default function Chudidar() {
     .catch(error => {
       console.error('Error fetching data:', error);
     });
-  }, [newQuantity]);
+  }, []);
 
   const display = (e) => {
     if (type === ""){
@@ -257,7 +257,7 @@ export default function Chudidar() {
           data.map((item, index) => {
             return (
               <div key={ index }>
-                <ItemsPalette filterItems={ [item] } Item={ data[index] } newQuantity = {newQuantity} setNewQuantity = {setNewQuantity} />
+                <ItemsPalette filterItems={ [item] } Item={ data[index] } newQuantity = {newQuantity} setNewQuantity = {setNewQuantity} Type={'chudidar'}/>
               </div>
             );
           })}

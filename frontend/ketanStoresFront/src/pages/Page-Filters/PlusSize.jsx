@@ -22,6 +22,7 @@ import Base64decode from "../../components/Base64decode";
 export default function PlusSize() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [newQuantity, setNewQuantity] = useState(0);
   const { jwt } = useGlobalContext();
 
   useEffect(() => {
@@ -50,7 +51,13 @@ export default function PlusSize() {
           data.map((item, index) => {
             return (
               <div key={index}>
-                <ItemsPalette filterItems={[item]} />
+                <ItemsPalette
+                  filterItems={[item]}
+                  Item={data[index]}
+                  newQuantity={newQuantity}
+                  setNewQuantity={setNewQuantity}
+                  Type={"other"}
+                />
               </div>
             );
           })}
