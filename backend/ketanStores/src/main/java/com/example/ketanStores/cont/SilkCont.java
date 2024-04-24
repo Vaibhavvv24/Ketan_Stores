@@ -100,4 +100,10 @@ public class SilkCont {
         ArrayList<Silk_dto> silk_dtos = silk_service.getByTypeSize(type, size);
         return ResponseEntity.ok().body(silk_dtos);
     }
+
+    @GetMapping("/silk_sc/{size}/colour/{colour}")
+    public ResponseEntity<?> getBySizeColour(@PathVariable int size, @PathVariable String colour) {
+        ArrayList<Silk_dto> silk_dtos = silk_service.getBySizeColour(size, colour);
+        return ResponseEntity.ok().body(silk_dtos);
+    }
 }

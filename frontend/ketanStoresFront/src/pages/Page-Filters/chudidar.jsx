@@ -22,6 +22,7 @@ import ItemsPalette from "../../components/ItemsPalette";
 export default function Chudidar() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [newQuantity, setNewQuantity] = useState("");
   const { jwt } = useGlobalContext();
   const [type, setType] = useState("");
   const [size, setSize] = useState("");
@@ -54,7 +55,7 @@ export default function Chudidar() {
     .catch(error => {
       console.error('Error fetching data:', error);
     });
-  }, []);
+  }, [newQuantity]);
 
   const display = (e) => {
     if (type === ""){
@@ -256,7 +257,7 @@ export default function Chudidar() {
           data.map((item, index) => {
             return (
               <div key={ index }>
-                <ItemsPalette filterItems={ [item] } Item={ data[index] } />
+                <ItemsPalette filterItems={ [item] } Item={ data[index] } newQuantity = {newQuantity} setNewQuantity = {setNewQuantity} />
               </div>
             );
           })}

@@ -42,4 +42,6 @@ public interface Silk_service{
     Silk_dto updateSilk(Long id, int quantity);
 
     ArrayList<Silk_dto> getByTypeColourSize(String type, String colour, int size);
+
+    ArrayList<Silk_dto> getBySizeColour(int size, String colour);
 }
