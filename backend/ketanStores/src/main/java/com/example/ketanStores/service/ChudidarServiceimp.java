@@ -89,9 +89,8 @@ public class ChudidarServiceimp implements ChudidarService{
     }
 
     @Override
-    public ChudidarDto updateChudidar(Long id, int price, int quantity) {
+    public ChudidarDto updateChudidar(Long id, int quantity) {
         ChudidarEntity chudidarEntity=chudidarRepo.findById(id).get();
-        chudidarEntity.setPrice(price);
         chudidarEntity.setQuantity(chudidarEntity.getQuantity() + quantity);
         ChudidarEntity savedone=chudidarRepo.save(chudidarEntity);
         ChudidarDto chudidarDto=new ChudidarDto();

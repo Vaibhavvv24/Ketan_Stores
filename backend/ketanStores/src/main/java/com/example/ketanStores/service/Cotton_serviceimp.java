@@ -124,10 +124,8 @@ public class Cotton_serviceimp implements Cotton_service{
     }
 
     @Override
-    public Cotton_dto updateCotton(Long id, int price, int quantity, String colour) {
+    public Cotton_dto updateCotton(Long id, int quantity) {
         CottonEntity cottonEntity = cotton_Repo.findById(id).get();
-        cottonEntity.setColour(colour);
-        cottonEntity.setPrice(price);
         cottonEntity.setQuantity(quantity);
         return this.convert_entity_to_dto(cotton_Repo.save(cottonEntity));
     }

@@ -32,6 +32,7 @@ public interface Cotton_service {
 
     ArrayList<Cotton_dto> getByTypeColour(String type, String colour);
 
-    Cotton_dto updateCotton(Long id, int price, int quantity, String colour);
+    Cotton_dto updateCotton(Long id, int quantity);
+
     ArrayList<Cotton_dto> getByTypeColourSize(String type, String colour, int size);
 }
