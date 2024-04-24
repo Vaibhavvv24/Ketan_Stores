@@ -191,7 +191,7 @@ public class Silk_serviceimp implements Silk_service{
     @Override
     public Silk_dto updateSilk(Long id, int quantity) {
         SilkEntity silkEntity = silk_Repo.findById(id).get();
-        silkEntity.setQuantity(quantity);
+        silkEntity.setQuantity(quantity+silkEntity.getQuantity());
         return this.convert_entity_to_dto(silk_Repo.save(silkEntity));
     }
 
