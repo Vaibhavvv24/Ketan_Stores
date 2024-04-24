@@ -23,6 +23,8 @@ export default function JacketsAndSuits() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const { jwt } = useGlobalContext();
+  const [size, setSize] = useState("");
+  const [colour, setColour] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:8080/other/filter/JACKET_SUIT", {
@@ -34,7 +36,6 @@ export default function JacketsAndSuits() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data.length);
         setData(data);
         setLoading(false);
       })
@@ -42,6 +43,77 @@ export default function JacketsAndSuits() {
         console.error("Error fetching data:", error);
       });
   }, []);
+
+  const handleJacketsAndSuits = (e) => {
+    if (colour === "" && size === "") {
+      fetch("http://localhost:8080/other/filter/JACKET_SUIT", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${jwt}`,
+        },
+      })
+        .then ((response) => response.json())
+        .then ((data) => {
+          setData(data);
+          setLoading(false);
+        })
+        .catch ((error) => {
+          console.error("Error fetching data:", error);
+        });
+    }
+    if (colour === "" && !isNaN(size)) {
+      fetch(`http://localhost:8080/other/JACKET_SUIT/filter/${size}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${jwt}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setData(data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+      });
+    }
+    else if (colour !== "" && size === "") {
+      fetch(`http://localhost:8080/other/JACKET_SUIT/colour/${colour}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${jwt}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setData(data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    }
+    else {
+      fetch(`http://localhost:8080/other/JACKET_SUIT/filter/${size}/colour/${colour}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${jwt}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setData(data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    }
+  }
 
   return (
     <div>
@@ -88,6 +160,13 @@ export default function JacketsAndSuits() {
                       type='text'
                       placeholder='Enter Size'
                       style={{ width: 170 }}
+                      onChange={(e) => {
+                      if (!isNaN(e.target.value) && e.target.value.trim() !== "") {
+                        setSize(Number(e.target.value));
+                      }
+                      else{
+                        setSize(e.target.value);
+                      }}}
                     />
                   </div>
                 </div>
@@ -109,12 +188,16 @@ export default function JacketsAndSuits() {
                       type='text'
                       placeholder='Enter Colour'
                       style={{ width: 170 }}
+                      onChange={(e) => setColour(e.target.value)}
                     />
                   </div>
                 </div>
               </div>
             </FormControl>
           </div>
+          {
+            isNaN(size) ? <Button className="bg-gray-500 hover:bg-gray-700" >Go</Button> : <Button className="bg-grey-500 hover:bg-grey-700" onClick={handleJacketsAndSuits}>Go</Button>
+          }
         </Sheet>
       </main>
       <div className="grid grid-cols-3 w-full gap-3 px-10 h-full">
@@ -131,5 +214,3 @@ export default function JacketsAndSuits() {
     </div>
   );
 }
-
-//Size, colour, type
