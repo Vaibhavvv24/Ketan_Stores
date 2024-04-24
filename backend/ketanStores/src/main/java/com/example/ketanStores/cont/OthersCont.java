@@ -2,6 +2,7 @@ package com.example.ketanStores.cont;
 
 import com.example.ketanStores.dto.ChudidarDto;
 import com.example.ketanStores.dto.Others_dto;
+import com.example.ketanStores.dto.PutBody;
 import com.example.ketanStores.enums.OthersEnum;
 import com.example.ketanStores.repository.Others_repo;
 import com.example.ketanStores.service.Other_service;
@@ -58,8 +59,9 @@ public class OthersCont {
     }
 
     @PutMapping("/other/update/{id}")
-    public ResponseEntity<?> updateChudidar(@PathVariable Long id,@RequestParam("quantity") int quantity, @RequestParam("colour") String colour) {
-        Others_dto othersDto = otherService.updateOther(id,quantity);
+    public ResponseEntity<?> updateChudidar(@PathVariable Long id, @RequestBody PutBody putBody) {
+        int q=Integer.parseInt(putBody.getQuantity());
+        Others_dto othersDto = otherService.updateOther(id,q);
         if (othersDto == null) {
             return ResponseEntity.notFound().build();
         }
