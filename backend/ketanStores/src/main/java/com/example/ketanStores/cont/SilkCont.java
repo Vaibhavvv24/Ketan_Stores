@@ -44,7 +44,7 @@ public class SilkCont {
         ArrayList<Silk_dto> silk = silk_service.getbytype(type);
         return ResponseEntity.ok().body(silk);
     }
-    @GetMapping("/size")
+    @GetMapping("/size/{size}")
     public ResponseEntity<?> getbysize(@RequestParam("size") int size) {
         ArrayList<Silk_dto> silk = silk_service.getbysize(size);
         return ResponseEntity.ok().body(silk);
@@ -85,5 +85,11 @@ public class SilkCont {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok().body(silk_dto);
+    }
+
+    @GetMapping("/silk_tcs/{type}/colour/{colour}/size/{size}")
+    public ResponseEntity<?> getByTypeSizeColour(@PathVariable String type, @PathVariable String colour, @PathVariable int size) {
+        ArrayList<Silk_dto> silk_dtos = silk_service.getByTypeColourSize(type, colour, size);
+        return ResponseEntity.ok().body(silk_dtos);
     }
 }
