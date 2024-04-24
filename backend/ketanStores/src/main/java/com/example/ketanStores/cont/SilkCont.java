@@ -79,8 +79,8 @@ public class SilkCont {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<?> updateSilk(@PathVariable Long id,@RequestParam("price") int price,@RequestParam("quantity") int quantity, @RequestParam("colour") String colour) {
-        Silk_dto silk_dto = silk_service.updateSilk(id, price, quantity, colour);
+    public ResponseEntity<?> updateSilk(@PathVariable Long id, @RequestParam("quantity") int quantity) {
+        Silk_dto silk_dto = silk_service.updateSilk(id, quantity);
         if (silk_dto == null) {
             return ResponseEntity.notFound().build();
         }

@@ -88,9 +88,8 @@ public class CottonCont {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<?> updateCotton(@PathVariable Long id, @RequestParam("price") int price,
-            @RequestParam("quantity") int quantity, @RequestParam("colour") String colour) {
-        Cotton_dto cotton_dto = cotton_service.updateCotton(id, price, quantity, colour);
+    public ResponseEntity<?> updateCotton(@PathVariable Long id, @RequestParam("quantity") int quantity) {
+        Cotton_dto cotton_dto = cotton_service.updateCotton(id, quantity);
         if (cotton_dto == null) {
             return ResponseEntity.notFound().build();
         }
