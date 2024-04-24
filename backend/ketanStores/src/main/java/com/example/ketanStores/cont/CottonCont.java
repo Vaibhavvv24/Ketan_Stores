@@ -5,6 +5,8 @@ import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.example.ketanStores.dto.PutBody;
 import com.example.ketanStores.enums.CottonEnum;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.parameters.P;
@@ -93,8 +95,9 @@ public class CottonCont {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<?> updateCotton(@PathVariable Long id, @RequestParam("quantity") int quantity) {
-        Cotton_dto cotton_dto = cotton_service.updateCotton(id, quantity);
+    public ResponseEntity<?> updateCotton(@PathVariable Long id, @RequestBody PutBody putBody) {
+        int updated_Quantity = Integer.parseInt(putBody.getQuantity());
+        Cotton_dto cotton_dto = cotton_service.updateCotton(id, updated_Quantity);
         if (cotton_dto == null) {
             return ResponseEntity.notFound().build();
         }
