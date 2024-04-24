@@ -60,6 +60,7 @@ public class ChudidarCont {
     }
     @PutMapping("/chudidar/update/{id}")
     public ResponseEntity<?> updateChudidar(@PathVariable Long id,@RequestParam("quantity") int quantity) {
+        System.out.println(quantity);
         ChudidarDto chudidarDto = chudidarService.updateChudidar(id,quantity);
         if (chudidarDto == null) {
             return ResponseEntity.notFound().build();

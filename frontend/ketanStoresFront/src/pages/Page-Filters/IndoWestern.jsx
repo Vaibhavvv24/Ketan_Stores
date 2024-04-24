@@ -117,7 +117,7 @@ export default function IndoWestern() {
           </div>
         </Sheet>
       </main>
-      <div className='grid grid-cols-3 w-full gap-3 px-10 h-full'>
+      <div className='grid grid-cols-2 w-full gap-3 px-10 h-full'>
         {!loading &&
           data &&
           data.map((item, index) => {

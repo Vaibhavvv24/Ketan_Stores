@@ -155,7 +155,7 @@ export default function Silk() {
           </div>
         </Sheet>
       </main>
-      <div className='grid grid-cols-3 w-full gap-3 px-10 h-full'>
+      <div className='grid grid-cols-2 w-full gap-3 px-10 h-full'>
         {!loading &&
           silkdata &&
           silkdata.map((item, index) => {
