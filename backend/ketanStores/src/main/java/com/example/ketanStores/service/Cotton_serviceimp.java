@@ -174,12 +174,22 @@ public class Cotton_serviceimp implements Cotton_service{
 
     @Override
     public ArrayList<Cotton_dto> getbysize(int size) {
-        //code
         ArrayList<Cotton_dto> cotton_dtos = new ArrayList<>();
         Iterable<CottonEntity> cottons = cotton_Repo.findAll();
         for(CottonEntity cotton : cottons){
             if(cotton.getSize() == size){
                 cotton_dtos.add(convert_entity_to_dto(cotton));
+            }
+        }
+        return cotton_dtos;
+    }
+    @Override
+    public ArrayList<Cotton_dto> getByTypeColourSize(String type, String colour, int size) {
+        ArrayList<Cotton_dto> cotton_dtos = new ArrayList<>();
+        Iterable<CottonEntity> cottonEntities = cotton_Repo.findAll();
+        for (CottonEntity cottonEntity : cottonEntities) {
+            if (cottonEntity.getType().toString().equals(type) && cottonEntity.getColour().equals(colour) && cottonEntity.getSize() == size) {
+                cotton_dtos.add(convert_entity_to_dto(cottonEntity));
             }
         }
         return cotton_dtos;

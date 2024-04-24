@@ -15,6 +15,9 @@ import com.example.ketanStores.service.Cotton_service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.sql.rowset.serial.SerialBlob;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @RestController
@@ -29,7 +32,7 @@ public class CottonCont {
     public ResponseEntity<?> getClothbyid(@PathVariable("id") Long id) {
         Cotton_dto cotton = cotton_service.getClothbyid(id);
         if (cotton == null) {
-            return ResponseEntity.status(404).body("No data found");
+            return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok().body(cotton);
     }
@@ -85,4 +88,10 @@ public class CottonCont {
         }
         return ResponseEntity.ok().body(cotton_dto);
     }
+    @GetMapping("/cotton_tcs/{type}/colour/{colour}/size/{size}")
+    public ResponseEntity<?> getMethodName(@RequestParam String param) {
+        ArrayList<Cotton_dto> cotton_dtos = cotton_service.getByTypeColourSize(param, param, Integer.parseInt(param));
+        return ResponseEntity.ok().body(cotton_dtos);
+    }
+    
 }
