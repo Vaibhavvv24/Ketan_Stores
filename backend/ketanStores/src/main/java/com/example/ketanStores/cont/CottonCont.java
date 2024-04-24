@@ -69,4 +69,5 @@ public class CottonCont {
         ArrayList<Cotton_dto> cotton_dtos = cotton_service.getCottonByColour(colour);
         return ResponseEntity.ok().body(cotton_dtos);
     }
+
 }
