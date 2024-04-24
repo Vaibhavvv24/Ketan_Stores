@@ -17,7 +17,7 @@ public interface Other_service {
 
     Others_dto createOther(String name, int price, int quantity, OthersEnum othersEnum, Blob blob, int size, String colour);
 
-    Others_dto updateOther(Long id, int price, int quantity, String colour);
+    Others_dto updateOther(Long id,int quantity);
 
     List<Others_dto> getOtherByTypeandSize(String type, int size);
 
