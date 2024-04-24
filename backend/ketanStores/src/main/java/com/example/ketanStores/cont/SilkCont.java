@@ -45,7 +45,7 @@ public class SilkCont {
         return ResponseEntity.ok().body(silk);
     }
     @GetMapping("/size/{size}")
-    public ResponseEntity<?> getbysize(@RequestParam("size") int size) {
+    public ResponseEntity<?> getbysize(@PathVariable("size") int size) {
         ArrayList<Silk_dto> silk = silk_service.getbysize(size);
         return ResponseEntity.ok().body(silk);
     }
