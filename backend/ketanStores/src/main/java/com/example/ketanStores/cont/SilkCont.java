@@ -79,8 +79,8 @@ public class SilkCont {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<?> updateSilk(@PathVariable Long id,@RequestParam("price") int price,@RequestParam("quantity") int quantity, @RequestParam("colour") String colour) {
-        Silk_dto silk_dto = silk_service.updateSilk(id, price, quantity, colour);
+    public ResponseEntity<?> updateSilk(@PathVariable Long id, @RequestParam("quantity") int quantity) {
+        Silk_dto silk_dto = silk_service.updateSilk(id, quantity);
         if (silk_dto == null) {
             return ResponseEntity.notFound().build();
         }
@@ -90,6 +90,12 @@ public class SilkCont {
     @GetMapping("/silk_tcs/{type}/colour/{colour}/size/{size}")
     public ResponseEntity<?> getByTypeSizeColour(@PathVariable String type, @PathVariable String colour, @PathVariable int size) {
         ArrayList<Silk_dto> silk_dtos = silk_service.getByTypeColourSize(type, colour, size);
+        return ResponseEntity.ok().body(silk_dtos);
+    }
+
+    @GetMapping("/silk_tc/{type}/size/{size}")
+    public ResponseEntity<?> getByTypeSize(@PathVariable String type, @PathVariable int size) {
+        ArrayList<Silk_dto> silk_dtos = silk_service.getByTypeSize(type, size);
         return ResponseEntity.ok().body(silk_dtos);
     }
 }

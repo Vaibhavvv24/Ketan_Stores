@@ -25,6 +25,8 @@ public interface Silk_service{
 
     ArrayList<Silk_dto> getbysize(int size);
 
+    ArrayList<Silk_dto> getByTypeSize(String type, int size);
+
     String add(SilkEntity silkEntity);
 
     ArrayList<Silk_dto> getByTypeAndSize(String type, int size);
@@ -37,7 +39,7 @@ public interface Silk_service{
 
     ArrayList<Silk_dto> getSilkByColourAndtype(String type, String colour);
 
-    Silk_dto updateSilk(Long id, int price, int quantity, String colour);
+    Silk_dto updateSilk(Long id, int quantity);
 
     ArrayList<Silk_dto> getByTypeColourSize(String type, String colour, int size);
 }

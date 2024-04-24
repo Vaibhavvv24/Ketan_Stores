@@ -101,6 +101,19 @@ public class Silk_serviceimp implements Silk_service{
         }
         return silk_dtos;
     }
+
+    @Override
+    public ArrayList<Silk_dto> getByTypeSize(String type, int size) {
+        ArrayList<Silk_dto> silk_dtos = new ArrayList<>();
+        Iterable<SilkEntity> silkEntities = silk_Repo.findAll();
+        for (SilkEntity silkEntity : silkEntities) {
+            if (silkEntity.getSize() == size && silkEntity.getType().toString().equals(type)) {
+                silk_dtos.add(convert_entity_to_dto(silkEntity));
+            }
+        }
+        return silk_dtos;
+    }
+
     @Override
     public String add(SilkEntity silkEntity) {
         silk_Repo.save(silkEntity);
@@ -176,10 +189,8 @@ public class Silk_serviceimp implements Silk_service{
     }
 
     @Override
-    public Silk_dto updateSilk(Long id, int price, int quantity, String colour) {
+    public Silk_dto updateSilk(Long id, int quantity) {
         SilkEntity silkEntity = silk_Repo.findById(id).get();
-        silkEntity.setColour(colour);
-        silkEntity.setPrice(price);
         silkEntity.setQuantity(quantity);
         return this.convert_entity_to_dto(silk_Repo.save(silkEntity));
     }
