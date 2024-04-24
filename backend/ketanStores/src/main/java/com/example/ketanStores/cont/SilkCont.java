@@ -39,7 +39,7 @@ public class SilkCont {
         ArrayList<Silk_dto> silk = silk_service.getall();
         return ResponseEntity.ok().body(silk);
     }
-    @GetMapping("/{type}")
+    @GetMapping("/type/{type}")
     public ResponseEntity<?> getbytype(@PathVariable("type") String type) {
         ArrayList<Silk_dto> silk = silk_service.getbytype(type);
         return ResponseEntity.ok().body(silk);
