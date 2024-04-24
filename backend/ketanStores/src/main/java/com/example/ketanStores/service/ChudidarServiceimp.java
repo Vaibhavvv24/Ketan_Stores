@@ -95,6 +95,8 @@ public class ChudidarServiceimp implements ChudidarService{
         ChudidarEntity savedone=chudidarRepo.save(chudidarEntity);
         ChudidarDto chudidarDto=new ChudidarDto();
         chudidarEntity.setId(savedone.getId());
+        chudidarDto.setId(savedone.getId());
+        chudidarDto.setQuantity(savedone.getQuantity());
         return chudidarDto;
     }
 
