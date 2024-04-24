@@ -86,6 +86,11 @@ public class CottonCont {
         ArrayList<Cotton_dto> cotton_dtos = cotton_service.getByTypeColour(type, colour);
         return ResponseEntity.ok().body(cotton_dtos);
     }
+    @GetMapping("/cotton/{colour}/size/{size}")
+    public ResponseEntity<?> getByColourSize(@PathVariable String colour, @PathVariable int size) {
+        ArrayList<Cotton_dto> cotton_dtos = cotton_service.getByColourSize(size, colour);
+        return ResponseEntity.ok().body(cotton_dtos);
+    }
 
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateCotton(@PathVariable Long id, @RequestParam("quantity") int quantity) {
