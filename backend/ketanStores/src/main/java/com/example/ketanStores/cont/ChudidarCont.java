@@ -59,8 +59,8 @@ public class ChudidarCont {
         return ResponseEntity.ok().body(chudidarDtos);
     }
     @PutMapping("/chudidar/update/{id}")
-    public ResponseEntity<?> updateChudidar(@PathVariable Long id,@RequestParam("price") int price,@RequestParam("quantity") int quantity) {
-        ChudidarDto chudidarDto = chudidarService.updateChudidar(id,price,quantity);
+    public ResponseEntity<?> updateChudidar(@PathVariable Long id,@RequestParam("quantity") int quantity) {
+        ChudidarDto chudidarDto = chudidarService.updateChudidar(id,quantity);
         if (chudidarDto == null) {
             return ResponseEntity.notFound().build();
         }
