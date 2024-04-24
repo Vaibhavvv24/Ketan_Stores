@@ -25,6 +25,8 @@ public interface Silk_service{
 
     ArrayList<Silk_dto> getbysize(int size);
 
+    ArrayList<Silk_dto> getByTypeSize(String type, int size);
+
     String add(SilkEntity silkEntity);
 
     ArrayList<Silk_dto> getByTypeAndSize(String type, int size);
