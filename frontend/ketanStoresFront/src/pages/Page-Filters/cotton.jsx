@@ -6,9 +6,10 @@ import { useState, useEffect } from 'react'
 import { useGlobalContext } from '../../context'
 import { CssBaseline, Sheet, Typography, FormControl, FormLabel, Input, Button, RadioGroup, Radio, Select, Option } from '@mui/joy'
 import Base64decode from '../../components/Base64decode'
+import ItemsPalette from '../../components/ItemsPalette'
 
 export default function cotton() {
-  const [data, setData] = useState([]);
+  const [cottondata, setCottonData] = useState([]);
   const [loading, setLoading] = useState(true);
   const { jwt } = useGlobalContext();
 
@@ -23,13 +24,13 @@ export default function cotton() {
     .then(response => response.json())
     .then(data => {
       console.log(data);
-      setData(data);
+      setCottonData(data);
       setLoading(false);
     })
     .catch(error => {
       console.error('Error fetching data:', error);
     });
-  }, []);
+  }, [jwt]);
 
   return (
     <div>
@@ -55,97 +56,110 @@ export default function cotton() {
             <Typography level='h4' component='h1'>
               <b>Filters:</b>
             </Typography>
-            <Typography level='body-sm'>Choose appropriate items using available filters:</Typography>
+            <Typography level='body-sm'>
+              Choose appropriate items using available filters:
+            </Typography>
           </div>
           <div className='flex justify-evenly h-full w-full mt-2'>
-          <FormControl>
-            <div className='flex justify-evenly h-full w-full'>
-              <div className='flex-col justify-left pl-1 items-center gap-2 mt-2'>
-                <Typography
-                  level='h6'
-                  component='h1'
-                  className='flex items-center h-[22px]'
-                >
-                  <span className='text-xs'>1.</span>
-                  <FormLabel className='pl-2'>Size:</FormLabel>
-                </Typography>
-                <div className='flex justify-center items-center w-full mt-2'>
-                  <Input type='text' placeholder='Enter Size' style = {{width: 170}}/>
+            <FormControl>
+              <div className='flex justify-evenly h-full w-full'>
+                <div className='flex-col justify-left pl-1 items-center gap-2 mt-2'>
+                  <Typography
+                    level='h6'
+                    component='h1'
+                    className='flex items-center h-[22px]'
+                  >
+                    <span className='text-xs'>1.</span>
+                    <FormLabel className='pl-2'>Size:</FormLabel>
+                  </Typography>
+                  <div className='flex justify-center items-center w-full mt-2'>
+                    <Input
+                      type='text'
+                      placeholder='Enter Size'
+                      style={{ width: 170 }}
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-          </FormControl>
-          <FormControl>
-            <div className='flex justify-evenly h-full w-full'>
-              <div className='flex-col justify-left pl-1 items-center gap-2 mt-2'>
-                <Typography
-                  level='h6'
-                  component='h1'
-                  className='flex items-center h-[22px]'
-                >
-                  <span className='text-xs'>2.</span>
-                  <FormLabel className='pl-2'>Colour:</FormLabel>
-                </Typography>
-                <div className='flex justify-center items-center w-full mt-2'>
-                  <Input type='text' placeholder='Enter Colour' style = {{width: 170}} />
+            </FormControl>
+            <FormControl>
+              <div className='flex justify-evenly h-full w-full'>
+                <div className='flex-col justify-left pl-1 items-center gap-2 mt-2'>
+                  <Typography
+                    level='h6'
+                    component='h1'
+                    className='flex items-center h-[22px]'
+                  >
+                    <span className='text-xs'>2.</span>
+                    <FormLabel className='pl-2'>Colour:</FormLabel>
+                  </Typography>
+                  <div className='flex justify-center items-center w-full mt-2'>
+                    <Input
+                      type='text'
+                      placeholder='Enter Colour'
+                      style={{ width: 170 }}
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-          </FormControl>
-          <FormControl>
-            <div className='flex justify-evenly h-full w-full'>
-              <div className='flex-col justify-left pl-1 items-center gap-2 mt-2'>
-                <Typography
-                  level='h6'
-                  component='h1'
-                  className='flex items-center h-[22px]'
-                >
-                  <span className='text-xs'>3.</span>
-                  <FormLabel className='pl-2'>Type:</FormLabel>
-                </Typography>
-                <div className='flex justify-center items-center w-full mt-2'>
-                <Select defaultValue='Plain' style = {{width: 170}}>
-                    <Option
-                      value='Plain'
-                      onClick={(e) => {
-                        setType("Plain");
-                      }}
-                    >
-                      Plain
-                    </Option>
-                    <Option
-                      value='Print & Design'
-                      onClick={(e) => {
-                        setType("PRINT_AND_DESIGN");
-                      }}
-                    >
-                      Print & Design
-                    </Option>
-                  </Select>
+            </FormControl>
+            <FormControl>
+              <div className='flex justify-evenly h-full w-full'>
+                <div className='flex-col justify-left pl-1 items-center gap-2 mt-2'>
+                  <Typography
+                    level='h6'
+                    component='h1'
+                    className='flex items-center h-[22px]'
+                  >
+                    <span className='text-xs'>3.</span>
+                    <FormLabel className='pl-2'>Type:</FormLabel>
+                  </Typography>
+                  <div className='flex justify-center items-center w-full mt-2'>
+                    <Select defaultValue='Plain' style={{ width: 170 }}>
+                      <Option
+                        value='Plain'
+                        onClick={(e) => {
+                          setType("Plain");
+                        }}
+                      >
+                        Plain
+                      </Option>
+                      <Option
+                        value='Digital Print'
+                        onClick={(e) => {
+                          setType("DIGITAL_PRINT");
+                        }}
+                      >
+                        Digital Print
+                      </Option>
+                      <Option
+                        value='Embroidery'
+                        onClick={(e) => {
+                          setType("EMBROIDERY");
+                        }}
+                      >
+                        Embroidery
+                      </Option>
+                    </Select>
+                  </div>
                 </div>
               </div>
-            </div>
-          </FormControl>
+            </FormControl>
           </div>
         </Sheet>
       </main>
-      {
-        !loading && data && data.map((item, index) => {
+      <div className='grid grid-cols-3 w-full gap-3 px-10 h-full'>
+        {!loading &&
+          cottondata &&
+          cottondata.map((item, index) => {
             console.log(item); // Check the structure of each item
             return (
               <div key={index}>
-                <h1>{item.price}</h1>
-                <h1>{item.size}</h1>
-                <h1>{item.quantity}</h1>
-                <h1>{item.type}</h1>
-                <h1>{item.colour}</h1>
-                <h1>{item.name}</h1>
-                <Base64decode base64String={item.image} />
-                {/* Render other properties as needed */}
+                <ItemsPalette filterItems={[item]} />
               </div>
             );
-          })
-      }
+          })}
+      </div>
     </div>
-  )
+  );
 }

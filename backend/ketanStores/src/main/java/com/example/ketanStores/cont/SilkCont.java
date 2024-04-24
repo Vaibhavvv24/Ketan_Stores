@@ -44,8 +44,8 @@ public class SilkCont {
         ArrayList<Silk_dto> silk = silk_service.getbytype(type);
         return ResponseEntity.ok().body(silk);
     }
-    @GetMapping("/size")
-    public ResponseEntity<?> getbysize(@RequestParam("size") int size) {
+    @GetMapping("/size/{size}")
+    public ResponseEntity<?> getbysize(@PathVariable("size") int size) {
         ArrayList<Silk_dto> silk = silk_service.getbysize(size);
         return ResponseEntity.ok().body(silk);
     }
@@ -54,7 +54,7 @@ public class SilkCont {
         byte[] bytes = file.getBytes();
         Blob blob = new SerialBlob(bytes);
         SilkEnum silkEnum = SilkEnum.valueOf(type);
-        Silk_dto silk_dto = silk_service.createSilk(name, price, quantity, silkEnum, blob, size);
+        Silk_dto silk_dto = silk_service.createSilk(name, price, quantity, silkEnum, blob, size, colour);
         if (silk_dto == null) {
             return ResponseEntity.notFound().build();
         }
@@ -69,6 +69,27 @@ public class SilkCont {
     @GetMapping("/silk/colour_filter/{colour}")
     public ResponseEntity<?> getByColour(@PathVariable String colour) {
         ArrayList<Silk_dto> silk_dtos = silk_service.getSilkByColour(colour);
+        return ResponseEntity.ok().body(silk_dtos);
+    }
+
+    @GetMapping("/silk/{type}/colour/{colour}")
+    public ResponseEntity<?> getByTypeColour(@PathVariable String type, @PathVariable String colour) {
+        ArrayList<Silk_dto> silk_dtos = silk_service.getSilkByColourAndtype(type, colour);
+        return ResponseEntity.ok().body(silk_dtos);
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> updateSilk(@PathVariable Long id,@RequestParam("price") int price,@RequestParam("quantity") int quantity, @RequestParam("colour") String colour) {
+        Silk_dto silk_dto = silk_service.updateSilk(id, price, quantity, colour);
+        if (silk_dto == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(silk_dto);
+    }
+
+    @GetMapping("/silk_tcs/{type}/colour/{colour}/size/{size}")
+    public ResponseEntity<?> getByTypeSizeColour(@PathVariable String type, @PathVariable String colour, @PathVariable int size) {
+        ArrayList<Silk_dto> silk_dtos = silk_service.getByTypeColourSize(type, colour, size);
         return ResponseEntity.ok().body(silk_dtos);
     }
 }

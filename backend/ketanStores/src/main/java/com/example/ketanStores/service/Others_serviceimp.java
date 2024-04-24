@@ -86,10 +86,11 @@ public class Others_serviceimp implements Other_service {
     }
 
     @Override
-    public Others_dto updateOther(Long id, int price, int quantity) {
+    public Others_dto updateOther(Long id, int price, int quantity, String colour) {
         OthersEntity othersEntity = othersRepo.findById(id).get();
         othersEntity.setPrice(price);
         othersEntity.setQuantity(othersEntity.getQuantity() + quantity);
+        othersEntity.setColour(colour);
         OthersEntity savedone=othersRepo.save(othersEntity);
         Others_dto othersDto = new Others_dto();
         othersEntity.setId(savedone.getId());

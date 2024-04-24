@@ -58,8 +58,8 @@ public class OthersCont {
     }
 
     @PutMapping("/other/update/{id}")
-    public ResponseEntity<?> updateChudidar(@PathVariable Long id,@RequestParam("price") int price,@RequestParam("quantity") int quantity) {
-        Others_dto othersDto = otherService.updateOther(id,price,quantity);
+    public ResponseEntity<?> updateChudidar(@PathVariable Long id,@RequestParam("price") int price,@RequestParam("quantity") int quantity, @RequestParam("colour") String colour) {
+        Others_dto othersDto = otherService.updateOther(id,price,quantity, colour);
         if (othersDto == null) {
             return ResponseEntity.notFound().build();
         }

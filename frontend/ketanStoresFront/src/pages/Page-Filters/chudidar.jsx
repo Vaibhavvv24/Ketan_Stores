@@ -17,6 +17,7 @@ import Option from "@mui/joy/Option";
 import { useState } from "react";
 import { useGlobalContext } from "../../context";
 import Base64decode from "../../components/Base64decode";
+import ItemsPalette from "../../components/ItemsPalette";
 
 export default function Chudidar() {
   const [data, setData] = useState([]);
@@ -44,6 +45,8 @@ export default function Chudidar() {
     });
   }, []);
 
+  console.log(isNaN(size) && type !== "");
+
   const display = (e) => {
     if (type === ""){
       fetch("http://localhost:8080/churidars", {
@@ -64,7 +67,7 @@ export default function Chudidar() {
       });
     }
     else if (type !== "" && size === "") {
-      fetch(`http://localhost:8080/chudiar/${type}`, {
+      fetch(`http://localhost:8080/chudidar/${type}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -205,27 +208,30 @@ export default function Chudidar() {
             </div>
           </FormControl>
           </div>
-          <Button onClick = {display}>Go</Button>
+          {
+            isNaN(size) && type !== "" ? <Button className="bg-gray-500 hover:bg-gray-700" >Go</Button> : <Button className="bg-grey-500 hover:bg-grey-700" onClick={display}>Go</Button>
+          }
         </Sheet>
       </main>
-      {
+      {/* {
         !loading && data && data.length > 0 && data.map((item, index) => {
-            console.log(item); // Check the structure of each item
             return (
               <div key={index}>
-                <h1>{item.price}</h1>
-                <h1>{item.size}</h1>
-                <h1>{item.quantity}</h1>
-                <h1>{item.type}</h1>
-                <h1>{item.colour}</h1>
-                <h1>{item.name}</h1>
-                <Base64decode base64String={item.image} />
-                {/* <img src={item.img} alt="img" /> */}
-                {/* Render other properties as needed */}
+                <ItemsPalette filterItems={[item]} />
               </div>
             );
-          })
-      }
+          }) */}
+      <div className="grid grid-cols-3 w-full gap-3 px-10 h-full">
+        {!loading &&
+          data &&
+          data.map((item, index) => {
+            return (
+              <div key={index}>
+                <ItemsPalette filterItems={[item]} />
+              </div>
+            );
+          })}
+      </div>
     </div>
   );
 }

@@ -18,41 +18,49 @@ export default function ItemsPalette({ filterItems }) {
   const price = filterItems[0].price;
   const quantity = filterItems[0].quantity;
   const size = filterItems[0].size;
-  const image = filterItems[0].image;
+    const image = filterItems[0].image;
+    const type = filterItems[0].type;
+    const color = filterItems[0].color;
 
-  const handleAvailable = () => {
-    if (quantity > 0) {
-      return "Yes";
-    } else {
-      return "No";
-    }
-  };
-  return (
-    <div>
-      <Card sx={{ width: "100%" , height : "100%" }}>
-        <div className='flex justify-evenly w-full'>
-          <div className='w-1/2'>
-            <AspectRatio minHeight='120px' maxHeight='200px'>
-              <Base64decode base64String={image} />
-            </AspectRatio>
-          </div>
-          <div className='w-1/2 flex flex-col justify-evenly items-start ml-4'>
-            <Typography level='title-lg'>{name}</Typography>
-            <Typography level='body-md'>Price : ₹ {price}</Typography>
-            {quantity > 0 ? (
+    const handleAvailable = () => {
+      if (quantity > 0) {
+        return "Yes";
+      } else {
+        return "No";
+      }
+    };
+    return (
+      <div>
+        <Card sx={{ width: "100%", height: "100%" }}>
+          <div className='flex justify-evenly w-full'>
+            <div className='w-1/2'>
+              <AspectRatio minHeight='120px' maxHeight='200px'>
+                <Base64decode base64String={image} />
+              </AspectRatio>
+            </div>
+            <div className='w-1/2 flex flex-col justify-evenly items-start ml-4'>
+              <Typography level='title-lg'>{name}</Typography>
+              <Typography level='body-md'>Price : ₹ {price}</Typography>
+              {quantity > 0 ? (
+                <Typography level='body-md'>
+                  {quantity > 0 ? `Quantity : ${quantity}` : ""}
+                </Typography>
+              ) : (
+                <Typography level='body-md' color='error'>
+                  Quantity : Outof Stock
+                </Typography>
+              )}
+              <Typography level='body-md'>Size : {size}</Typography>
               <Typography level='body-md'>
-                {quantity > 0 ? `Quantity : ${quantity}` : ""}
+                Available : {handleAvailable()}
               </Typography>
-            ) : (
-              <Typography level='body-md' color='error'>Quantity : Outof Stock</Typography>
-            )}
-            <Typography level='body-md'>Size : {size}</Typography>
-            <Typography level='body-md'>
-              Available : {handleAvailable()}
-            </Typography>
+              {type && <Typography level='body-md'>Type : {type}</Typography>}
+              {color && (
+                <Typography level='body-md'>Color : {color}</Typography>
+              )}
+            </div>
           </div>
-        </div>
-      </Card>
-    </div>
-  );
+        </Card>
+      </div>
+    );
 }
