@@ -2,6 +2,7 @@ package com.example.ketanStores.cont;
 
 
 import com.example.ketanStores.dto.ChudidarDto;
+import com.example.ketanStores.dto.PutBody;
 import com.example.ketanStores.enums.ChudidarEnum;
 import com.example.ketanStores.service.ChudidarService;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +13,6 @@ import javax.sql.rowset.serial.SerialBlob;
 import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,8 +59,9 @@ public class ChudidarCont {
         return ResponseEntity.ok().body(chudidarDtos);
     }
     @PutMapping("/chudidar/update/{id}")
-    public ResponseEntity<?> updateChudidar(@PathVariable Long id,@RequestParam("quantity") int quantity) {
-        ChudidarDto chudidarDto = chudidarService.updateChudidar(id,quantity);
+    public ResponseEntity<?> updateChudidar(@PathVariable Long id, @RequestBody PutBody putBody) {
+        int q=Integer.parseInt(putBody.getQuantity());
+        ChudidarDto chudidarDto = chudidarService.updateChudidar(id,q);
         if (chudidarDto == null) {
             return ResponseEntity.notFound().build();
         }

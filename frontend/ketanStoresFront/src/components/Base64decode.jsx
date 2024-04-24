@@ -33,6 +33,7 @@ const Base64decode = ({ base64String }) => {
           src={imageUrl}
           alt="Decoded Image"
           className="object-cover"
+          style={ { width: "100%", height: "100%" } }
         />
       )}
     </div>

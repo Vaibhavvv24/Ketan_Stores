@@ -1,4 +1,5 @@
 package com.example.ketanStores.cont;
+import com.example.ketanStores.dto.PutBody;
 import com.example.ketanStores.enums.SilkEnum;
 import org.springframework.web.bind.annotation.*;
 
@@ -79,8 +80,9 @@ public class SilkCont {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<?> updateSilk(@PathVariable Long id, @RequestParam("quantity") int quantity) {
-        Silk_dto silk_dto = silk_service.updateSilk(id, quantity);
+    public ResponseEntity<?> updateSilk(@PathVariable Long id, @RequestBody PutBody putBody) {
+        int updated_Quantity = Integer.parseInt(putBody.getQuantity());
+        Silk_dto silk_dto = silk_service.updateSilk(id, updated_Quantity);
         if (silk_dto == null) {
             return ResponseEntity.notFound().build();
         }
@@ -96,6 +98,12 @@ public class SilkCont {
     @GetMapping("/silk_tc/{type}/size/{size}")
     public ResponseEntity<?> getByTypeSize(@PathVariable String type, @PathVariable int size) {
         ArrayList<Silk_dto> silk_dtos = silk_service.getByTypeSize(type, size);
+        return ResponseEntity.ok().body(silk_dtos);
+    }
+
+    @GetMapping("/silk_sc/{size}/colour/{colour}")
+    public ResponseEntity<?> getBySizeColour(@PathVariable int size, @PathVariable String colour) {
+        ArrayList<Silk_dto> silk_dtos = silk_service.getBySizeColour(size, colour);
         return ResponseEntity.ok().body(silk_dtos);
     }
 }

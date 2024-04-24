@@ -36,16 +36,25 @@ export default function Chudidar() {
     })
     .then(response => response.json())
     .then(data => {
-      console.log(data);
-      setData(data);
+      const newData = data.map((item) => {
+        return {
+          id : item.id,
+          name: item.name,
+          price: item.price,
+          quantity: item.quantity,
+          size: item.size,
+          image: item.image,
+          type: item.type_name,
+        };
+      })
+      // console.log(newData);
+      setData(newData);
       setLoading(false);
     })
     .catch(error => {
       console.error('Error fetching data:', error);
     });
   }, []);
-
-  console.log(isNaN(size) && type !== "");
 
   const display = (e) => {
     if (type === ""){
@@ -57,9 +66,19 @@ export default function Chudidar() {
         },
       })
       .then(response => response.json())
-      .then(data => {
-        console.log(data);
-        setData(data);
+        .then(data => {
+        const newData = data.map((item) => {
+          return {
+            id : item.id,
+            name: item.name,
+            price: item.price,
+            quantity: item.quantity,
+            size: item.size,
+            image: item.image,
+            type: item.type_name,
+          };
+        });
+        setData(newData);
         setLoading(false);
       })
       .catch(error => {
@@ -75,9 +94,19 @@ export default function Chudidar() {
         },
       })
       .then(response => response.json())
-      .then(data => {
-        console.log(data);
-        setData(data);
+        .then(data => {
+        const newData = data.map((item) => {
+          return {
+            id : item.id,
+            name: item.name,
+            price: item.price,
+            quantity: item.quantity,
+            size: item.size,
+            image: item.image,
+            type: item.type_name,
+          };
+        });
+        setData(newData);
         setLoading(false);
       })
       .catch(error => {
@@ -104,7 +133,7 @@ export default function Chudidar() {
     }
   }
 
-  console.log(type, size);
+  // console.log(type, size);
 
   return (
     <div>
@@ -221,13 +250,13 @@ export default function Chudidar() {
               </div>
             );
           }) */}
-      <div className="grid grid-cols-3 w-full gap-3 px-10 h-full">
+      <div className="grid grid-cols-2 w-full gap-3 px-10 h-full">
         {!loading &&
           data &&
           data.map((item, index) => {
             return (
-              <div key={index}>
-                <ItemsPalette filterItems={[item]} />
+              <div key={ index }>
+                <ItemsPalette filterItems={ [item] } Item={ data[index] } />
               </div>
             );
           })}
