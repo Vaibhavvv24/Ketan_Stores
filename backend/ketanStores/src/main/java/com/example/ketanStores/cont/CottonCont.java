@@ -38,12 +38,12 @@ public class CottonCont {
         ArrayList<Cotton_dto> cotton = cotton_service.getall();
         return ResponseEntity.ok().body(cotton);
     }
-    @GetMapping("/{type}")
+    @GetMapping("/type/{type}")
     public ResponseEntity<?> getbytype(@PathVariable("type") String type) {
         ArrayList<Cotton_dto> cotton = cotton_service.getbytype(type);
         return ResponseEntity.ok().body(cotton);
     }
-    @GetMapping("/{size}")
+    @GetMapping("/size/{size}")
     public ResponseEntity<?> getbysize(@PathVariable("size") int size) {
         ArrayList<Cotton_dto> cotton = cotton_service.getbysize(size);
         return ResponseEntity.ok().body(cotton);
