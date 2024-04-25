@@ -190,12 +190,11 @@ export default function Cotton() {
   }
 
   return (
-    <div>
+    <div className="flex flex-wrap flex-col justify-center items-center" >
       <main>
         <CssBaseline />
         <Sheet
           sx={{
-            width: "50%",
             display: "flex",
             flexDirection: "column",
             flexWrap: "wrap",

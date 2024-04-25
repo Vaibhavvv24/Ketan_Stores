@@ -117,12 +117,11 @@ export default function IndoWestern() {
   }
 
   return (
-    <div>
+    <div className="flex flex-wrap flex-col justify-center items-center" >
       <main>
         <CssBaseline />
         <Sheet
           sx={{
-            width: "40%",
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-evenly",

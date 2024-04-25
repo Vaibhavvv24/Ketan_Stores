@@ -190,12 +190,17 @@ export default function Silk() {
   }
 
   return (
-    <div>
+    <div className="flex flex-wrap flex-col justify-center items-center" >
+      <FormControl>
+        <Input
+          type = 'text'
+          placeholder="Search"
+        />
+      </FormControl>
       <main>
         <CssBaseline />
         <Sheet
           sx={{
-            width: "50%",
             display: "flex",
             flexDirection: "column",
             flexWrap: "wrap",
