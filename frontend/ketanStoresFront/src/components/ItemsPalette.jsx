@@ -11,8 +11,9 @@ import BookmarkAdd from "@mui/icons-material/BookmarkAddOutlined";
 import Base64decode from "./Base64decode";
 import { useGlobalContext } from "../context";
 import { useNavigate } from "react-router-dom";
+import Chudidar from "../pages/Page-Filters/chudidar";
 
-export default function ItemsPalette({ filterItems, Item }) {
+export default function ItemsPalette({ filterItems, Item , newQuantity ,setNewQuantity , Type}) {
   const { jwt } = useGlobalContext();
   // console.log(filterItems);
   const name = filterItems[0].name;
@@ -41,7 +42,7 @@ export default function ItemsPalette({ filterItems, Item }) {
     console.log(Item);
     try {
       const response = await fetch(
-        `http://localhost:8080/chudidar/update/${Item.id}`,
+        `http://localhost:8080/${Type}/update/${Item.id}`,
         {
           method: "PUT",
           headers: {
@@ -49,7 +50,7 @@ export default function ItemsPalette({ filterItems, Item }) {
             Authorization: `Bearer ${jwt}`,
           },
           body: JSON.stringify({
-            quantity: 11,
+            quantity: newQuantity,
           }),
         }
       );
@@ -57,6 +58,12 @@ export default function ItemsPalette({ filterItems, Item }) {
       console.log(data);
       if (data) {
         console.log(data);
+        if (data.quantity === Number(newQuantity) + Item.quantity) {
+          window.location.reload();
+          alert("Quantity Updated Successfully");
+        } else {
+          alert("Failed to Update Quantity");
+        }
       }
     } catch (error) {
       console.log(error);
@@ -95,9 +102,17 @@ export default function ItemsPalette({ filterItems, Item }) {
             {type && <Typography level='body-md'>Type : {type}</Typography>}
             {color && <Typography level='body-md'>Color : {color}</Typography>}
             <div>
-              <input type='number' placeholder='Enter Quantity'/>
+              <input type='text' placeholder='Enter Quantity'
+                className='p-1 border border-gray-400 rounded-md'
+                onChange={ 
+                  (e) => {
+                    console.log(e.target.value);
+                    setNewQuantity(e.target.value);
+                  }  
+                }
+              />
               <Button color='danger' className='my-3' onClick={handleQuantity}>
-                Update Quantity
+                Add Quantity
               </Button>
             </div>
           </div>

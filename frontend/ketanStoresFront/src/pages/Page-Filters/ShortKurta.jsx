@@ -25,6 +25,7 @@ export default function ShortKurta() {
   const { jwt } = useGlobalContext();
   const [size, setSize] = useState("");
   const [colour, setColour] = useState("");
+  const [newQuantity, setNewQuantity] = useState(0);
 
   useEffect(() => {
     fetch("http://localhost:8080/other/filter/SHORT_KURTA", {
@@ -206,7 +207,13 @@ export default function ShortKurta() {
           data.map((item, index) => {
             return (
               <div key={index}>
-                <ItemsPalette filterItems={[item]} />
+                <ItemsPalette
+                  filterItems={[item]}
+                  Item={data[index]}
+                  newQuantity={newQuantity}
+                  setNewQuantity={setNewQuantity}
+                  Type={"other"}
+                />
               </div>
             );
           })}

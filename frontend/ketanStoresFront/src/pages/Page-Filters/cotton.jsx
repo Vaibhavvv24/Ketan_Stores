@@ -23,6 +23,7 @@ export default function Cotton() {
   const [cottonData, setCottonData] = useState([]);
   const [loading, setLoading] = useState(true);
   const { jwt } = useGlobalContext();
+  const [newQuantity, setNewQuantity] = useState(0);
   const [size, setSize] = useState("");
   const [color, setColor] = useState("");
   const [type, setType] = useState("ALL");
@@ -32,17 +33,17 @@ export default function Cotton() {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${jwt}`,
+        Authorization: `Bearer ${jwt}`,
       },
     })
-    .then(response => response.json())
-    .then(data => {
-      setCottonData(data);
-      setLoading(false);
-    })
-    .catch(error => {
-      console.error('Error fetching data:', error);
-    });
+      .then((response) => response.json())
+      .then((data) => {
+          setCottonData(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
   }, []);
 
   const display = (e) => {
@@ -363,7 +364,13 @@ export default function Cotton() {
           cottonData.map((item, index) => {
             return (
               <div key={index}>
-                <ItemsPalette filterItems={[item]} />
+                <ItemsPalette
+                  filterItems={[item]}
+                  Item={cottondata[index]}
+                  newQuantity={newQuantity}
+                  setNewQuantity={setNewQuantity}
+                  Type={"kurta_cotton"}
+                />
               </div>
             );
           })}

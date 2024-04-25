@@ -25,6 +25,7 @@ export default function Silk() {
   const { jwt } = useGlobalContext();
   const [size, setSize] = useState("");
   const [color, setColor] = useState("");
+  const [newQuantity, setNewQuantity] = useState(0);
   const [type, setType] = useState("ALL");
 
   useEffect(() => {
@@ -363,7 +364,13 @@ export default function Silk() {
           silkdata.map((item, index) => {
             return (
               <div key={index}>
-                <ItemsPalette filterItems={[item]} />
+                <ItemsPalette
+                  filterItems={[item]}
+                  Item={silkdata[index]}
+                  newQuantity={newQuantity}
+                  setNewQuantity={setNewQuantity}
+                  Type={"kurta_silk"}
+                />
               </div>
             );
           })}

@@ -31,7 +31,7 @@ public class CottonCont {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getClothbyid(@PathVariable("id") Long id) {
+    public ResponseEntity<?> getClothbyid(@PathVariable Long id) {
         Cotton_dto cotton = cotton_service.getClothbyid(id);
         if (cotton == null) {
             return ResponseEntity.notFound().build();
@@ -46,13 +46,13 @@ public class CottonCont {
     }
 
     @GetMapping("/type/{type}")
-    public ResponseEntity<?> getbytype(@PathVariable("type") String type) {
+    public ResponseEntity<?> getbytype(@PathVariable String type) {
         ArrayList<Cotton_dto> cotton = cotton_service.getbytype(type);
         return ResponseEntity.ok().body(cotton);
     }
 
     @GetMapping("/size/{size}")
-    public ResponseEntity<?> getbysize(@PathVariable("size") int size) {
+    public ResponseEntity<?> getbysize(@PathVariable int size) {
         ArrayList<Cotton_dto> cotton = cotton_service.getbysize(size);
         return ResponseEntity.ok().body(cotton);
     }
@@ -105,9 +105,8 @@ public class CottonCont {
     }
 
     @GetMapping("/cotton_tcs/{type}/colour/{colour}/size/{size}")
-    public ResponseEntity<?> getMethodName(@RequestParam String param) {
-        ArrayList<Cotton_dto> cotton_dtos = cotton_service.getByTypeColourSize(param, param, Integer.parseInt(param));
+    public ResponseEntity<?> getByTypeSizeColour(@PathVariable String type, @PathVariable String colour, @PathVariable int size) {
+        ArrayList<Cotton_dto> cotton_dtos = cotton_service.getByTypeColourSize(type, colour, size);
         return ResponseEntity.ok().body(cotton_dtos);
     }
-
 }
