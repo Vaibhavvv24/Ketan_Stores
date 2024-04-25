@@ -5,8 +5,6 @@ spring:
     password: pc02@December
     # username: springstudent
     # password: springstudent
-    #username: root
-    #password: Krishrakesh1
     driver-class-name: com.mysql.cj.jdbc.Driver
   
   servlet:
