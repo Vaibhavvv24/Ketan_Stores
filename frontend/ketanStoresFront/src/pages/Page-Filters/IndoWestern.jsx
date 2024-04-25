@@ -26,6 +26,9 @@ export default function IndoWestern() {
   const [size, setSize] = useState("");
   const [colour, setColour] = useState("");
   const [newQuantity, setNewQuantity] = useState(0);
+  const size1 = size === "" ? "NULL" : size;
+  const colour1 = colour === "" ? "" : colour;
+  const applied = `Applied Filters => Color : ${colour1},  Size : ${size1}`;
 
   useEffect(() => {
     fetch("http://localhost:8080/other/filter/INDO_WESTERN", {
@@ -54,12 +57,12 @@ export default function IndoWestern() {
           Authorization: `Bearer ${jwt}`,
         },
       })
-        .then ((response) => response.json())
-        .then ((data) => {
+        .then((response) => response.json())
+        .then((data) => {
           setData(data);
           setLoading(false);
         })
-        .catch ((error) => {
+        .catch((error) => {
           console.error("Error fetching data:", error);
         });
     }
@@ -78,9 +81,8 @@ export default function IndoWestern() {
         })
         .catch((error) => {
           console.error("Error fetching data:", error);
-      });
-    }
-    else if (colour !== "" && size === "") {
+        });
+    } else if (colour !== "" && size === "") {
       fetch(`http://localhost:8080/other/INDO_WESTERN/colour/${colour}`, {
         method: "GET",
         headers: {
@@ -96,15 +98,17 @@ export default function IndoWestern() {
         .catch((error) => {
           console.error("Error fetching data:", error);
         });
-    }
-    else {
-      fetch(`http://localhost:8080/other/INDO_WESTERN/filter/${size}/colour/${colour}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${jwt}`,
-        },
-      })
+    } else {
+      fetch(
+        `http://localhost:8080/other/INDO_WESTERN/filter/${size}/colour/${colour}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${jwt}`,
+          },
+        }
+      )
         .then((response) => response.json())
         .then((data) => {
           setData(data);
@@ -114,7 +118,7 @@ export default function IndoWestern() {
           console.error("Error fetching data:", error);
         });
     }
-  }
+  };
 
   return (
     <div>
@@ -162,12 +166,15 @@ export default function IndoWestern() {
                       placeholder='Enter Size'
                       style={{ width: 170 }}
                       onChange={(e) => {
-                      if (!isNaN(e.target.value) && e.target.value.trim() !== "") {
-                        setSize(Number(e.target.value.trim()));
-                      }
-                      else{
-                        setSize(e.target.value);
-                      }}}
+                        if (
+                          !isNaN(e.target.value) &&
+                          e.target.value.trim() !== ""
+                        ) {
+                          setSize(Number(e.target.value.trim()));
+                        } else {
+                          setSize(e.target.value);
+                        }
+                      }}
                     />
                   </div>
                 </div>
@@ -196,11 +203,24 @@ export default function IndoWestern() {
               </div>
             </FormControl>
           </div>
-          {
-            isNaN(size) ? <Button className="bg-gray-500 hover:bg-gray-700" >Go</Button> : <Button className="bg-grey-500 hover:bg-grey-700" onClick={handleJacketsAndSuits}>Go</Button>
-          }
+          {isNaN(size) ? (
+            <Button className='bg-gray-500 hover:bg-gray-700'>Go</Button>
+          ) : (
+            <Button
+              className='bg-grey-500 hover:bg-grey-700'
+              onClick={handleJacketsAndSuits}
+            >
+              Go
+            </Button>
+          )}
         </Sheet>
       </main>
+      <div className='text-center my-5'> {applied}</div>
+      {loading && (
+        <div className='w-full font-semibold text-4xl text-center'>
+          Loading...
+        </div>
+      )}
       <div className='grid grid-cols-2 w-full gap-3 px-10 h-full'>
         {!loading &&
           data &&

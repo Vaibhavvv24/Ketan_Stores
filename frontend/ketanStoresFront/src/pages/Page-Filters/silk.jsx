@@ -27,6 +27,11 @@ export default function Silk() {
   const [color, setColor] = useState("");
   const [newQuantity, setNewQuantity] = useState(0);
   const [type, setType] = useState("ALL");
+  const size1 = size === "" ? "NULL" : size;
+  const color1 = color === "" ? "NULL" : color;
+  const type1 = type === "ALL" ? "ALL" : type;
+  const applied = `Applied Filters => Type : ${type1},  Size : ${size1},  Color : ${color1}`;
+
 
   useEffect(() => {
     fetch("http://localhost:8080/kurta_silk/all", {
@@ -219,7 +224,7 @@ export default function Silk() {
             </Typography>
           </div>
           <div className='flex justify-evenly h-full w-full mt-2 flex-wrap'>
-          <FormControl>
+            <FormControl>
               <div className='flex justify-evenly h-full w-full'>
                 <div className='flex-col justify-left pl-1 items-center gap-2 mt-2'>
                   <Typography
@@ -273,22 +278,21 @@ export default function Silk() {
                     <FormLabel className='pl-2'>Size:</FormLabel>
                   </Typography>
                   <div className='flex justify-center items-center w-full mt-2'>
-                        <Input
-                          type='text'
-                          placeholder='Enter Size'
-                          style={{ width: 170 }}
-                          onChange={(e) =>
-                          {
-                            if (!isNaN(e.target.value) && e.target.value.trim() !== "") {
-                              setSize(Number(e.target.value.trim()));
-                            }
-                            else {
-                              setSize(e.target.value);
-                            }
-                          }
+                    <Input
+                      type='text'
+                      placeholder='Enter Size'
+                      style={{ width: 170 }}
+                      onChange={(e) => {
+                        if (
+                          !isNaN(e.target.value) &&
+                          e.target.value.trim() !== ""
+                        ) {
+                          setSize(Number(e.target.value.trim()));
+                        } else {
+                          setSize(e.target.value);
                         }
-                        />
-
+                      }}
+                    />
                   </div>
                 </div>
               </div>
@@ -316,11 +320,21 @@ export default function Silk() {
               </div>
             </FormControl>
           </div>
-          {
-            isNaN(size) ? <Button className="bg-gray-500 hover:bg-gray-700" >Go</Button> : <Button className="bg-blue-500 hover:bg-blue-700" onClick={display}>Go</Button>
-          }
+          {isNaN(size) ? (
+            <Button className='bg-gray-500 hover:bg-gray-700'>Go</Button>
+          ) : (
+            <Button className='bg-blue-500 hover:bg-blue-700' onClick={display}>
+              Go
+            </Button>
+          )}
         </Sheet>
       </main>
+      <div className='text-center my-5'> {applied}</div>
+      {loading && (
+        <div className='w-full font-semibold text-4xl text-center'>
+          Loading...
+        </div>
+      )}
       <div className='grid grid-cols-2 w-full gap-3 px-10 h-full'>
         {!loading &&
           silkdata &&
