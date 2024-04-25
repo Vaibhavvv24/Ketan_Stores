@@ -1,18 +1,32 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import Navbar from '../../components/Navbar'
-import Footer from '../../components/Footer'
-import { useState, useEffect } from 'react'
-import { useGlobalContext } from '../../context'
-import { CssBaseline, Sheet, Typography, FormControl, FormLabel, Input, Button, RadioGroup, Radio, Select, Option } from '@mui/joy'
-import Base64decode from '../../components/Base64decode'
-import ItemsPalette from '../../components/ItemsPalette'
+/** @format */
 
-export default function cotton() {
-  const [cottondata, setCottonData] = useState([]);
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useColorScheme } from "@mui/joy/styles";
+import Sheet from "@mui/joy/Sheet";
+import CssBaseline from "@mui/joy/CssBaseline";
+import Typography from "@mui/joy/Typography";
+import FormControl from "@mui/joy/FormControl";
+import FormLabel from "@mui/joy/FormLabel";
+import Input from "@mui/joy/Input";
+import Button from "@mui/joy/Button";
+import RadioGroup from "@mui/material/RadioGroup";
+import Radio from "@mui/material/Radio";
+import Select from "@mui/joy/Select";
+import Option from "@mui/joy/Option";
+import { useState } from "react";
+import { useGlobalContext } from "../../context";
+import ItemsPalette from "../../components/ItemsPalette";
+import Base64decode from "../../components/Base64decode";
+
+export default function Cotton() {
+  const [cottonData, setCottonData] = useState([]);
   const [loading, setLoading] = useState(true);
   const { jwt } = useGlobalContext();
   const [newQuantity, setNewQuantity] = useState(0);
+  const [size, setSize] = useState("");
+  const [color, setColor] = useState("");
+  const [type, setType] = useState("ALL");
 
   useEffect(() => {
     fetch("http://localhost:8080/kurta_cotton/all", {
@@ -24,14 +38,156 @@ export default function cotton() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
-        setCottonData(data);
+          setCottonData(data);
         setLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  }, [jwt]);
+  }, []);
+
+  const display = (e) => {
+    console.log(type, !isNaN(size), color === "");
+    if (type === "ALL" && size === "" && color === "") {
+      fetch("http://localhost:8080/kurta_cotton/all", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${jwt}`,
+        },
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log("Thala",data);
+        setCottonData(data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+    }
+    else if (type === "ALL" && !isNaN(size) && color === "") {
+      console.log("ThalaSize",size);
+      fetch(`http://localhost:8080/kurta_cotton/size/${size}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${jwt}`,
+        },
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log("ThalaNew",data);
+        setCottonData(data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+    }
+    else if (type === "ALL" && size === "" && color !== "") {
+      fetch(`http://localhost:8080/kurta_cotton/cotton/colour_filter/${color}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${jwt}`,
+        },
+      })
+      .then(response => response.json())
+      .then(data => {
+        setCottonData(data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+    }
+    else if (type === "ALL" && !isNaN(size) && color !== "") {
+      fetch(`http://localhost:8080/kurta_cotton/size/${size}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${jwt}`,
+        },
+      })
+      .then(response => response.json())
+      .then(data => {
+        setCottonData(data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+    }
+    else if (type !== "ALL" && size === "" && color === "") {
+      fetch(`http://localhost:8080/kurta_cotton/type/${type}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${jwt}`,
+        },
+      })
+      .then(response => response.json())
+      .then(data => {
+        setCottonData(data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+    }
+    // else if (type !== "ALL" && !isNaN(size) && color === "") {
+    //   fetch(`http://localhost:8080/kurta_cotton/cotton_tc/${type}/size/${size}`, {
+    //     method: "GET",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       "Authorization": `Bearer ${jwt}`,
+    //     },
+    //   })
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     setCottonData(data);
+    //     setLoading(false);
+    //   })
+    //   .catch(error => {
+    //     console.error('Error fetching data:', error);
+    //   })
+    // }
+    else if (type !== "ALL" && size === "" && color !== "") {
+      fetch(`http://localhost:8080/kurta_cotton/cotton/${type}/colour/${color}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${jwt}`,
+        },
+      })
+      .then(response => response.json())
+      .then(data => {
+        setCottonData(data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      })
+    }
+    else if (type !== "ALL" && size !== "" && color !== "") {
+      fetch(`http://localhost:8080/kurta_cotton/cotton_tcs/${type}/colour/${color}/size/${size}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${jwt}`,
+        },
+      })
+      .then(response => response.json())
+      .then(data => {
+        setCottonData(data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      })
+    }
+  }
 
   return (
     <div>
@@ -39,9 +195,10 @@ export default function cotton() {
         <CssBaseline />
         <Sheet
           sx={{
-            width: 660,
+            width: "50%",
             display: "flex",
             flexDirection: "column",
+            flexWrap: "wrap",
             justifyContent: "space-evenly",
             mx: "auto", // margin left & right
             my: 4, // margin top & bottom
@@ -61,8 +218,8 @@ export default function cotton() {
               Choose appropriate items using available filters:
             </Typography>
           </div>
-          <div className='flex justify-evenly h-full w-full mt-2'>
-            <FormControl>
+          <div className='flex justify-evenly h-full w-full mt-2 flex-wrap'>
+          <FormControl>
               <div className='flex justify-evenly h-full w-full'>
                 <div className='flex-col justify-left pl-1 items-center gap-2 mt-2'>
                   <Typography
@@ -71,14 +228,35 @@ export default function cotton() {
                     className='flex items-center h-[22px]'
                   >
                     <span className='text-xs'>1.</span>
-                    <FormLabel className='pl-2'>Size:</FormLabel>
+                    <FormLabel className='pl-2'>Type:</FormLabel>
                   </Typography>
                   <div className='flex justify-center items-center w-full mt-2'>
-                    <Input
-                      type='text'
-                      placeholder='Enter Size'
-                      style={{ width: 170 }}
-                    />
+                    <Select defaultValue='All' style={{ width: 170 }}>
+                      <Option
+                        value='All'
+                        onClick={(e) => {
+                          setType("ALL");
+                        }}
+                      >
+                        All
+                      </Option>
+                      <Option
+                        value='Plain'
+                        onClick={(e) => {
+                          setType("PLAIN");
+                        }}
+                      >
+                        Plain
+                      </Option>
+                      <Option
+                        value='Print & Design'
+                        onClick={(e) => {
+                          setType("PRINT_AND_DESIGN");
+                        }}
+                      >
+                        Print & Design
+                      </Option>
+                    </Select>
                   </div>
                 </div>
               </div>
@@ -92,14 +270,52 @@ export default function cotton() {
                     className='flex items-center h-[22px]'
                   >
                     <span className='text-xs'>2.</span>
-                    <FormLabel className='pl-2'>Colour:</FormLabel>
+                    <FormLabel className='pl-2'>Size:</FormLabel>
                   </Typography>
                   <div className='flex justify-center items-center w-full mt-2'>
-                    <Input
-                      type='text'
-                      placeholder='Enter Colour'
-                      style={{ width: 170 }}
-                    />
+                    {
+                      type != "ALL" ?
+                        <Input
+                          type='text'
+                          placeholder='Enter Size'
+                          style={{ width: 170 }}
+                          onChange={(e) =>
+                          {
+                            if (!isNaN(e.target.value) && e.target.value.trim() !== "") {
+                              setSize(Number(e.target.value.trim()));
+                            }
+                            else {
+                              setSize(e.target.value);
+                            }
+                          }
+                        }
+                        />
+                        :
+                          (type === "ALL" && color === "") || (type === "ALL" && color !== "" && size != "")?
+                          <Input
+                            type='text'
+                            placeholder='Enter Size'
+                            style={{ width: 170 }}
+                            onChange={(e) =>
+                            {
+                              if (!isNaN(e.target.value) && e.target.value.trim() !== "") {
+                                setSize(Number(e.target.value.trim()));
+                              }
+                              else {
+                                setSize(e.target.value);
+                              }
+                            }
+                          }
+                          />
+                        :
+                        <Input
+                          disabled
+                          type='text'
+                          placeholder='Enter Size'
+                          style={{ width: 170 }}
+                        />
+                    }
+
                   </div>
                 </div>
               </div>
@@ -113,47 +329,39 @@ export default function cotton() {
                     className='flex items-center h-[22px]'
                   >
                     <span className='text-xs'>3.</span>
-                    <FormLabel className='pl-2'>Type:</FormLabel>
+                    <FormLabel className='pl-2'>Colour:</FormLabel>
                   </Typography>
                   <div className='flex justify-center items-center w-full mt-2'>
-                    <Select defaultValue='Plain' style={{ width: 170 }}>
-                      <Option
-                        value='Plain'
-                        onClick={(e) => {
-                          setType("Plain");
-                        }}
-                      >
-                        Plain
-                      </Option>
-                      <Option
-                        value='Digital Print'
-                        onClick={(e) => {
-                          setType("DIGITAL_PRINT");
-                        }}
-                      >
-                        Digital Print
-                      </Option>
-                      <Option
-                        value='Embroidery'
-                        onClick={(e) => {
-                          setType("EMBROIDERY");
-                        }}
-                      >
-                        Embroidery
-                      </Option>
-                    </Select>
+                    {(type === "ALL" && size === "") || (type !== "ALL")
+                      ? 
+                    <Input
+                      type='text'
+                      placeholder='Enter Colour'
+                      style={{ width: 170 }}
+                      onChange={(e) => setColor(e.target.value.trim())}
+                    /> : 
+                    <Input
+                      disabled
+                      type='text'
+                      placeholder='Enter Colour'
+                      style={{ width: 170 }}
+                      onChange={(e) => setColor(e.target.value.trim())}
+                    />
+                    }
                   </div>
                 </div>
               </div>
             </FormControl>
           </div>
+          {
+            isNaN(size) ? <Button className="bg-gray-500 hover:bg-gray-700" >Go</Button> : <Button className="bg-blue-500 hover:bg-blue-700" onClick={display}>Go</Button>
+          }
         </Sheet>
       </main>
       <div className='grid grid-cols-2 w-full gap-3 px-10 h-full'>
         {!loading &&
-          cottondata &&
-          cottondata.map((item, index) => {
-            console.log(item); // Check the structure of each item
+          cottonData &&
+          cottonData.map((item, index) => {
             return (
               <div key={index}>
                 <ItemsPalette
@@ -170,3 +378,5 @@ export default function cotton() {
     </div>
   );
 }
+
+//Size, colour, type
