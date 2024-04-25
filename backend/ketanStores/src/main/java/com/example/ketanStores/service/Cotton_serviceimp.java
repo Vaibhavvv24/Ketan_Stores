@@ -204,6 +204,4 @@ public class Cotton_serviceimp implements Cotton_service{
         }
         return cotton_dtos;
     }
-
-
 }

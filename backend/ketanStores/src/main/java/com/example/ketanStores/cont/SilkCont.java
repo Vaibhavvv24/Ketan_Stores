@@ -4,7 +4,6 @@ import com.example.ketanStores.enums.SilkEnum;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.ketanStores.dto.Silk_dto;
-import com.example.ketanStores.entity.SilkEntity;
 import com.example.ketanStores.service.Silk_service;
 
 import java.io.IOException;
