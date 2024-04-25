@@ -12,24 +12,25 @@ export default function cotton() {
   const [cottondata, setCottonData] = useState([]);
   const [loading, setLoading] = useState(true);
   const { jwt } = useGlobalContext();
+  const [newQuantity, setNewQuantity] = useState(0);
 
   useEffect(() => {
     fetch("http://localhost:8080/kurta_cotton/all", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${jwt}`,
+        Authorization: `Bearer ${jwt}`,
       },
     })
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-      setCottonData(data);
-      setLoading(false);
-    })
-    .catch(error => {
-      console.error('Error fetching data:', error);
-    });
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setCottonData(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
   }, [jwt]);
 
   return (
@@ -155,7 +156,13 @@ export default function cotton() {
             console.log(item); // Check the structure of each item
             return (
               <div key={index}>
-                <ItemsPalette filterItems={[item]} />
+                <ItemsPalette
+                  filterItems={[item]}
+                  Item={cottondata[index]}
+                  newQuantity={newQuantity}
+                  setNewQuantity={setNewQuantity}
+                  Type={"kurta_cotton"}
+                />
               </div>
             );
           })}

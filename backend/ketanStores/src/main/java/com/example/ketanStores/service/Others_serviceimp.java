@@ -92,6 +92,8 @@ public class Others_serviceimp implements Other_service {
         OthersEntity savedone=othersRepo.save(othersEntity);
         Others_dto othersDto = new Others_dto();
         othersEntity.setId(savedone.getId());
+        othersDto.setId(savedone.getId());
+        othersDto.setQuantity(savedone.getQuantity());
         return othersDto;
     }
 

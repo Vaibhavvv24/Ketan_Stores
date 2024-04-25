@@ -23,25 +23,98 @@ export default function ShortKurta() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const { jwt } = useGlobalContext();
+  const [size, setSize] = useState("");
+  const [colour, setColour] = useState("");
+  const [newQuantity, setNewQuantity] = useState(0);
 
   useEffect(() => {
     fetch("http://localhost:8080/other/filter/SHORT_KURTA", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${jwt}`,
+        Authorization: `Bearer ${jwt}`,
       },
     })
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-      setData(data);
-      setLoading(false);
-    })
-    .catch(error => {
-      console.error('Error fetching data:', error);
-    });
+      .then((response) => response.json())
+      .then((data) => {
+        setData(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
   }, []);
+
+  const handleJacketsAndSuits = (e) => {
+    if (colour === "" && size === "") {
+      fetch("http://localhost:8080/other/filter/SHORT_KURTA", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${jwt}`,
+        },
+      })
+        .then ((response) => response.json())
+        .then ((data) => {
+          setData(data);
+          setLoading(false);
+        })
+        .catch ((error) => {
+          console.error("Error fetching data:", error);
+        });
+    }
+    if (colour === "" && !isNaN(size)) {
+      fetch(`http://localhost:8080/other/SHORT_KURTA/filter/${size}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${jwt}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setData(data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+      });
+    }
+    else if (colour !== "" && size === "") {
+      fetch(`http://localhost:8080/other/SHORT_KURTA/colour/${colour}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${jwt}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setData(data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    }
+    else {
+      fetch(`http://localhost:8080/other/SHORT_KURTA/filter/${size}/colour/${colour}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${jwt}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setData(data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    }
+  }
 
   return (
     <div>
@@ -49,7 +122,7 @@ export default function ShortKurta() {
         <CssBaseline />
         <Sheet
           sx={{
-            width: 660,
+            width: "40%",
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-evenly",
@@ -88,6 +161,13 @@ export default function ShortKurta() {
                       type='text'
                       placeholder='Enter Size'
                       style={{ width: 170 }}
+                      onChange={(e) => {
+                      if (!isNaN(e.target.value) && e.target.value.trim() !== "") {
+                        setSize(Number(e.target.value.trim()));
+                      }
+                      else{
+                        setSize(e.target.value);
+                      }}}
                     />
                   </div>
                 </div>
@@ -109,12 +189,16 @@ export default function ShortKurta() {
                       type='text'
                       placeholder='Enter Colour'
                       style={{ width: 170 }}
+                      onChange={(e) => setColour(e.target.value.trim())}
                     />
                   </div>
                 </div>
               </div>
             </FormControl>
           </div>
+          {
+            isNaN(size) ? <Button className="bg-gray-500 hover:bg-gray-700" >Go</Button> : <Button className="bg-grey-500 hover:bg-grey-700" onClick={handleJacketsAndSuits}>Go</Button>
+          }
         </Sheet>
       </main>
       <div className='grid grid-cols-2 w-full gap-3 px-10 h-full'>
@@ -123,7 +207,13 @@ export default function ShortKurta() {
           data.map((item, index) => {
             return (
               <div key={index}>
-                <ItemsPalette filterItems={[item]} />
+                <ItemsPalette
+                  filterItems={[item]}
+                  Item={data[index]}
+                  newQuantity={newQuantity}
+                  setNewQuantity={setNewQuantity}
+                  Type={"other"}
+                />
               </div>
             );
           })}
@@ -131,5 +221,3 @@ export default function ShortKurta() {
     </div>
   );
 }
-
-//Size, colour, type
