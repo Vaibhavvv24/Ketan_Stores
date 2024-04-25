@@ -45,6 +45,12 @@ export default function PlusSize() {
   }, []);
 
   return (
+    <>
+      {loading && (
+        <div className='w-full font-semibold text-4xl text-center'>
+          Loading...
+        </div>
+      )}
       <div className='grid grid-cols-2 w-full gap-3 px-10 h-full'>
         {!loading &&
           data &&
@@ -62,6 +68,7 @@ export default function PlusSize() {
             );
           })}
       </div>
+    </>
   );
 }
 

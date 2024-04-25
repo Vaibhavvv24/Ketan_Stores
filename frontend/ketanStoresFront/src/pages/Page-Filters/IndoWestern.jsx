@@ -27,7 +27,7 @@ export default function IndoWestern() {
   const [colour, setColour] = useState("");
   const [newQuantity, setNewQuantity] = useState(0);
   const size1 = size === "" ? "NULL" : size;
-  const colour1 = colour === "" ? "" : colour;
+  const colour1 = colour === "" ? "NULL" : colour;
   const applied = `Applied Filters => Color : ${colour1},  Size : ${size1}`;
 
   useEffect(() => {
