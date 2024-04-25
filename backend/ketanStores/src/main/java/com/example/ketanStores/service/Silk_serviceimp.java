@@ -219,4 +219,9 @@ public class Silk_serviceimp implements Silk_service{
         return silk_dtos;
     }
 
+    @Override
+    public void deleteById(Long id) {
+        KurtaEntity kurtaEntity = kurtaRepo.findById(id).get();
+        kurtaRepo.delete(kurtaEntity);
+    }
 }

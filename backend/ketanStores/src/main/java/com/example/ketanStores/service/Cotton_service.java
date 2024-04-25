@@ -37,4 +37,6 @@ public interface Cotton_service {
     ArrayList<Cotton_dto> getByTypeColourSize(String type, String colour, int size);
 
     ArrayList<Cotton_dto> getByColourSize(int size, String colour);
+
+    void deleteById(Long id);
 }

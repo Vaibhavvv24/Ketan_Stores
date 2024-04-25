@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -104,5 +105,13 @@ public class SilkCont {
     public ResponseEntity<?> getBySizeColour(@PathVariable int size, @PathVariable String colour) {
         ArrayList<Silk_dto> silk_dtos = silk_service.getBySizeColour(size, colour);
         return ResponseEntity.ok().body(silk_dtos);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteById(@PathVariable Long id) {
+        silk_service.deleteById(id);
+        HashMap<String, String> responseJSON = new HashMap<>();
+        responseJSON.put("status", "deleted : " + id);
+        return ResponseEntity.ok().body(responseJSON);
     }
 }

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import com.example.ketanStores.dto.PutBody;
@@ -108,5 +109,13 @@ public class CottonCont {
     public ResponseEntity<?> getByTypeSizeColour(@PathVariable String type, @PathVariable String colour, @PathVariable int size) {
         ArrayList<Cotton_dto> cotton_dtos = cotton_service.getByTypeColourSize(type, colour, size);
         return ResponseEntity.ok().body(cotton_dtos);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteById(@PathVariable Long id) {
+        cotton_service.deleteById(id);
+        HashMap<String, String> responseJSON = new HashMap<>();
+        responseJSON.put("status", "deleted : " + id);
+        return ResponseEntity.ok().body(responseJSON);
     }
 }

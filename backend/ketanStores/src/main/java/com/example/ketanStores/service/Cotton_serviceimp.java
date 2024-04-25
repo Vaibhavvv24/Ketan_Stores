@@ -204,4 +204,10 @@ public class Cotton_serviceimp implements Cotton_service{
         }
         return cotton_dtos;
     }
+
+    @Override
+    public void deleteById(Long id) {
+        KurtaEntity kurtaEntity = kurtaRepo.findById(id).get();
+        kurtaRepo.delete(kurtaEntity);
+    }
 }
