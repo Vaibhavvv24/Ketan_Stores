@@ -103,7 +103,7 @@ export default function Cotton() {
       });
     }
     else if (type === "ALL" && !isNaN(size) && color !== "") {
-      fetch(`http://localhost:8080/kurta_cotton/size/${size}`, {
+      fetch(`http://localhost:8080/kurta_cotton/cotton/${color}/size/${size}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -136,23 +136,23 @@ export default function Cotton() {
         console.error('Error fetching data:', error);
       });
     }
-    // else if (type !== "ALL" && !isNaN(size) && color === "") {
-    //   fetch(`http://localhost:8080/kurta_cotton/cotton_tc/${type}/size/${size}`, {
-    //     method: "GET",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       "Authorization": `Bearer ${jwt}`,
-    //     },
-    //   })
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     setCottonData(data);
-    //     setLoading(false);
-    //   })
-    //   .catch(error => {
-    //     console.error('Error fetching data:', error);
-    //   })
-    // }
+    else if (type !== "ALL" && !isNaN(size) && color === "") {
+      fetch(`http://localhost:8080/kurta_cotton/cotton_ts/${type}/size/${size}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${jwt}`,
+        },
+      })
+      .then(response => response.json())
+      .then(data => {
+        setCottonData(data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      })
+    }
     else if (type !== "ALL" && size === "" && color !== "") {
       fetch(`http://localhost:8080/kurta_cotton/cotton/${type}/colour/${color}`, {
         method: "GET",
@@ -249,12 +249,20 @@ export default function Cotton() {
                         Plain
                       </Option>
                       <Option
-                        value='Print & Design'
+                        value='DIGITAL_PRINT'
                         onClick={(e) => {
-                          setType("PRINT_AND_DESIGN");
+                          setType("DIGITAL_PRINT");
                         }}
                       >
-                        Print & Design
+                        Digital Print 
+                      </Option>
+                      <Option
+                        value='EMBROIDERY'
+                        onClick={(e) => {
+                          setType("EMBROIDERY");
+                        }}
+                      >
+                        Embroidery
                       </Option>
                     </Select>
                   </div>
@@ -273,8 +281,6 @@ export default function Cotton() {
                     <FormLabel className='pl-2'>Size:</FormLabel>
                   </Typography>
                   <div className='flex justify-center items-center w-full mt-2'>
-                    {
-                      type != "ALL" ?
                         <Input
                           type='text'
                           placeholder='Enter Size'
@@ -290,32 +296,6 @@ export default function Cotton() {
                           }
                         }
                         />
-                        :
-                          (type === "ALL" && color === "") || (type === "ALL" && color !== "" && size != "")?
-                          <Input
-                            type='text'
-                            placeholder='Enter Size'
-                            style={{ width: 170 }}
-                            onChange={(e) =>
-                            {
-                              if (!isNaN(e.target.value) && e.target.value.trim() !== "") {
-                                setSize(Number(e.target.value.trim()));
-                              }
-                              else {
-                                setSize(e.target.value);
-                              }
-                            }
-                          }
-                          />
-                        :
-                        <Input
-                          disabled
-                          type='text'
-                          placeholder='Enter Size'
-                          style={{ width: 170 }}
-                        />
-                    }
-
                   </div>
                 </div>
               </div>
@@ -332,22 +312,12 @@ export default function Cotton() {
                     <FormLabel className='pl-2'>Colour:</FormLabel>
                   </Typography>
                   <div className='flex justify-center items-center w-full mt-2'>
-                    {(type === "ALL" && size === "") || (type !== "ALL")
-                      ? 
                     <Input
                       type='text'
                       placeholder='Enter Colour'
                       style={{ width: 170 }}
                       onChange={(e) => setColor(e.target.value.trim())}
-                    /> : 
-                    <Input
-                      disabled
-                      type='text'
-                      placeholder='Enter Colour'
-                      style={{ width: 170 }}
-                      onChange={(e) => setColor(e.target.value.trim())}
-                    />
-                    }
+                    /> 
                   </div>
                 </div>
               </div>
@@ -366,7 +336,7 @@ export default function Cotton() {
               <div key={index}>
                 <ItemsPalette
                   filterItems={[item]}
-                  Item={cottondata[index]}
+                  Item={cottonData[index]}
                   newQuantity={newQuantity}
                   setNewQuantity={setNewQuantity}
                   Type={"kurta_cotton"}

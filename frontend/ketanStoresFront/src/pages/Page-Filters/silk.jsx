@@ -103,7 +103,7 @@ export default function Silk() {
       });
     }
     else if (type === "ALL" && !isNaN(size) && color !== "") {
-      fetch(`http://localhost:8080/kurta_silk/size/${size}`, {
+      fetch(`http://localhost:8080/kurta_silk/silk_sc/${size}/colour/${color}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -273,8 +273,6 @@ export default function Silk() {
                     <FormLabel className='pl-2'>Size:</FormLabel>
                   </Typography>
                   <div className='flex justify-center items-center w-full mt-2'>
-                    {
-                      type != "ALL" ?
                         <Input
                           type='text'
                           placeholder='Enter Size'
@@ -290,31 +288,6 @@ export default function Silk() {
                           }
                         }
                         />
-                        :
-                          (type === "ALL" && color === "") || (type === "ALL" && color !== "" && size != "")?
-                          <Input
-                            type='text'
-                            placeholder='Enter Size'
-                            style={{ width: 170 }}
-                            onChange={(e) =>
-                            {
-                              if (!isNaN(e.target.value) && e.target.value.trim() !== "") {
-                                setSize(Number(e.target.value.trim()));
-                              }
-                              else {
-                                setSize(e.target.value);
-                              }
-                            }
-                          }
-                          />
-                        :
-                        <Input
-                          disabled
-                          type='text'
-                          placeholder='Enter Size'
-                          style={{ width: 170 }}
-                        />
-                    }
 
                   </div>
                 </div>
@@ -332,22 +305,12 @@ export default function Silk() {
                     <FormLabel className='pl-2'>Colour:</FormLabel>
                   </Typography>
                   <div className='flex justify-center items-center w-full mt-2'>
-                    {(type === "ALL" && size === "") || (type !== "ALL")
-                      ? 
                     <Input
-                      type='text'
-                      placeholder='Enter Colour'
-                      style={{ width: 170 }}
-                      onChange={(e) => setColor(e.target.value.trim())}
-                    /> : 
-                    <Input
-                      disabled
                       type='text'
                       placeholder='Enter Colour'
                       style={{ width: 170 }}
                       onChange={(e) => setColor(e.target.value.trim())}
                     />
-                    }
                   </div>
                 </div>
               </div>
