@@ -118,4 +118,10 @@ public class CottonCont {
         responseJSON.put("status", "deleted : " + id);
         return ResponseEntity.ok().body(responseJSON);
     }
+
+    @GetMapping("cotton_ts/{type}/size/{size}")
+    public ResponseEntity<?> getByTypeSize(@PathVariable String type, @PathVariable int size) {
+        ArrayList<Cotton_dto> cotton_dtos = cotton_service.getByTypeSize(type, size);
+        return ResponseEntity.ok().body(cotton_dtos);
+    }
 }

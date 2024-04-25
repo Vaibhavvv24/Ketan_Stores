@@ -210,4 +210,16 @@ public class Cotton_serviceimp implements Cotton_service{
         KurtaEntity kurtaEntity = kurtaRepo.findById(id).get();
         kurtaRepo.delete(kurtaEntity);
     }
+
+    @Override
+    public ArrayList<Cotton_dto> getByTypeSize(String type, int size) {
+        ArrayList<Cotton_dto> cotton_dtos = new ArrayList<>();
+        Iterable<CottonEntity> cottonEntities = cotton_Repo.findAll();
+        for (CottonEntity cottonEntity : cottonEntities) {
+            if (cottonEntity.getType().toString().equals(type) && cottonEntity.getSize() == size) {
+                cotton_dtos.add(convert_entity_to_dto(cottonEntity));
+            }
+        }
+        return cotton_dtos;
+    }
 }
