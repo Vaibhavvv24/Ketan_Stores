@@ -20,6 +20,7 @@ import ItemsPalette from "../../components/ItemsPalette";
 import Base64decode from "../../components/Base64decode";
 
 export default function Cotton() {
+  const [search, setSearch] = useState("");
   const [cottonData, setCottonData] = useState([]);
   const [loading, setLoading] = useState(true);
   const { jwt } = useGlobalContext();
@@ -49,6 +50,28 @@ export default function Cotton() {
         console.error("Error fetching data:", error);
       });
   }, []);
+
+  useEffect(() => {
+    if (search !== "") {
+      fetch(`http://localhost:8080/kurta_silk/silk/search/${search}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${jwt}`,
+        },
+      })
+        .then (response => response.json())
+        .then (data => {
+          setCottonData(data);
+          setLoading(false);
+        }) 
+        .catch(error => {
+          console.error('Error fetching data:', error);
+        })
+      }
+    }, [search]);
+      console.log(cottonData);
+  
 
   const display = (e) => {
     console.log(type, !isNaN(size), color === "");
@@ -200,6 +223,9 @@ export default function Cotton() {
 
   return (
     <div className='flex flex-wrap flex-col justify-center items-center'>
+      <FormControl>
+        <Input type='text' placeholder='Search' onChange={(e) => setSearch(e.target.value.trim())}/>
+      </FormControl>
       <main>
         <CssBaseline />
         <Sheet
