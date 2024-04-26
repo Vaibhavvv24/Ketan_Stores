@@ -2,35 +2,60 @@ package com.example.ketanStores.entity;
 
 import java.sql.Blob;
 
+import com.example.ketanStores.enums.KurtaEnum;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Builder
 public class KurtaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    String Type_name;
-    int price;
-    int size;
-    int quantity;
-    boolean available;
-    Blob image;
+    private String name;
+    private int price;
+    private int size;
+    private int quantity;
+    private String colour;
+    private KurtaEnum kurtaEnum;
+    @Column(columnDefinition = "longblob")
+    private Blob image;
 
-    public KurtaEntity(String type_name, int price, int size, int quantity, boolean available, Blob image) {
-        Type_name = type_name;
+    @OneToOne(mappedBy = "kurtaEntity", cascade = CascadeType.ALL)
+    private CottonEntity cottonEntity;
+
+    @OneToOne(mappedBy = "kurtaEntity", cascade = CascadeType.ALL)
+    private SilkEntity silkEntity;
+
+    public KurtaEntity(String name,int price, int size, int quantity, Blob image, String colour, KurtaEnum kurtaEnum) {
+        this.name = name;
         this.price = price;
         this.size = size;
         this.quantity = quantity;
-        this.available = available;
         this.image = image;
+        this.colour = colour;
+        this.kurtaEnum = kurtaEnum;
+    }
+    public String getName() {
+        return name;
+    }
+
+    public String getColour() {
+        return colour;
+    }
+
+    public void setColour(String colour) {
+        this.colour = colour;
     }
 
     public Long getId() {
         return id;
-    }
-
-    public String getType_name() {
-        return Type_name;
     }
 
     public int getPrice() {
@@ -45,20 +70,12 @@ public class KurtaEntity {
         return quantity;
     }
 
-    public boolean isAvailable() {
-        return available;
-    }
-
     public Blob getImage() {
         return image;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public void setType_name(String type_name) {
-        Type_name = type_name;
     }
 
     public void setPrice(int price) {
@@ -73,11 +90,18 @@ public class KurtaEntity {
         this.quantity = quantity;
     }
 
-    public void setAvailable(boolean available) {
-        this.available = available;
-    }
-
     public void setImage(Blob image) {
         this.image = image;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public KurtaEnum getKurtaEnum() {
+        return kurtaEnum;
+    }
+
+    public void setKurtaEnum(KurtaEnum kurtaEnum) {
+        this.kurtaEnum = kurtaEnum;
     }
 }

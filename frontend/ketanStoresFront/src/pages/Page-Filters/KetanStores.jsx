@@ -1,17 +1,30 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Navbar from '../../components/Navbar'
-import Footer from '../../components/Footer'
+import HomeSection from '../../components/Card'
+import { useGlobalContext } from '../../context'
+import CardPalette from '../../components/CardPalette'
+import DividerText from '../../components/Welcome'
+
 
 export default function KetanStores() {
+  const { filterKetanStores } = useGlobalContext();
+
+  const mens = filterKetanStores.filter((item) => item.name === 'Mens');
+  const kids = filterKetanStores.filter((item) => item.name === 'Kids');
+
   return (
     <>
-      <Navbar/>
-      <div>
-          <div><Link to='/ketan-stores/men'>Men</Link></div>
-          <div><Link to ='/ketan-stores/kids'>Kids</Link></div>
+      <div className='py-32'>
+        <DividerText text='Ketan Stores' />
       </div>
-      <Footer/>
+      <div className='w-full grid lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 gap-5 my-10 px-20'>
+        <Link to='/ketan-stores/men'>
+          <CardPalette filterItems={mens} />
+        </Link>
+        <Link to='/ketan-stores/kids'>
+          <CardPalette filterItems={kids} />
+        </Link>
+      </div>
     </>
-  )
+  );
 }

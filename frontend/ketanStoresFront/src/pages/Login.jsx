@@ -9,6 +9,8 @@ import FormLabel from "@mui/joy/FormLabel";
 import Input from "@mui/joy/Input";
 import Button from "@mui/joy/Button";
 import Link from "@mui/joy/Link";
+import { useNavigate } from "react-router-dom";
+import { useGlobalContext } from "../context";
 
 function ModeToggle() {
   const { mode, setMode } = useColorScheme();
@@ -36,6 +38,41 @@ function ModeToggle() {
 }
 
 export default function LoginFinal() {
+  const { setemail, setpassword, email, password ,setAuthToken , setjwt} =
+    useGlobalContext();
+
+  const Navigate = useNavigate();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("http://localhost:8080/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      });
+      const data = await response.json();
+      console.log(data);
+      if (data.jwt) {
+        // Perform actions after successful login
+        // For example, store token and navigate to another page
+        setAuthToken(data);
+        localStorage.setItem("authToken", JSON.stringify(data));
+        setjwt(data.jwt);
+        // Assuming Navigate function exists to navigate to another page
+        Navigate("/ketan-stores/");
+      } else {
+        // Handle login errors, for example, show error message
+        console.error("Login failed");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+    }
+  }
   return (
     <main>
       <ModeToggle />
@@ -63,13 +100,14 @@ export default function LoginFinal() {
           </Typography>
           <Typography level='body-sm'>Sign in to continue.</Typography>
         </div>
-        <FormControl>
+        <FormControl >
           <FormLabel>Email</FormLabel>
           <Input
             // html input attribute
             name='email'
             type='email'
             placeholder='johndoe@email.com'
+            onChange={(e) => setemail(e.target.value)}
           />
         </FormControl>
         <FormControl>
@@ -79,9 +117,12 @@ export default function LoginFinal() {
             name='password'
             type='password'
             placeholder='password'
+            onChange={(e) => setpassword(e.target.value)}
           />
         </FormControl>
-        <Button sx={{ mt: 1 /* margin top */ }}>Log in</Button>
+        <Button sx={{ mt: 2 /* margin top */ }} onClick={handleSubmit}>
+          Log in
+        </Button>
       </Sheet>
     </main>
   );
