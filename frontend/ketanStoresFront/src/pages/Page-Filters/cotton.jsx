@@ -53,7 +53,7 @@ export default function Cotton() {
 
   useEffect(() => {
     if (search !== "") {
-      fetch(`http://localhost:8080/kurta_silk/silk/search/${search}`, {
+      fetch(`http://localhost:8080/kurta_cotton/cotton/search/${search}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
