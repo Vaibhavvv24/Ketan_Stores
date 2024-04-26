@@ -63,7 +63,9 @@ public class SilkCont {
     }
     @GetMapping("/silk/search/{name}")
     public ResponseEntity<?> search(@PathVariable String name) {
+        System.out.println(name);
         List<Silk_dto> silk_dtos = silk_service.getSilkByName(name);
+        System.out.println(silk_dtos);
         return ResponseEntity.ok().body(silk_dtos);
     }
 
