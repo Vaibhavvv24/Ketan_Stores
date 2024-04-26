@@ -196,11 +196,33 @@ export default function Silk() {
 
   return (
     <div className='flex flex-wrap flex-col justify-center items-center'>
-      <FormControl>
-        <Input type='text' placeholder='Search' />
-      </FormControl>
-      <main>
+      <RadioGroup
+          row
+          aria-labelledby='demo-row-radio-buttons-group-label'
+          name='row-radio-buttons-group-2'
+        >
+          <div className='flex-col justify-center items-center gap-12'>
+            <div className='flex justify-left items-center gap-10'>
+              <input
+                type='radio'
+                value='silk'
+                name='kurta'
+              />
+                <FormControl>
+                  <Input type='text' placeholder='Search' />
+                </FormControl>
+            </div>
+      </div>
+      <div className='flex justify-left items-center gap-10'>
+              <input
+                type='radio'
+                value='cotton'
+                name='kurta'
+                onClick={(e) => displayClothKurtaOptions(e.target.value)}
+              />
+        <main>
         <CssBaseline />
+        
         <Sheet
           sx={{
             display: "flex",
@@ -330,13 +352,15 @@ export default function Silk() {
             </Button>
           )}
         </Sheet>
-      </main>
+        </main>
+        </div>
       <div className='text-center my-5'> {applied}</div>
       {loading && (
         <div className='w-full font-semibold text-4xl text-center'>
           Loading...
         </div>
       )}
+      </RadioGroup>
       <div className='grid lg:grid-cols-2 w-full gap-3 px-10 h-full sm:grid-cols-1'>
         {!loading &&
           silkdata &&
