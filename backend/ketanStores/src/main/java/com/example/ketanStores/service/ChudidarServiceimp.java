@@ -114,6 +114,6 @@ public class ChudidarServiceimp implements ChudidarService{
 
     @Override
     public List<ChudidarDto> getChudidarByName(String name) {
-        return chudidarRepo.findAllByName(name).stream().map(ChudidarEntity::getChurdiarDto).collect(Collectors.toList());
+        return chudidarRepo.findAllByNameContaining(name).stream().map(ChudidarEntity::getChurdiarDto).collect(Collectors.toList());
     }
 }
