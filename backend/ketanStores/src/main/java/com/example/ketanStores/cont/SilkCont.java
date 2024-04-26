@@ -1,5 +1,6 @@
 package com.example.ketanStores.cont;
 import com.example.ketanStores.dto.PutBody;
+import com.example.ketanStores.enums.KurtaEnum;
 import com.example.ketanStores.enums.SilkEnum;
 import org.springframework.web.bind.annotation.*;
 
@@ -55,7 +56,8 @@ public class SilkCont {
         byte[] bytes = file.getBytes();
         Blob blob = new SerialBlob(bytes);
         SilkEnum silkEnum = SilkEnum.valueOf(type);
-        Silk_dto silk_dto = silk_service.createSilk(name, price, quantity, silkEnum, blob, size, colour);
+        KurtaEnum kurtaEnum = KurtaEnum.SILK;
+        Silk_dto silk_dto = silk_service.createSilk(name, price, quantity, silkEnum, blob, size, colour, kurtaEnum);
         if (silk_dto == null) {
             return ResponseEntity.notFound().build();
         }

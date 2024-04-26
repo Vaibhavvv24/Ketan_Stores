@@ -3,6 +3,7 @@ package com.example.ketanStores.entity;
 import java.sql.Blob;
 
 import com.example.ketanStores.enums.CottonEnum;
+import com.example.ketanStores.enums.KurtaEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -89,5 +90,13 @@ public class CottonEntity {
 
     public void setImage(Blob image) {
         kurtaEntity.setImage(image);
+    }
+
+    public void setKurtaType(KurtaEnum kurtaEnum) {
+        this.kurtaEntity.setKurtaEnum(kurtaEnum);
+    }
+
+    public KurtaEnum getKurtaType() {
+        return this.kurtaEntity.getKurtaEnum();
     }
 }

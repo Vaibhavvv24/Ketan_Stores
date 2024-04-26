@@ -21,6 +21,7 @@ import ItemsPalette from "../../components/ItemsPalette";
 import SearchPalette from "../../components/SearchPalette";
 
 export default function Chudidar() {
+  const [search, setSearch] = useState("");
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [newQuantity, setNewQuantity] = useState("");
@@ -62,8 +63,9 @@ export default function Chudidar() {
   }, []);
 
   useEffect(() => {
+    if (search !== ""){
     //Implement Search Functionality
-    fetch(`http://localhost:8080/chudidar/search/`, {
+    fetch(`http://localhost:8080/chudidar/search/${search}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -78,7 +80,37 @@ export default function Chudidar() {
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  }, [data]);
+    }
+    else {
+      fetch("http://localhost:8080/churidars", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${jwt}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          const newData = data.map((item) => {
+            return {
+              id: item.id,
+              name: item.name,
+              price: item.price,
+              quantity: item.quantity,
+              size: item.size,
+              image: item.image,
+              type: item.type_name,
+            };
+          });
+          setData(newData);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    }
+  }, [search]);
+
   const display = (e) => {
     if (type === "ALL") {
       fetch("http://localhost:8080/churidars", {
@@ -158,6 +190,9 @@ export default function Chudidar() {
 
   return (
     <div className="flex flex-wrap flex-col justify-center items-center" >
+      <FormControl>
+        <Input type='text' placeholder='Search' onChange={(e) => setSearch(e.target.value.trim())}/>
+      </FormControl>
       <main>
         <CssBaseline />
         <Sheet
@@ -293,9 +328,9 @@ export default function Chudidar() {
       <div className='grid lg:grid-cols-2 w-full gap-3 px-10 h-full sm:grid-cols-1'>
         {!loading &&
           data &&
-          data.map((item, index) => {
+          data.map((item, index)=> {
             return (
-              <div key={index}>
+              ((search !== "" && item.name.toLowerCase().includes(search.toLowerCase())) || search === "") && <div key={index}>
                 <ItemsPalette
                   filterItems={[item]}
                   Item={data[index]}
