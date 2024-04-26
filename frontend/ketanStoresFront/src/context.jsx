@@ -23,57 +23,57 @@ const AppProvider = ({ children }) => {
         {
           url: "/ketan-stores/",
           name: "Ketan Stores",
-          width: 320,
+          // width: "30%",
         },
         {
           url: "/ketan-stores/men",
           name: "Mens",
-          width: 400,
+          // width: 400,
         },
         {
           url: "/ketan-stores/kids",
           name: "Kids",
-          width: 400,
+          // width: 400,
         },
         {
           url: "/ketan-stores/men/kurta/",
           name: "Kurta",
-          width: 320,
+          // width: "30%",
         },
         {
           url: "/ketan-stores/men/chudidar/",
           name: "Chudidar",
-          width: 320,
+          // width: "30%",
         },
         {
           url: "/ketan-stores/men/jacket-suit",
           name: "Jacket Suit",
-          width: 320,
+          // width: 
         },
         {
           url: "/ketan-stores/men/indo-western",
           name: "Indo Western",
-          width: 320,
+          // width: 320,
         },
         {
           url: "/ketan-stores/men/short-kurta",
           name: "Short Kurta",
-          width: 320,
+          // width: 320,
         },
         {
           url: "/ketan-stores/men/plus-size",
           name: "Plus Size",
-          width: 320,
+          // width: 320,
         },
         {
           url: "/ketan-stores/men/kurta/silk",
           name: "Silk",
-          width: 400,
+          // width: 400,
         },
         {
           url: "/ketan-stores/men/kurta/cotton",
           name: "Cotton",
-          width: 400,
+          // width: 400,
         },
       ],
     });

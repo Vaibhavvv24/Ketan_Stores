@@ -23,7 +23,7 @@ import ColorLensRoundedIcon from "@mui/icons-material/ColorLensRounded";
 export default function ColorInversionFooter() {
   const [color, setColor] = React.useState("neutral");
   return (
-  <div className="mt-32 w-full">
+  <div className="mt-64 w-full ">
     <Sheet
       variant='solid'
       color={color}
