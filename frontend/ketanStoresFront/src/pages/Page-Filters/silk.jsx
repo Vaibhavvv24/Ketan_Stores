@@ -195,12 +195,9 @@ export default function Silk() {
   }
 
   return (
-    <div className="flex flex-wrap flex-col justify-center items-center" >
+    <div className='flex flex-wrap flex-col justify-center items-center'>
       <FormControl>
-        <Input
-          type = 'text'
-          placeholder="Search"
-        />
+        <Input type='text' placeholder='Search' />
       </FormControl>
       <main>
         <CssBaseline />
@@ -340,7 +337,7 @@ export default function Silk() {
           Loading...
         </div>
       )}
-      <div className='grid grid-cols-2 w-full gap-3 px-10 h-full'>
+      <div className='grid lg:grid-cols-2 w-full gap-3 px-10 h-full sm:grid-cols-1'>
         {!loading &&
           silkdata &&
           silkdata.map((item, index) => {

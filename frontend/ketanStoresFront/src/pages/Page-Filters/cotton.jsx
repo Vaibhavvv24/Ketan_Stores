@@ -199,7 +199,7 @@ export default function Cotton() {
   };
 
   return (
-    <div className="flex flex-wrap flex-col justify-center items-center" >
+    <div className='flex flex-wrap flex-col justify-center items-center'>
       <main>
         <CssBaseline />
         <Sheet
@@ -346,7 +346,7 @@ export default function Cotton() {
           Loading...
         </div>
       )}
-      <div className='grid grid-cols-2 w-full gap-3 px-10 h-full'>
+      <div className='grid lg:grid-cols-2 w-full gap-3 px-10 h-full sm:grid-cols-1'>
         {!loading &&
           cottonData &&
           cottonData.map((item, index) => {

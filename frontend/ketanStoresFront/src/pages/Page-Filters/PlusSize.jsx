@@ -51,7 +51,7 @@ export default function PlusSize() {
           Loading...
         </div>
       )}
-      <div className='grid grid-cols-2 w-full gap-3 px-10 h-full'>
+      <div className='grid lg:grid-cols-2 w-full gap-3 px-10 h-full sm:grid-cols-1'>
         {!loading &&
           data &&
           data.map((item, index) => {

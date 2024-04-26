@@ -18,6 +18,7 @@ import { useState } from "react";
 import { useGlobalContext } from "../../context";
 import Base64decode from "../../components/Base64decode";
 import ItemsPalette from "../../components/ItemsPalette";
+import SearchPalette from "../../components/SearchPalette";
 
 export default function Chudidar() {
   const [data, setData] = useState([]);
@@ -60,6 +61,24 @@ export default function Chudidar() {
       });
   }, []);
 
+  useEffect(() => {
+    //Implement Search Functionality
+    fetch(`http://localhost:8080/chudidar/search/`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${jwt}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setData(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, [data]);
   const display = (e) => {
     if (type === "ALL") {
       fetch("http://localhost:8080/churidars", {
@@ -262,13 +281,16 @@ export default function Chudidar() {
           )}
         </Sheet>
       </main>
-      <div className='text-center my-5'> {applied}</div>
+      <div className='text-center my-5'> { applied }</div>
+      <div>
+        <SearchPalette data={ data } />
+      </div>
       {loading && (
         <div className='w-full font-semibold text-4xl text-center'>
           Loading...
         </div>
       )}
-      <div className='grid grid-cols-2 w-full gap-3 px-10 h-full'>
+      <div className='grid lg:grid-cols-2 w-full gap-3 px-10 h-full sm:grid-cols-1'>
         {!loading &&
           data &&
           data.map((item, index) => {
