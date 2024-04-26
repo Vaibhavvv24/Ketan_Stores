@@ -17,7 +17,7 @@ export default function KetanStores() {
       <div className='py-32'>
         <DividerText text='Ketan Stores' />
       </div>
-      <div className='top-[80px] w-full flex flex-row justify-evenly items-center'>
+      <div className='w-full grid lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 gap-5 my-10 px-20'>
         <Link to='/ketan-stores/men'>
           <CardPalette filterItems={mens} />
         </Link>

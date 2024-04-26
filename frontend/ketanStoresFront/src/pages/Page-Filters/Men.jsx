@@ -4,6 +4,7 @@ import HomeSection from '../../components/Card'
 import { useGlobalContext } from '../../context'
 import { Card } from '@mui/material';
 import CardPalette from '../../components/CardPalette';
+import { useLayoutEffect } from 'react';
 
 export default function Men() {
   const { filterMens } = useGlobalContext();
@@ -15,9 +16,13 @@ export default function Men() {
   const shortKurta = filterMens.filter((item) => item.name === 'Short Kurta');
   const plusSize = filterMens.filter((item) => item.name === 'Plus Size');
 
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  });
+
   return (
-    <div className='top-[50px] h-[500px] w-full flex flex-col justify-evenly items-center gap-3'>
-      <div className='flex flex-row justify-evenly gap-10 items-center'>
+    <div className='w-full grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-5 my-10 px-20'>
+      {/* <div className='flex flex-row justify-evenly gap-10 items-center'> */}
         <Link to='/ketan-stores/men/kurta/'>
           <CardPalette filterItems={kurta} />
         </Link>
@@ -27,8 +32,7 @@ export default function Men() {
         <Link to='/ketan-stores/men/jacket-suit'>
           <CardPalette filterItems={jacketSuit} />
         </Link>
-      </div>
-      <div className='flex flex-row justify-evenly gap-10 items-center'>
+      {/* <div className='flex flex-row justify-evenly gap-10 items-center'> */}
         <Link to='/ketan-stores/men/indo-western'>
           <CardPalette filterItems={indoWestern} />
         </Link>
@@ -38,7 +42,7 @@ export default function Men() {
         <Link to='/ketan-stores/men/plus-size'>
           <CardPalette filterItems={plusSize} />
         </Link>
-      </div>
+      {/* </div> */}
     </div>
   );
 }

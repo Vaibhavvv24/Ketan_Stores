@@ -15,9 +15,9 @@ public interface Others_repo extends JpaRepository<OthersEntity,Long>{
 
     List<OthersEntity> findAllByTypeAndSize(OthersEnum othersEnum, int size);
 
-    List<OthersEntity> findAllByName(String name);
-
     List<OthersEntity> findAllByTypeAndSizeAndColour(OthersEnum othersEnum, int size, String colour);
 
     List<OthersEntity> findAllByTypeAndColour(OthersEnum othersEnum, String colour);
+
+    List<OthersEntity> findAllByNameContaining(String name);
 }

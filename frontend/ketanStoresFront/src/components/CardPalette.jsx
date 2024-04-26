@@ -14,10 +14,10 @@ export default function CardPalette({ filterItems }) {
   const name = filterItems[0].name;
 
   return (
-  <div>
-    <Card sx={{ width: filterItems[0].width }}>
+  <div className=''>
+    <Card>
       <div>
-          <Typography level='title-lg'>{ name }</Typography>
+        <Typography level='title-lg'>{ name }</Typography>
       </div>
       <AspectRatio minHeight='120px' maxHeight='200px'>
         <img

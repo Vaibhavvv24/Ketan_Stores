@@ -45,7 +45,13 @@ export default function PlusSize() {
   }, []);
 
   return (
-      <div className='grid grid-cols-2 w-full gap-3 px-10 h-full'>
+    <>
+      {loading && (
+        <div className='w-full font-semibold text-4xl text-center'>
+          Loading...
+        </div>
+      )}
+      <div className='grid lg:grid-cols-2 w-full gap-3 px-10 h-full sm:grid-cols-1'>
         {!loading &&
           data &&
           data.map((item, index) => {
@@ -62,6 +68,7 @@ export default function PlusSize() {
             );
           })}
       </div>
+    </>
   );
 }
 

@@ -26,6 +26,9 @@ export default function JacketsAndSuits() {
   const [size, setSize] = useState("");
   const [colour, setColour] = useState("");
   const [newQuantity, setNewQuantity] = useState(0);
+    const size1 = size === "" ? "NULL" : size;
+    const colour1 = colour === "" ? "NULL" : colour;
+    const applied = `Applied Filters => Color : ${colour1},  Size : ${size1}`;
 
   useEffect(() => {
     fetch("http://localhost:8080/other/filter/JACKET_SUIT", {
@@ -117,12 +120,11 @@ export default function JacketsAndSuits() {
   }
 
   return (
-    <div>
+    <div className='flex flex-wrap flex-col justify-center items-center'>
       <main>
         <CssBaseline />
         <Sheet
           sx={{
-            width: "40%",
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-evenly",
@@ -162,12 +164,15 @@ export default function JacketsAndSuits() {
                       placeholder='Enter Size'
                       style={{ width: 170 }}
                       onChange={(e) => {
-                      if (!isNaN(e.target.value) && e.target.value.trim() !== "") {
-                        setSize(Number(e.target.value.trim()));
-                      }
-                      else{
-                        setSize(e.target.value);
-                      }}}
+                        if (
+                          !isNaN(e.target.value) &&
+                          e.target.value.trim() !== ""
+                        ) {
+                          setSize(Number(e.target.value.trim()));
+                        } else {
+                          setSize(e.target.value);
+                        }
+                      }}
                     />
                   </div>
                 </div>
@@ -196,12 +201,25 @@ export default function JacketsAndSuits() {
               </div>
             </FormControl>
           </div>
-          {
-            isNaN(size) ? <Button className="bg-gray-500 hover:bg-gray-700" >Go</Button> : <Button className="bg-grey-500 hover:bg-grey-700" onClick={handleJacketsAndSuits}>Go</Button>
-          }
+          {isNaN(size) ? (
+            <Button className='bg-gray-500 hover:bg-gray-700'>Go</Button>
+          ) : (
+            <Button
+              className='bg-grey-500 hover:bg-grey-700'
+              onClick={handleJacketsAndSuits}
+            >
+              Go
+            </Button>
+          )}
         </Sheet>
       </main>
-      <div className="grid grid-cols-2 w-full gap-3 px-10 h-full">
+      <div className='text-center my-5'> {applied}</div>
+      {loading && (
+        <div className='w-full font-semibold text-4xl text-center'>
+          Loading...
+        </div>
+      )}
+      <div className='grid lg:grid-cols-2 w-full gap-3 px-10 h-full sm:grid-cols-1'>
         {!loading &&
           data &&
           data.map((item, index) => {
