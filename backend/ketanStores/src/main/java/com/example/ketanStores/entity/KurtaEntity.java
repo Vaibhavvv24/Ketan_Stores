@@ -2,6 +2,7 @@ package com.example.ketanStores.entity;
 
 import java.sql.Blob;
 
+import com.example.ketanStores.enums.KurtaEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,14 +17,15 @@ import lombok.NoArgsConstructor;
 public class KurtaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
-    String Name;
-    int price;
-    int size;
-    int quantity;
-    String colour;
+    private Long id;
+    private String Name;
+    private int price;
+    private int size;
+    private int quantity;
+    private String colour;
+    private KurtaEnum kurtaEnum;
     @Column(columnDefinition = "longblob")
-    Blob image;
+    private Blob image;
 
     public KurtaEntity(String Name,int price, int size, int quantity, Blob image, String colour) {
         this.Name = Name;
@@ -86,5 +88,13 @@ public class KurtaEntity {
     }
     public void setName(String Name) {
         this.Name = Name;
+    }
+
+    public KurtaEnum getKurtaEnum() {
+        return kurtaEnum;
+    }
+
+    public void setKurtaEnum(KurtaEnum kurtaEnum) {
+        this.kurtaEnum = kurtaEnum;
     }
 }
