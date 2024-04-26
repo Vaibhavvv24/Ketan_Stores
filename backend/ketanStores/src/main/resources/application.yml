@@ -3,8 +3,10 @@ spring:
     url: jdbc:mysql://localhost:3307/ketan_stores
     # username: root
     # password: pc02@December
-    username: springstudent
-    password: springstudent
+    # username: springstudent
+    # password: springstudent
+    username: root
+    password: Krishrakesh1
     driver-class-name: com.mysql.cj.jdbc.Driver
   
   servlet:
