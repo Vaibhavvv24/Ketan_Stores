@@ -14,8 +14,8 @@ export default function CardPalette({ filterItems }) {
   const name = filterItems[0].name;
 
   return (
-  <div>
-    <Card sx={{ width: filterItems[0].width }}>
+  <div className='p-10'>
+    <Card>
       <div>
           <Typography level='title-lg'>{ name }</Typography>
       </div>
