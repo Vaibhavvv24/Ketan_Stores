@@ -103,7 +103,7 @@ export default function ItemsPalette({ filterItems, Item , newQuantity ,setNewQu
             {color && <Typography level='body-md'>Color : {color}</Typography>}
             <div>
               <input type='text' placeholder='Enter Quantity'
-                className='p-1 border border-gray-400 rounded-md'
+                className='p-1 border border-gray-400 rounded-md w-[80%]'
                 onChange={ 
                   (e) => {
                     console.log(e.target.value);

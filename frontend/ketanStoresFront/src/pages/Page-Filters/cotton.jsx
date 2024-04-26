@@ -27,6 +27,10 @@ export default function Cotton() {
   const [size, setSize] = useState("");
   const [color, setColor] = useState("");
   const [type, setType] = useState("ALL");
+  const size1 = size === "" ? "NULL" : size;
+  const color1 = color === "" ? "NULL" : color;
+  const type1 = type === "ALL" ? "ALL" : type;
+  const applied = `Applied Filters => Type : ${type1},  Size : ${size1},  Color : ${color1}`;
 
   useEffect(() => {
     fetch("http://localhost:8080/kurta_cotton/all", {
@@ -38,7 +42,7 @@ export default function Cotton() {
     })
       .then((response) => response.json())
       .then((data) => {
-          setCottonData(data);
+        setCottonData(data);
         setLoading(false);
       })
       .catch((error) => {
@@ -53,144 +57,149 @@ export default function Cotton() {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${jwt}`,
+          Authorization: `Bearer ${jwt}`,
         },
       })
-      .then(response => response.json())
-      .then(data => {
-        console.log("Thala",data);
-        setCottonData(data);
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
-    }
-    else if (type === "ALL" && !isNaN(size) && color === "") {
-      console.log("ThalaSize",size);
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Thala", data);
+          setCottonData(data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    } else if (type === "ALL" && !isNaN(size) && color === "") {
+      console.log("ThalaSize", size);
       fetch(`http://localhost:8080/kurta_cotton/size/${size}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${jwt}`,
+          Authorization: `Bearer ${jwt}`,
         },
       })
-      .then(response => response.json())
-      .then(data => {
-        console.log("ThalaNew",data);
-        setCottonData(data);
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
-    }
-    else if (type === "ALL" && size === "" && color !== "") {
-      fetch(`http://localhost:8080/kurta_cotton/cotton/colour_filter/${color}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${jwt}`,
-        },
-      })
-      .then(response => response.json())
-      .then(data => {
-        setCottonData(data);
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
-    }
-    else if (type === "ALL" && !isNaN(size) && color !== "") {
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("ThalaNew", data);
+          setCottonData(data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    } else if (type === "ALL" && size === "" && color !== "") {
+      fetch(
+        `http://localhost:8080/kurta_cotton/cotton/colour_filter/${color}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${jwt}`,
+          },
+        }
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          setCottonData(data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    } else if (type === "ALL" && !isNaN(size) && color !== "") {
       fetch(`http://localhost:8080/kurta_cotton/cotton/${color}/size/${size}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${jwt}`,
+          Authorization: `Bearer ${jwt}`,
         },
       })
-      .then(response => response.json())
-      .then(data => {
-        setCottonData(data);
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
-    }
-    else if (type !== "ALL" && size === "" && color === "") {
+        .then((response) => response.json())
+        .then((data) => {
+          setCottonData(data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    } else if (type !== "ALL" && size === "" && color === "") {
       fetch(`http://localhost:8080/kurta_cotton/type/${type}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${jwt}`,
+          Authorization: `Bearer ${jwt}`,
         },
       })
-      .then(response => response.json())
-      .then(data => {
-        setCottonData(data);
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
+        .then((response) => response.json())
+        .then((data) => {
+          setCottonData(data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    } else if (type !== "ALL" && !isNaN(size) && color === "") {
+      fetch(
+        `http://localhost:8080/kurta_cotton/cotton_ts/${type}/size/${size}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${jwt}`,
+          },
+        }
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          setCottonData(data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    } else if (type !== "ALL" && size === "" && color !== "") {
+      fetch(
+        `http://localhost:8080/kurta_cotton/cotton/${type}/colour/${color}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${jwt}`,
+          },
+        }
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          setCottonData(data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    } else if (type !== "ALL" && size !== "" && color !== "") {
+      fetch(
+        `http://localhost:8080/kurta_cotton/cotton_tcs/${type}/colour/${color}/size/${size}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${jwt}`,
+          },
+        }
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          setCottonData(data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
     }
-    else if (type !== "ALL" && !isNaN(size) && color === "") {
-      fetch(`http://localhost:8080/kurta_cotton/cotton_ts/${type}/size/${size}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${jwt}`,
-        },
-      })
-      .then(response => response.json())
-      .then(data => {
-        setCottonData(data);
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      })
-    }
-    else if (type !== "ALL" && size === "" && color !== "") {
-      fetch(`http://localhost:8080/kurta_cotton/cotton/${type}/colour/${color}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${jwt}`,
-        },
-      })
-      .then(response => response.json())
-      .then(data => {
-        setCottonData(data);
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      })
-    }
-    else if (type !== "ALL" && size !== "" && color !== "") {
-      fetch(`http://localhost:8080/kurta_cotton/cotton_tcs/${type}/colour/${color}/size/${size}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${jwt}`,
-        },
-      })
-      .then(response => response.json())
-      .then(data => {
-        setCottonData(data);
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      })
-    }
-  }
+  };
 
   return (
-    <div className="flex flex-wrap flex-col justify-center items-center" >
+    <div className='flex flex-wrap flex-col justify-center items-center'>
       <main>
         <CssBaseline />
         <Sheet
@@ -218,7 +227,7 @@ export default function Cotton() {
             </Typography>
           </div>
           <div className='flex justify-evenly h-full w-full mt-2 flex-wrap'>
-          <FormControl>
+            <FormControl>
               <div className='flex justify-evenly h-full w-full'>
                 <div className='flex-col justify-left pl-1 items-center gap-2 mt-2'>
                   <Typography
@@ -253,7 +262,7 @@ export default function Cotton() {
                           setType("DIGITAL_PRINT");
                         }}
                       >
-                        Digital Print 
+                        Digital Print
                       </Option>
                       <Option
                         value='EMBROIDERY'
@@ -280,21 +289,21 @@ export default function Cotton() {
                     <FormLabel className='pl-2'>Size:</FormLabel>
                   </Typography>
                   <div className='flex justify-center items-center w-full mt-2'>
-                        <Input
-                          type='text'
-                          placeholder='Enter Size'
-                          style={{ width: 170 }}
-                          onChange={(e) =>
-                          {
-                            if (!isNaN(e.target.value) && e.target.value.trim() !== "") {
-                              setSize(Number(e.target.value.trim()));
-                            }
-                            else {
-                              setSize(e.target.value);
-                            }
-                          }
+                    <Input
+                      type='text'
+                      placeholder='Enter Size'
+                      style={{ width: 170 }}
+                      onChange={(e) => {
+                        if (
+                          !isNaN(e.target.value) &&
+                          e.target.value.trim() !== ""
+                        ) {
+                          setSize(Number(e.target.value.trim()));
+                        } else {
+                          setSize(e.target.value);
                         }
-                        />
+                      }}
+                    />
                   </div>
                 </div>
               </div>
@@ -316,18 +325,28 @@ export default function Cotton() {
                       placeholder='Enter Colour'
                       style={{ width: 170 }}
                       onChange={(e) => setColor(e.target.value.trim())}
-                    /> 
+                    />
                   </div>
                 </div>
               </div>
             </FormControl>
           </div>
-          {
-            isNaN(size) ? <Button className="bg-gray-500 hover:bg-gray-700" >Go</Button> : <Button className="bg-blue-500 hover:bg-blue-700" onClick={display}>Go</Button>
-          }
+          {isNaN(size) ? (
+            <Button className='bg-gray-500 hover:bg-gray-700'>Go</Button>
+          ) : (
+            <Button className='bg-blue-500 hover:bg-blue-700' onClick={display}>
+              Go
+            </Button>
+          )}
         </Sheet>
       </main>
-      <div className='grid grid-cols-2 w-full gap-3 px-10 h-full'>
+      <div className='text-center my-5'> {applied}</div>
+      {loading && (
+        <div className='w-full font-semibold text-4xl text-center'>
+          Loading...
+        </div>
+      )}
+      <div className='grid lg:grid-cols-2 w-full gap-3 px-10 h-full sm:grid-cols-1'>
         {!loading &&
           cottonData &&
           cottonData.map((item, index) => {
