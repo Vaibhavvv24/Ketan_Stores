@@ -7,6 +7,7 @@ import java.util.List;
 import com.example.ketanStores.dto.Cotton_dto;
 import com.example.ketanStores.entity.CottonEntity;
 import com.example.ketanStores.enums.CottonEnum;
+import com.example.ketanStores.enums.KurtaEnum;
 import com.example.ketanStores.enums.SilkEnum;
 
 public interface Cotton_service {
@@ -24,7 +25,7 @@ public interface Cotton_service {
 
     ArrayList<Cotton_dto> getByTypeAndSize(String type, int size);
 
-    Cotton_dto createCotton(String name, int price, int quantity, CottonEnum cottonEnum, Blob blob, int size, String colour);
+    Cotton_dto createCotton(String name, int price, int quantity, CottonEnum cottonEnum, Blob blob, int size, String colour, KurtaEnum kurtaEnum);
 
     ArrayList<Cotton_dto> getCottonByName(String name);
 
