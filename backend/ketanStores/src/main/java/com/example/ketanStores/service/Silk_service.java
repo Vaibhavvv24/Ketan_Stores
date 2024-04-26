@@ -44,4 +44,6 @@ public interface Silk_service{
     ArrayList<Silk_dto> getByTypeColourSize(String type, String colour, int size);
 
     ArrayList<Silk_dto> getBySizeColour(int size, String colour);
+
+    void deleteById(Long id);
 }

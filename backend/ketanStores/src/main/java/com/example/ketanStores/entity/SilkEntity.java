@@ -18,7 +18,7 @@ public class SilkEntity {
     @Id
     private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @MapsId
     private KurtaEntity kurtaEntity;
 

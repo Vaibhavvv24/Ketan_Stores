@@ -22,6 +22,7 @@ import Base64decode from "../../components/Base64decode";
 export default function PlusSize() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [newQuantity, setNewQuantity] = useState(0);
   const { jwt } = useGlobalContext();
 
   useEffect(() => {
@@ -44,17 +45,30 @@ export default function PlusSize() {
   }, []);
 
   return (
-      <div className='grid grid-cols-2 w-full gap-3 px-10 h-full'>
+    <>
+      {loading && (
+        <div className='w-full font-semibold text-4xl text-center'>
+          Loading...
+        </div>
+      )}
+      <div className='grid lg:grid-cols-2 w-full gap-3 px-10 h-full sm:grid-cols-1'>
         {!loading &&
           data &&
           data.map((item, index) => {
             return (
               <div key={index}>
-                <ItemsPalette filterItems={[item]} />
+                <ItemsPalette
+                  filterItems={[item]}
+                  Item={data[index]}
+                  newQuantity={newQuantity}
+                  setNewQuantity={setNewQuantity}
+                  Type={"other"}
+                />
               </div>
             );
           })}
       </div>
+    </>
   );
 }
 

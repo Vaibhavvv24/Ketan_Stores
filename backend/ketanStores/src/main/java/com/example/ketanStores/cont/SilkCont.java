@@ -4,13 +4,13 @@ import com.example.ketanStores.enums.SilkEnum;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.ketanStores.dto.Silk_dto;
-import com.example.ketanStores.entity.SilkEntity;
 import com.example.ketanStores.service.Silk_service;
 
 import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -63,7 +63,9 @@ public class SilkCont {
     }
     @GetMapping("/silk/search/{name}")
     public ResponseEntity<?> search(@PathVariable String name) {
+        System.out.println(name);
         List<Silk_dto> silk_dtos = silk_service.getSilkByName(name);
+        System.out.println(silk_dtos);
         return ResponseEntity.ok().body(silk_dtos);
     }
 
@@ -105,5 +107,13 @@ public class SilkCont {
     public ResponseEntity<?> getBySizeColour(@PathVariable int size, @PathVariable String colour) {
         ArrayList<Silk_dto> silk_dtos = silk_service.getBySizeColour(size, colour);
         return ResponseEntity.ok().body(silk_dtos);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteById(@PathVariable Long id) {
+        silk_service.deleteById(id);
+        HashMap<String, String> responseJSON = new HashMap<>();
+        responseJSON.put("status", "deleted : " + id);
+        return ResponseEntity.ok().body(responseJSON);
     }
 }

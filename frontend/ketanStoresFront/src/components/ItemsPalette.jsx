@@ -11,8 +11,9 @@ import BookmarkAdd from "@mui/icons-material/BookmarkAddOutlined";
 import Base64decode from "./Base64decode";
 import { useGlobalContext } from "../context";
 import { useNavigate } from "react-router-dom";
+import Chudidar from "../pages/Page-Filters/chudidar";
 
-export default function ItemsPalette({ filterItems, Item , newQuantity ,setNewQuantity}) {
+export default function ItemsPalette({ filterItems, Item , newQuantity ,setNewQuantity , Type}) {
   const { jwt } = useGlobalContext();
   // console.log(filterItems);
   const name = filterItems[0].name;
@@ -41,7 +42,7 @@ export default function ItemsPalette({ filterItems, Item , newQuantity ,setNewQu
     console.log(Item);
     try {
       const response = await fetch(
-        `http://localhost:8080/chudidar/update/${Item.id}`,
+        `http://localhost:8080/${Type}/update/${Item.id}`,
         {
           method: "PUT",
           headers: {
@@ -61,7 +62,7 @@ export default function ItemsPalette({ filterItems, Item , newQuantity ,setNewQu
           window.location.reload();
           alert("Quantity Updated Successfully");
         } else {
-          // alert("Failed to Update Quantity");
+          alert("Failed to Update Quantity");
         }
       }
     } catch (error) {
@@ -102,7 +103,7 @@ export default function ItemsPalette({ filterItems, Item , newQuantity ,setNewQu
             {color && <Typography level='body-md'>Color : {color}</Typography>}
             <div>
               <input type='text' placeholder='Enter Quantity'
-                className='p-1 border border-gray-400 rounded-md'
+                className='p-1 border border-gray-400 rounded-md w-[80%]'
                 onChange={ 
                   (e) => {
                     console.log(e.target.value);
