@@ -4,6 +4,7 @@ import HomeSection from '../../components/Card'
 import { useGlobalContext } from '../../context'
 import { Card } from '@mui/material';
 import CardPalette from '../../components/CardPalette';
+import { useLayoutEffect } from 'react';
 
 export default function Men() {
   const { filterMens } = useGlobalContext();
@@ -14,6 +15,10 @@ export default function Men() {
   const indoWestern = filterMens.filter((item) => item.name === 'Indo Western');
   const shortKurta = filterMens.filter((item) => item.name === 'Short Kurta');
   const plusSize = filterMens.filter((item) => item.name === 'Plus Size');
+
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  });
 
   return (
     <div className='w-full grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-5 my-10 px-20'>
