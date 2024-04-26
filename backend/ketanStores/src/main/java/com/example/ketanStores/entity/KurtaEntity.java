@@ -18,7 +18,7 @@ public class KurtaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String Name;
+    private String name;
     private int price;
     private int size;
     private int quantity;
@@ -33,8 +33,8 @@ public class KurtaEntity {
     @OneToOne(mappedBy = "kurtaEntity", cascade = CascadeType.ALL)
     private SilkEntity silkEntity;
 
-    public KurtaEntity(String Name,int price, int size, int quantity, Blob image, String colour, KurtaEnum kurtaEnum) {
-        this.Name = Name;
+    public KurtaEntity(String name,int price, int size, int quantity, Blob image, String colour, KurtaEnum kurtaEnum) {
+        this.name = name;
         this.price = price;
         this.size = size;
         this.quantity = quantity;
@@ -43,7 +43,7 @@ public class KurtaEntity {
         this.kurtaEnum = kurtaEnum;
     }
     public String getName() {
-        return Name;
+        return name;
     }
 
     public String getColour() {
@@ -93,8 +93,8 @@ public class KurtaEntity {
     public void setImage(Blob image) {
         this.image = image;
     }
-    public void setName(String Name) {
-        this.Name = Name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public KurtaEnum getKurtaEnum() {
