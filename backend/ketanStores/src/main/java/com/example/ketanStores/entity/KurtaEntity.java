@@ -27,13 +27,20 @@ public class KurtaEntity {
     @Column(columnDefinition = "longblob")
     private Blob image;
 
-    public KurtaEntity(String Name,int price, int size, int quantity, Blob image, String colour) {
+    @OneToOne(mappedBy = "kurtaEntity", cascade = CascadeType.ALL)
+    private CottonEntity cottonEntity;
+
+    @OneToOne(mappedBy = "kurtaEntity", cascade = CascadeType.ALL)
+    private SilkEntity silkEntity;
+
+    public KurtaEntity(String Name,int price, int size, int quantity, Blob image, String colour, KurtaEnum kurtaEnum) {
         this.Name = Name;
         this.price = price;
         this.size = size;
         this.quantity = quantity;
         this.image = image;
         this.colour = colour;
+        this.kurtaEnum = kurtaEnum;
     }
     public String getName() {
         return Name;

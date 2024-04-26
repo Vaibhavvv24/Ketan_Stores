@@ -14,6 +14,7 @@ import com.example.ketanStores.dto.Silk_dto;
 import com.example.ketanStores.entity.ChudidarEntity;
 import com.example.ketanStores.entity.KurtaEntity;
 import com.example.ketanStores.entity.SilkEntity;
+import com.example.ketanStores.enums.KurtaEnum;
 import com.example.ketanStores.repository.Kurta_repo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -67,11 +68,12 @@ public class Cotton_serviceimp implements Cotton_service{
     }
 
     @Override
-    public Cotton_dto createCotton(String name, int price, int quantity, CottonEnum cottonEnum, Blob blob, int size, String colour) {
+    public Cotton_dto createCotton(String name, int price, int quantity, CottonEnum cottonEnum, Blob blob, int size, String colour, KurtaEnum kurtaEnum) {
         KurtaEntity kurtaEntity = new KurtaEntity();
         CottonEntity cottonEntity = new CottonEntity();
         kurtaEntity.setSize(size);
         kurtaEntity.setPrice(price);
+        kurtaEntity.setKurtaEnum(kurtaEnum);
         kurtaEntity.setQuantity(quantity);
         kurtaEntity.setImage(blob);
         kurtaEntity.setColour(colour);
@@ -90,10 +92,10 @@ public class Cotton_serviceimp implements Cotton_service{
     @Override
     public ArrayList<Cotton_dto> getCottonByName(String name) {
         ArrayList<Cotton_dto> cotton_dtos = new ArrayList<>();
-        Iterable<CottonEntity> cottons = cotton_Repo.findAll();
-        for(CottonEntity cotton : cottons){
-            if(cotton.getName().equals(name)){
-                cotton_dtos.add(convert_entity_to_dto(cotton));
+        Iterable<KurtaEntity> kurtaEntities = kurtaRepo.findAllByNameContaining(name);
+        for (KurtaEntity kurtaEntity : kurtaEntities) {
+            if (kurtaEntity.getKurtaEnum().equals(KurtaEnum.COTTON)) {
+                cotton_dtos.add(convert_entity_to_dto(kurtaEntity.getCottonEntity()));
             }
         }
         return cotton_dtos;
