@@ -70,6 +70,23 @@ export default function Silk() {
         console.error('Error fetching data:', error);
       })
     }
+    else {
+      fetch("http://localhost:8080/kurta_silk/all", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${jwt}`,
+        },
+      })
+      .then(response => response.json())
+      .then(data => {
+        setSilkData(data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+    }
   }, [search]);
     console.log(silkdata);
 
@@ -364,7 +381,7 @@ export default function Silk() {
           silkdata &&
           silkdata.map((item, index) => {
             return (
-              <div key={index}>
+              ((search !== "" && item.name.toLowerCase().includes(search.toLowerCase())) || search === "") && <div key={index}>
                 <ItemsPalette
                   filterItems={[item]}
                   Item={silkdata[index]}

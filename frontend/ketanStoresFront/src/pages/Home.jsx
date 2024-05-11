@@ -7,7 +7,7 @@ import HomeSection from '../components/Card'
 const Home = () => {
     return (
     <div className=''>
-        <Navbar />
+        {/* <Navbar /> */}
         <HomeSection/>
         <Footer/>
     </div>

@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.example.ketanStores.dto.PutBody;
 import com.example.ketanStores.enums.CottonEnum;
+import com.example.ketanStores.enums.KurtaEnum;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
@@ -59,13 +60,14 @@ public class CottonCont {
     }
 
     @PostMapping("/cotton")
-    public ResponseEntity<?> postSilk(@RequestParam("name") String name, @RequestParam("img") MultipartFile file,
+    public ResponseEntity<?> postCotton(@RequestParam("name") String name, @RequestParam("img") MultipartFile file,
             @RequestParam("price") int price, @RequestParam("quantity") int quantity, @RequestParam("type") String type,
             @RequestParam("size") int size, @RequestParam("colour") String colour) throws IOException, SQLException {
         byte[] bytes = file.getBytes();
         Blob blob = new SerialBlob(bytes);
         CottonEnum cottonEnum = CottonEnum.valueOf(type);
-        Cotton_dto cotton_dto = cotton_service.createCotton(name, price, quantity, cottonEnum, blob, size, colour);
+        KurtaEnum kurtaEnum = KurtaEnum.COTTON;
+        Cotton_dto cotton_dto = cotton_service.createCotton(name, price, quantity, cottonEnum, blob, size, colour, kurtaEnum);
         if (cotton_dto == null) {
             return ResponseEntity.notFound().build();
         }

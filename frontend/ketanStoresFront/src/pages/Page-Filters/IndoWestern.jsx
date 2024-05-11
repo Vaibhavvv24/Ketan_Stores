@@ -18,8 +18,10 @@ import { useState } from "react";
 import { useGlobalContext } from "../../context";
 import ItemsPalette from "../../components/ItemsPalette";
 import Base64decode from "../../components/Base64decode";
+import useEnhancedEffect from "@mui/material/utils/useEnhancedEffect";
 
 export default function IndoWestern() {
+  const [search, setSearch] = useState("");
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const { jwt } = useGlobalContext();
@@ -47,6 +49,43 @@ export default function IndoWestern() {
         console.error("Error fetching data:", error);
       });
   }, []);
+
+  useEffect(() => {
+    if (search !== "") {
+      fetch(`http://localhost:8080/others/search/${search}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${jwt}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setData(data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    }
+    else{
+      fetch("http://localhost:8080/other/filter/INDO_WESTERN", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${jwt}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setData(data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    }
+  },[search])
 
   const handleJacketsAndSuits = (e) => {
     if (colour === "" && size === "") {
@@ -122,6 +161,9 @@ export default function IndoWestern() {
 
   return (
     <div className='flex flex-wrap flex-col justify-center items-center'>
+      <FormControl>
+        <Input type='text' placeholder='Search' onChange={(e) => setSearch(e.target.value.trim())}/>
+      </FormControl>
       <main>
         <CssBaseline />
         <Sheet
@@ -224,8 +266,9 @@ export default function IndoWestern() {
         {!loading &&
           data &&
           data.map((item, index) => {
+            console.log(item);
             return (
-              <div key={index}>
+              ((search !== "" && item.typeName === "INDO_WESTERN" && item.name.toLowerCase().includes(search.toLowerCase())) || search === "") && <div key={index}>
                 <ItemsPalette
                   filterItems={[item]}
                   Item={data[index]}

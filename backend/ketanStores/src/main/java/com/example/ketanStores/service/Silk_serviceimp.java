@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import com.example.ketanStores.entity.KurtaEntity;
 import com.example.ketanStores.entity.OthersEntity;
 import com.example.ketanStores.enums.ChudidarEnum;
+import com.example.ketanStores.enums.KurtaEnum;
 import com.example.ketanStores.repository.Kurta_repo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -133,11 +134,12 @@ public class Silk_serviceimp implements Silk_service{
     }
 
     @Override
-    public Silk_dto createSilk(String name, int price, int quantity, SilkEnum silkEnum, Blob blob, int size, String colour) {
+    public Silk_dto createSilk(String name, int price, int quantity, SilkEnum silkEnum, Blob blob, int size, String colour, KurtaEnum kurtaEnum) {
         KurtaEntity kurtaEntity = new KurtaEntity();
         SilkEntity silkEntity = new SilkEntity();
         kurtaEntity.setSize(size);
         kurtaEntity.setPrice(price);
+        kurtaEntity.setKurtaEnum(kurtaEnum);
         kurtaEntity.setQuantity(quantity);
         kurtaEntity.setImage(blob);
         silkEntity.setType(silkEnum);
@@ -153,11 +155,11 @@ public class Silk_serviceimp implements Silk_service{
 
     @Override
     public ArrayList<Silk_dto> getSilkByName(String name) {
+        Iterable<KurtaEntity> kurtaEntities = kurtaRepo.findAllByNameContaining(name);
         ArrayList<Silk_dto> silk_dtos = new ArrayList<>();
-        Iterable<SilkEntity> silkEntities = silk_Repo.findAll();
-        for (SilkEntity silkEntity : silkEntities) {
-            if (silkEntity.getName().equals(name)) {
-                silk_dtos.add(convert_entity_to_dto(silkEntity));
+        for (KurtaEntity kurtaEntity : kurtaEntities) {
+            if (kurtaEntity.getKurtaEnum().equals(KurtaEnum.SILK)) {
+                silk_dtos.add(convert_entity_to_dto(kurtaEntity.getSilkEntity()));
             }
         }
         return silk_dtos;

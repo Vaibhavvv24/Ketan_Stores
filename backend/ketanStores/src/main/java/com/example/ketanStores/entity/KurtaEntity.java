@@ -2,6 +2,7 @@ package com.example.ketanStores.entity;
 
 import java.sql.Blob;
 
+import com.example.ketanStores.enums.KurtaEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,25 +17,33 @@ import lombok.NoArgsConstructor;
 public class KurtaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
-    String Name;
-    int price;
-    int size;
-    int quantity;
-    String colour;
+    private Long id;
+    private String name;
+    private int price;
+    private int size;
+    private int quantity;
+    private String colour;
+    private KurtaEnum kurtaEnum;
     @Column(columnDefinition = "longblob")
-    Blob image;
+    private Blob image;
 
-    public KurtaEntity(String Name,int price, int size, int quantity, Blob image, String colour) {
-        this.Name = Name;
+    @OneToOne(mappedBy = "kurtaEntity", cascade = CascadeType.ALL)
+    private CottonEntity cottonEntity;
+
+    @OneToOne(mappedBy = "kurtaEntity", cascade = CascadeType.ALL)
+    private SilkEntity silkEntity;
+
+    public KurtaEntity(String name,int price, int size, int quantity, Blob image, String colour, KurtaEnum kurtaEnum) {
+        this.name = name;
         this.price = price;
         this.size = size;
         this.quantity = quantity;
         this.image = image;
         this.colour = colour;
+        this.kurtaEnum = kurtaEnum;
     }
     public String getName() {
-        return Name;
+        return name;
     }
 
     public String getColour() {
@@ -84,7 +93,15 @@ public class KurtaEntity {
     public void setImage(Blob image) {
         this.image = image;
     }
-    public void setName(String Name) {
-        this.Name = Name;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public KurtaEnum getKurtaEnum() {
+        return kurtaEnum;
+    }
+
+    public void setKurtaEnum(KurtaEnum kurtaEnum) {
+        this.kurtaEnum = kurtaEnum;
     }
 }

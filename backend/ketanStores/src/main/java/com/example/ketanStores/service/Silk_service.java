@@ -9,6 +9,7 @@ import com.example.ketanStores.dto.Silk_dto;
 import com.example.ketanStores.entity.SilkEntity;
 
 import com.example.ketanStores.enums.ChudidarEnum;
+import com.example.ketanStores.enums.KurtaEnum;
 import com.example.ketanStores.enums.SilkEnum;
 import io.jsonwebtoken.io.IOException;
 
@@ -31,7 +32,7 @@ public interface Silk_service{
 
     ArrayList<Silk_dto> getByTypeAndSize(String type, int size);
 
-    Silk_dto createSilk(String name, int price, int quantity, SilkEnum silkEnum, Blob blob, int size, String colour);
+    Silk_dto createSilk(String name, int price, int quantity, SilkEnum silkEnum, Blob blob, int size, String colour, KurtaEnum kurtaEnum);
 
     ArrayList<Silk_dto> getSilkByName(String name);
 
