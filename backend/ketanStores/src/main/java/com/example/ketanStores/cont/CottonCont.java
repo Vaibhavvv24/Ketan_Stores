@@ -11,7 +11,6 @@ import com.example.ketanStores.dto.PutBody;
 import com.example.ketanStores.enums.CottonEnum;
 import com.example.ketanStores.enums.KurtaEnum;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.ketanStores.dto.Cotton_dto;
