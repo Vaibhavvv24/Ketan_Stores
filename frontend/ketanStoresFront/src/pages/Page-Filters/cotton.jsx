@@ -69,6 +69,23 @@ export default function Cotton() {
           console.error('Error fetching data:', error);
         })
       }
+    else{
+      fetch("http://localhost:8080/kurta_cotton/all", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${jwt}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setCottonData(data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+      }
     }, [search]);
       console.log(cottonData);
   
@@ -375,7 +392,7 @@ export default function Cotton() {
       <div className='grid lg:grid-cols-2 w-full gap-3 px-10 h-full sm:grid-cols-1'>
         {!loading &&
           cottonData &&
-          cottonData.map((item, index) => {
+          cottonData.map((item, index)  => {
             return (
               <div key={index}>
                 <ItemsPalette
