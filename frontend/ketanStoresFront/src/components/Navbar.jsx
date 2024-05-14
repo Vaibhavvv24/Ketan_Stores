@@ -39,6 +39,70 @@ const Navbar = () => {
                 Login
               </Link>
             </li>
+            <li className='nav-item'>
+              <Link
+                  className='nav-link'
+                  to='/ketan-stores/men'
+                >
+                  Men
+                </Link>
+            </li>
+            <li className='nav-item'>
+              <Link
+                  className='nav-link'
+                  to='/ketan-stores/men/kurta/silk'
+                >
+                  Kurta-Silk
+                </Link>
+            </li>
+            <li className='nav-item'>
+              <Link
+                  className='nav-link'
+                  to='/ketan-stores/men/kurta/cotton'
+                >
+                  Kurta-Cotton
+                </Link>
+            </li>
+            <li className='nav-item'>
+              <Link
+                  className='nav-link'
+                  to='/ketan-stores/men/Chudidar'
+                >
+                  Chudidar
+                </Link>
+            </li>
+            <li className='nav-item'>
+              <Link
+                  className='nav-link'
+                  to='/ketan-stores/men/jacket-suit'
+                >
+                  Jacket Suit
+                </Link>
+            </li>
+            <li className='nav-item'>
+              <Link
+                  className='nav-link'
+                  to='/ketan-stores/men/indo-western'
+                >
+                  Indo Western
+                </Link>
+            </li>
+            <li className='nav-item'>
+              <Link
+                  className='nav-link'
+                  to='/ketan-stores/men/short-kurta'
+                >
+                  Short Kurta
+                </Link>
+            </li>
+            <li className='nav-item'>
+              <Link
+                  className='nav-link'
+                  to='/ketan-stores/men/plus-size'
+                >
+                  Plus Size
+                </Link>
+            </li>
           </ul>
         </div>
       </div>
