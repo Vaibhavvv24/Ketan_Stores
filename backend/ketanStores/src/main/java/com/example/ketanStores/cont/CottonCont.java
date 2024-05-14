@@ -10,6 +10,7 @@ import java.util.List;
 import com.example.ketanStores.dto.PutBody;
 import com.example.ketanStores.enums.CottonEnum;
 import com.example.ketanStores.enums.KurtaEnum;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +22,7 @@ import javax.sql.rowset.serial.SerialBlob;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+@Slf4j
 @RestController
 @RequestMapping("/kurta_cotton")
 @CrossOrigin(origins = "http://localhost:5173")
