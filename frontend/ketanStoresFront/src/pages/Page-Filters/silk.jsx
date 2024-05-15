@@ -233,6 +233,8 @@ export default function Silk() {
     }
   }
 
+  console.log(search);
+
   return (
     <div className='flex flex-wrap flex-col justify-center items-center'>
       <FormControl>

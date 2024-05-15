@@ -89,7 +89,7 @@ export default function OthersAdditions() {
                                     name = 'color'
                                     type = 'text'
                                     onChange = { (e) => {
-                                        setColor(e.target.value.trim());
+                                        setColor(e.target.value.trim().toLowerCase());
                                     }}
                                 />
                             </div>        
