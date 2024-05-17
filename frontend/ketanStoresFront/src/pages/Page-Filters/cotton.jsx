@@ -102,7 +102,6 @@ export default function Cotton() {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log("Thala", data);
           setCottonData(data);
           setLoading(false);
         })
@@ -110,7 +109,6 @@ export default function Cotton() {
           console.error("Error fetching data:", error);
         });
     } else if (type === "ALL" && !isNaN(size) && color === "") {
-      console.log("ThalaSize", size);
       fetch(`http://localhost:8080/kurta_cotton/size/${size}`, {
         method: "GET",
         headers: {
@@ -120,7 +118,6 @@ export default function Cotton() {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log("ThalaNew", data);
           setCottonData(data);
           setLoading(false);
         })

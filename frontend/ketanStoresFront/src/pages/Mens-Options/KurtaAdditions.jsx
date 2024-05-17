@@ -24,7 +24,7 @@ export default function KurtaAdditions() {
   const [color, setColor] = useState("");
   const [size, setSize] = useState("");
   const [image, setImage] = useState(null);
-  const [type, setType] = useState("");
+  const [type, setType] = useState("Plain");
 
   const handleBothSilk_Cotton = async (e) => {
     e.preventDefault();
@@ -185,7 +185,7 @@ export default function KurtaAdditions() {
                     name='type'
                     type='text'
                     onChange={(e) => {
-                      setColor(e.target.value.trim());
+                      setColor(e.target.value.trim().toLowerCase());
                     }}
                   />
                 </div>
