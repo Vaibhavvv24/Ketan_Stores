@@ -87,58 +87,76 @@ public class SilkCont {
 
     @GetMapping("/silk/search/{name}")
     public ResponseEntity<?> search(@PathVariable String name) {
-        log.info("SilkCont: Received a request to ");
+        log.info("SilkCont: Received a request to retrieve silks wrt name-filter, name = {}", name);
         System.out.println(name);
         List<Silk_dto> silk_dtos = silk_service.getSilkByName(name);
         System.out.println(silk_dtos);
+        log.info("SilkCont: Returning the filtered silks.");
         return ResponseEntity.ok().body(silk_dtos);
     }
 
     @GetMapping("/silk/colour_filter/{colour}")
     public ResponseEntity<?> getByColour(@PathVariable String colour) {
+        log.info("SilkCont: Received a request for retrieving silks wrt colour-filter, colour = {}", colour);
         ArrayList<Silk_dto> silk_dtos = silk_service.getSilkByColour(colour);
+        log.info("SilkCont: Returning the filtered silks.");
         return ResponseEntity.ok().body(silk_dtos);
     }
 
     @GetMapping("/silk/{type}/colour/{colour}")
     public ResponseEntity<?> getByTypeColour(@PathVariable String type, @PathVariable String colour) {
+        log.info("SilkCont: Received a request to filter silks wrt type-colour filter, type = {}, colour = {}", type, colour);
         ArrayList<Silk_dto> silk_dtos = silk_service.getSilkByColourAndtype(type, colour);
+        log.info("SilkCont: Returning the filtered silks.");
         return ResponseEntity.ok().body(silk_dtos);
     }
 
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateSilk(@PathVariable Long id, @RequestBody PutBody putBody) {
+        log.info("SilkCont: Received a request to update silk with id = {} by quantity = {}", id, Integer.parseInt(putBody.getQuantity()));
         int updated_Quantity = Integer.parseInt(putBody.getQuantity());
         Silk_dto silk_dto = silk_service.updateSilk(id, updated_Quantity);
         if (silk_dto == null) {
+            log.error("SilkCont: Unable to find silk with id = {}", id);
             return ResponseEntity.notFound().build();
         }
+        log.info("SilkCont: Updated silk = {}", silk_dto);
         return ResponseEntity.ok().body(silk_dto);
     }
 
     @GetMapping("/silk_tcs/{type}/colour/{colour}/size/{size}")
     public ResponseEntity<?> getByTypeSizeColour(@PathVariable String type, @PathVariable String colour, @PathVariable int size) {
+        log.info("SilkCont: Received a request to retrieve silks wrt type-size-colour filter, type = {}, size = {}, colour = {}",
+                type, size, colour);
         ArrayList<Silk_dto> silk_dtos = silk_service.getByTypeColourSize(type, colour, size);
+        log.info("SilkCont: Returning the filtered silks.");
         return ResponseEntity.ok().body(silk_dtos);
     }
 
     @GetMapping("/silk_tc/{type}/size/{size}")
     public ResponseEntity<?> getByTypeSize(@PathVariable String type, @PathVariable int size) {
+        log.info("SilkCont: Received a request to retrieve silks wrt type-size filter, type = {}, size = {}", type,
+                size);
         ArrayList<Silk_dto> silk_dtos = silk_service.getByTypeSize(type, size);
+        log.info("SilkCont: Returning the filtered silks.");
         return ResponseEntity.ok().body(silk_dtos);
     }
 
     @GetMapping("/silk_sc/{size}/colour/{colour}")
     public ResponseEntity<?> getBySizeColour(@PathVariable int size, @PathVariable String colour) {
+        log.info("SilkCont: Received a request to retrieve silks wrt size-colour, size = {}, colour = {}", size, colour);
         ArrayList<Silk_dto> silk_dtos = silk_service.getBySizeColour(size, colour);
+        log.info("SilkCont: Returning the filtered silks.");
         return ResponseEntity.ok().body(silk_dtos);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteById(@PathVariable Long id) {
+        log.info("SilkCont: Received a request to delete silk with id = {}", id);
         silk_service.deleteById(id);
         HashMap<String, String> responseJSON = new HashMap<>();
         responseJSON.put("status", "deleted : " + id);
+        log.info("SilkCont: Returning JSON = {}", responseJSON);
         return ResponseEntity.ok().body(responseJSON);
     }
 }
