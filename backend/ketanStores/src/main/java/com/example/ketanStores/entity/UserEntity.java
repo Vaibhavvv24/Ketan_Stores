@@ -1,9 +1,6 @@
 package com.example.ketanStores.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,6 +21,7 @@ public class UserEntity implements UserDetails {
             strategy = GenerationType.AUTO
     )
     private Long id;
+    @Column(unique = true)
     private String emailId;
     private String password;
 
