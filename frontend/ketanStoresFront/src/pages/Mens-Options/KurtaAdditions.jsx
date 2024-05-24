@@ -359,7 +359,8 @@ export default function KurtaAdditions() {
           </div>
         </div>
       </FormControl>
-      {name === "" ||
+      {optionsKurta === "null" ||
+      name === "" ||
       price === "" ||
       quantity === "" ||
       size === "" ||
