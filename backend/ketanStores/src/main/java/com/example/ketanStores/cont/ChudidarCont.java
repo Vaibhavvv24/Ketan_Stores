@@ -25,7 +25,6 @@ import java.util.Map;
 @CrossOrigin(origins = "http://localhost:5173")
 public class ChudidarCont {
 
-    private static final Logger log = LoggerFactory.getLogger(ChudidarCont.class);
     private final ChudidarService chudidarService;
 
     public ChudidarCont(ChudidarService chudidarService) {
